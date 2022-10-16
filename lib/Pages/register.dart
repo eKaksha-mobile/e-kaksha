@@ -96,7 +96,7 @@ class _RegisterState extends State<Register> {
                       child: Text(' Login ')),
                   ElevatedButton(
                       onPressed: () {
-                        print('Home');
+                        Navigator.pushNamed(context, '/home');
                       },
                       child: Text('Sign Up')),
                 ],

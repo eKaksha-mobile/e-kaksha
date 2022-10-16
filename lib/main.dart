@@ -1,3 +1,4 @@
+import 'package:ekaksha/Pages/forgot.dart';
 import 'package:ekaksha/Pages/main_screen.dart';
 
 import 'Pages/login.dart';
@@ -33,6 +34,7 @@ class MyApp extends StatelessWidget {
         '/login': (context) => Login(),
         '/register': (context) => Register(),
         '/home': (context) => MainScreen(),
+        '/forget': (context) => Forgot(),
       },
     );
   }

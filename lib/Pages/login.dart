@@ -21,77 +21,76 @@ class Login extends StatelessWidget {
           centerTitle: true,
         ),
         body: Container(
-          child: Column(
-            children: [
-              Expanded(
-                flex: 3,
-                child: Column(
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                Column(
                   children: [
-                    hr,
+                    SizedBox(
+                      height: 20.0,
+                    ),
                     CircleAvatar(
                       backgroundImage: AssetImage('assets/images/logo.png'),
                       radius: MediaQuery.of(context).size.height / 100 * 12,
                     ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
                   ],
                 ),
-              ),
-              Expanded(
-                flex: 6,
-                child: SingleChildScrollView(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Column(
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        InputBox(
+                          title: 'Mobile Number',
+                          hint: '+0 111 222 4444',
+                        ),
+                        Container(
+                            margin: EdgeInsets.symmetric(vertical: 15.0),
+                            child: Text('OR')),
+                        InputBox(
+                          title: 'Registered Email Address',
+                          hint: 'ekaksha@gmail.com',
+                        ),
+                        hr,
+                        InputBox(
+                          title: 'Password',
+                          hint: '******',
+                        ),
+                        hr,
+                        GestureDetector(
+                            onTap: () {
+                              Navigator.pushNamed(context, '/forget');
+                            },
+                            child: Text(
+                              'Forget Password ?',
+                            )),
+                      ],
+                    ),
+                    Container(
+                      margin: EdgeInsets.fromLTRB(35, 100, 35, 5),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          InputBox(
-                            title: 'Mobile Number',
-                            hint: '+0 111 222 4444',
-                          ),
-                          Container(
-                              margin: EdgeInsets.symmetric(vertical: 15.0),
-                              child: Text('OR')),
-                          InputBox(
-                            title: 'Registered Email Address',
-                            hint: 'ekaksha@gmail.com',
-                          ),
-                          hr,
-                          InputBox(
-                            title: 'Password',
-                            hint: '******',
-                          ),
-                          hr,
-                          GestureDetector(
-                              onTap: () {
-                                print('tap');
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/register');
                               },
-                              child: Text(
-                                'Forget Password ?',
-                              )),
+                              child: Text('Sign Up')),
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pushNamed(context, '/home');
+                              },
+                              child: Text(' Login ')),
                         ],
                       ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(35, 100, 35, 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pushNamed(context, '/register');
-                                },
-                                child: Text('Sign Up')),
-                            ElevatedButton(
-                                onPressed: () {
-                                  print('object');
-                                },
-                                child: Text(' Login ')),
-                          ],
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
+                    )
+                  ],
+                )
+              ],
+            ),
           ),
         ),
       ),
