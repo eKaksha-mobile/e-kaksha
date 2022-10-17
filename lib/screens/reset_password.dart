@@ -43,7 +43,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email Id", Icons.person_outline, false,
+                reusableTextField("Enter Email", Icons.person_outline, false,
                     _emailTextController),
                 const SizedBox(
                   height: 20,
@@ -51,8 +51,16 @@ class _ResetPasswordState extends State<ResetPassword> {
                 firebaseUIButton(context, "Reset Password", () {
                   FirebaseAuth.instance
                       .sendPasswordResetEmail(email: _emailTextController.text)
-                      .then((value) => Navigator.of(context).pop());
-                })
+                      .then((value) => Navigator.of(context).pop())
+                      .onError((error, stackTrace) {
+                    // print("Error ${error.toString()}");
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text("Error ${error.toString()}"),
+                      ),
+                    );
+                  });
+                }),
               ],
             ),
           ))),
