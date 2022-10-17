@@ -36,11 +36,12 @@ class _ResetPasswordState extends State<ResetPassword> {
           ),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 120, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               children: <Widget>[
+                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
                 const SizedBox(
-                  height: 20,
+                  height: 30,
                 ),
                 reusableTextField("Enter Email Id", Icons.person_outline, false,
                     _emailTextController),

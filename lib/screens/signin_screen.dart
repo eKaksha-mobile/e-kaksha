@@ -29,11 +29,10 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(
-                20, MediaQuery.of(context).size.height * 0.2, 20, 0),
+            padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/logo.png"),
+                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
                 const SizedBox(
                   height: 30,
                 ),
