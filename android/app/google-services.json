@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "423709088895",
+    "project_id": "ekaksha-app",
+    "storage_bucket": "ekaksha-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:423709088895:android:1f6c605ea1ecd8dd2bb34a",
+        "android_client_info": {
+          "package_name": "com.ekaksha.ekaksha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "423709088895-fupfvq4ta83pp3bhualmndio8eruld15.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ekaksha.ekaksha",
+            "certificate_hash": "8c55f7d7dd854108779facd955c71dbacc57d715"
+          }
+        },
+        {
+          "client_id": "423709088895-1a491rpvmjte2ctc64s89179pacnsc4i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZiu-RU4yKbmPSTpOe0BRH4-ySP53bn4Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "423709088895-1a491rpvmjte2ctc64s89179pacnsc4i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
