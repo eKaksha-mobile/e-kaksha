@@ -1,3 +1,9 @@
+//Please add these 3 lines in your local.properties file in android folder
+
+//flutter.minSdkVersion=21
+//flutter.targetSdkVersion=33
+//flutter.compileSdkVersion=33
+
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
 if (localPropertiesFile.exists()) {
