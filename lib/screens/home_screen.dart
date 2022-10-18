@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/construction.png'),
+            Image.asset('assets/images/underconstruction.jpg'),
             const SizedBox(
               height: 20,
             ),
