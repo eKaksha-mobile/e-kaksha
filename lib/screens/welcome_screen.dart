@@ -54,30 +54,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //               builder: (context) => SignInScreen(
-                //                     designation: 'Student',
-                //                   )));
-                //     },
-                //     child: Container(
-                //         decoration: const BoxDecoration(
-                //           borderRadius: BorderRadius.all(Radius.circular(25)),
-                //         ),
-                //         padding: EdgeInsets.symmetric(vertical: 15),
-                //         child: const Text(
-                //           'Student',
-                //           style: TextStyle(
-                //               fontSize: 20,
-                //               fontWeight: FontWeight.bold,
-                //               color: Colors.white70),
-                //         ))),
-                // const SizedBox(
-                //   height: 15,
-                // ),
+
                 firebaseUIButton(
                   context,
                   'Teacher',
@@ -91,30 +68,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //               builder: (context) => SignInScreen(
-                //                     designation: 'Teacher',
-                //                   )));
-                //     },
-                //     child: Container(
-                //         decoration: const BoxDecoration(
-                //           borderRadius: BorderRadius.all(Radius.circular(25)),
-                //         ),
-                //         padding: EdgeInsets.symmetric(vertical: 15),
-                //         child: const Text(
-                //           'Teacher',
-                //           style: TextStyle(
-                //               fontSize: 20,
-                //               fontWeight: FontWeight.bold,
-                //               color: Colors.white70),
-                //         ))),
-                // const SizedBox(
-                //   height: 5,
-                // ),
+
                 firebaseUIButton(
                   context,
                   'Admin',
@@ -128,68 +82,10 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                // ElevatedButton(
-                //     onPressed: () {
-                //       Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //               builder: (context) => SignInScreen(
-                //                     designation: 'Admin',
-                //                   )));
-                //     },
-                //     child: Container(
-                //         decoration: const BoxDecoration(
-                //           borderRadius: BorderRadius.all(Radius.circular(25)),
-                //         ),
-                //         padding: const EdgeInsets.symmetric(vertical: 15),
-                //         child: const Text(
-                //           'Admin',
-                //           style: TextStyle(
-                //               fontSize: 20,
-                //               fontWeight: FontWeight.bold,
-                //               color: Colors.white70),
-                //         ))),
               ],
             ),
           ),
         ),
-      ),
-    );
-  }
-
-  Row signUpOption() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const Text("Don't have account?",
-            style: TextStyle(color: Colors.white70)),
-        GestureDetector(
-          onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SignUpScreen()));
-          },
-          child: const Text(
-            " Sign Up",
-            style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget forgetPassword(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 35,
-      alignment: Alignment.bottomRight,
-      child: TextButton(
-        child: const Text(
-          "Forgot Password?",
-          style: TextStyle(color: Colors.white70),
-          textAlign: TextAlign.right,
-        ),
-        onPressed: () => Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ResetPassword())),
       ),
     );
   }
