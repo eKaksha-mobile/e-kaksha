@@ -39,7 +39,8 @@ TextField reusableTextField(String text, IconData icon, bool isPasswordType,
   );
 }
 
-Container firebaseUIButton(BuildContext context, String title, Function onTap) {
+Container firebaseUIButton(BuildContext context, String title, Function onTap,
+    {Color backgroundColor = Colors.white}) {
   return Container(
     width: MediaQuery.of(context).size.width,
     height: 50,
@@ -59,7 +60,7 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
             if (states.contains(MaterialState.pressed)) {
               return Colors.black26;
             }
-            return Colors.white;
+            return backgroundColor;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)))),

@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     // foreach()
 
     String email = '';
-    final docRef = await _firestore.collection("admin").doc("default");
+    final docRef = _firestore.collection("admin").doc("default");
     await docRef.get().then(
       (DocumentSnapshot doc) async {
         email = await (doc.data() as Map<String, dynamic>)['email'];
