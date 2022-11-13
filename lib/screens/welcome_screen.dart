@@ -35,81 +35,123 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
                 logoWidget("assets/images/eKaksha_transparent_yellow.png"),
+                // const SizedBox(
+                //   height: 30,
+                // ),
                 const SizedBox(
-                  height: 30,
+                  height: 60,
                 ),
-                const SizedBox(
-                  height: 15,
+                firebaseUIButton(
+                  context,
+                  'Student',
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInScreen(
+                            designation: 'Student',
+                          ),
+                        ));
+                  },
+                  backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignInScreen(
-                                    designation: 'Student',
-                                  )));
-                    },
-                    child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: const Text(
-                          'Student',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70),
-                        ))),
-                const SizedBox(
-                  height: 15,
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => SignInScreen(
+                //                     designation: 'Student',
+                //                   )));
+                //     },
+                //     child: Container(
+                //         decoration: const BoxDecoration(
+                //           borderRadius: BorderRadius.all(Radius.circular(25)),
+                //         ),
+                //         padding: EdgeInsets.symmetric(vertical: 15),
+                //         child: const Text(
+                //           'Student',
+                //           style: TextStyle(
+                //               fontSize: 20,
+                //               fontWeight: FontWeight.bold,
+                //               color: Colors.white70),
+                //         ))),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                firebaseUIButton(
+                  context,
+                  'Teacher',
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInScreen(
+                            designation: 'Teacher',
+                          ),
+                        ));
+                  },
+                  backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignInScreen(
-                                    designation: 'Teacher',
-                                  )));
-                    },
-                    child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                        ),
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: const Text(
-                          'Teacher',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70),
-                        ))),
-                const SizedBox(
-                  height: 15,
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => SignInScreen(
+                //                     designation: 'Teacher',
+                //                   )));
+                //     },
+                //     child: Container(
+                //         decoration: const BoxDecoration(
+                //           borderRadius: BorderRadius.all(Radius.circular(25)),
+                //         ),
+                //         padding: EdgeInsets.symmetric(vertical: 15),
+                //         child: const Text(
+                //           'Teacher',
+                //           style: TextStyle(
+                //               fontSize: 20,
+                //               fontWeight: FontWeight.bold,
+                //               color: Colors.white70),
+                //         ))),
+                // const SizedBox(
+                //   height: 5,
+                // ),
+                firebaseUIButton(
+                  context,
+                  'Admin',
+                  () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SignInScreen(
+                            designation: 'Admin',
+                          ),
+                        ));
+                  },
+                  backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SignInScreen(
-                                    designation: 'Admin',
-                                  )));
-                    },
-                    child: Container(
-                        decoration: const BoxDecoration(
-                          borderRadius: BorderRadius.all(Radius.circular(25)),
-                        ),
-                        padding: const EdgeInsets.symmetric(vertical: 15),
-                        child: const Text(
-                          'Admin',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white70),
-                        ))),
+                // ElevatedButton(
+                //     onPressed: () {
+                //       Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => SignInScreen(
+                //                     designation: 'Admin',
+                //                   )));
+                //     },
+                //     child: Container(
+                //         decoration: const BoxDecoration(
+                //           borderRadius: BorderRadius.all(Radius.circular(25)),
+                //         ),
+                //         padding: const EdgeInsets.symmetric(vertical: 15),
+                //         child: const Text(
+                //           'Admin',
+                //           style: TextStyle(
+                //               fontSize: 20,
+                //               fontWeight: FontWeight.bold,
+                //               color: Colors.white70),
+                //         ))),
               ],
             ),
           ),
