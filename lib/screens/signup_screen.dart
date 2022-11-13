@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/reusable_widgets/reusable_widget.dart';
 import 'package:ekaksha/screens/home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -15,6 +18,39 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _emailTextController = TextEditingController();
   TextEditingController _confirmPasswordTextController =
       TextEditingController();
+
+  Future<String> getAdminEmail() async {
+    // final messages = _firestore.collection('messages').get();
+    // const snapshot = await firebase.firestore().collection('events').get();
+    // return snapshot.docs.map(doc => doc.data());
+
+    // for (var message in messages.d) {}
+
+    // foreach()
+
+    String email = '';
+    final docRef = await _firestore.collection("admin").doc("default");
+    await docRef.get().then(
+      (DocumentSnapshot doc) async {
+        email = await (doc.data() as Map<String, dynamic>)['email'];
+        // print(data);
+        // ...
+        // print(email);
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+    //   _firestore.collection("admin").get().then(
+    //     (res) {
+    //       for (var message in res.docs) {
+    //         print(message.data());
+    //       }
+    //     },
+    //     onError: (e) => print("Error completing: $e"),
+    //   );
+    // }
+    return email;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +98,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () {
+                firebaseUIButton(context, "Sign Up", () async {
+                  String actual_email = await getAdminEmail();
+                  print(actual_email);
+
+                  if (_emailTextController.text != actual_email) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                        content: Text("Email Can't be registered as Admin"),
+                      ),
+                    );
+                    return;
+                  }
+
                   if (_passwordTextController.text ==
                       _confirmPasswordTextController.text) {
                     FirebaseAuth.instance
