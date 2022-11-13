@@ -20,7 +20,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController _confirmPasswordTextController =
       TextEditingController();
 
-  Future<String> getAdminEmail() async {
+  Future<bool> isAdminEmailExists(String requiredEmail) async {
     // final messages = _firestore.collection('messages').get();
     // const snapshot = await firebase.firestore().collection('events').get();
     // return snapshot.docs.map(doc => doc.data());
@@ -29,11 +29,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     // foreach()
 
-    String email = '';
-    final docRef = _firestore.collection("admin").doc("default");
+    bool result = false;
+
+    final docRef = _firestore.collection("admin");
     await docRef.get().then(
-      (DocumentSnapshot doc) async {
-        email = await (doc.data() as Map<String, dynamic>)['email'];
+      (res) async {
+        for (var message in res.docs) {
+          // print(message.data());
+          String email =
+              await (message.data() as Map<String, dynamic>)['email'];
+          // print('email $email, req $requiredEmail');
+          if (email == requiredEmail) {
+            result = true;
+            break;
+          }
+        }
         // print(data);
         // ...
         // print(email);
@@ -50,7 +60,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     //     onError: (e) => print("Error completing: $e"),
     //   );
     // }
-    return email;
+    return result;
   }
 
   @override
@@ -99,18 +109,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Sign Up", () async {
+                firebaseUIButton(
+                    context, "Sign Up as ${SignUpScreen.designation}",
+                    () async {
+                  bool result = false;
                   if (SignUpScreen.designation == 'Admin') {
-                    String actual_email = await getAdminEmail();
+                    result =
+                        await isAdminEmailExists(_emailTextController.text);
                   }
-                  String actual_email = 'await getAdminEmail();';
+                  // String actual_email = 'await getAdminEmail();';
 
-                  print(actual_email);
+                  // print(actual_email);
+                  // print(result);
 
-                  if (_emailTextController.text != actual_email) {
+                  if (!result) {
                     ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Email Can't be registered as Admin"),
+                      SnackBar(
+                        content: Text(
+                            "Email Can't be registered as ${SignUpScreen.designation}"),
                       ),
                     );
                     return;
@@ -124,8 +140,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             password: _passwordTextController.text)
                         .then((value) {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text("New user account created"),
+                        SnackBar(
+                          content: Text(
+                              "New ${SignUpScreen.designation} account created"),
                         ),
                       );
                       Navigator.push(
