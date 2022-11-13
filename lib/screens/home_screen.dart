@@ -184,6 +184,7 @@
 //   }
 // }
 
+import 'package:ekaksha/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ekaksha/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -220,7 +221,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   );
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SignInScreen()));
+                      MaterialPageRoute(builder: (context) => WelcomeScreen()));
                 });
               },
             ),
