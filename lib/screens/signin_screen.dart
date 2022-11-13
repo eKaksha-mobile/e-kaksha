@@ -5,12 +5,19 @@ import 'package:ekaksha/screens/reset_password.dart';
 import 'package:ekaksha/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatelessWidget {
-  SignInScreen({required this.designation});
-  final String designation;
+class SignInScreen extends StatefulWidget {
+  const SignInScreen({Key? key}) : super(key: key);
+  static String designation = '';
 
+  @override
+  State<SignInScreen> createState() => _SignInScreenState();
+}
+
+class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
+
   TextEditingController _emailTextController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +50,8 @@ class SignInScreen extends StatelessWidget {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In As Admin", () {
+                firebaseUIButton(
+                    context, "Sign In As ${SignInScreen.designation}", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
@@ -71,10 +79,11 @@ class SignInScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.white70)),
                     GestureDetector(
                       onTap: () {
+                        SignUpScreen.designation = SignInScreen.designation;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignUpScreen()));
+                                builder: (context) => const SignUpScreen()));
                       },
                       child: const Text(
                         " Sign Up",

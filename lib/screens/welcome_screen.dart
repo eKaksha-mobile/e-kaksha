@@ -45,12 +45,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   context,
                   'Student',
                   () {
+                    SignInScreen.designation = 'Student';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignInScreen(
-                            designation: 'Student',
-                          ),
+                          builder: (context) => const SignInScreen(),
                         ));
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
@@ -83,12 +82,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   context,
                   'Teacher',
                   () {
+                    SignInScreen.designation = 'Teacher';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignInScreen(
-                            designation: 'Teacher',
-                          ),
+                          builder: (context) => const SignInScreen(),
                         ));
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
@@ -121,12 +119,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   context,
                   'Admin',
                   () {
+                    SignInScreen.designation = 'Admin';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => SignInScreen(
-                            designation: 'Admin',
-                          ),
+                          builder: (context) => const SignInScreen(),
                         ));
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,

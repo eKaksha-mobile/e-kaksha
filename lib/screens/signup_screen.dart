@@ -8,9 +8,10 @@ final _firestore = FirebaseFirestore.instance;
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
+  static String designation = '';
 
   @override
-  _SignUpScreenState createState() => _SignUpScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
@@ -99,7 +100,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 firebaseUIButton(context, "Sign Up", () async {
-                  String actual_email = await getAdminEmail();
+                  if (SignUpScreen.designation == 'Admin') {
+                    String actual_email = await getAdminEmail();
+                  }
+                  String actual_email = 'await getAdminEmail();';
+
                   print(actual_email);
 
                   if (_emailTextController.text != actual_email) {
