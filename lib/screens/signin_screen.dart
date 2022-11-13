@@ -43,7 +43,7 @@ class SignInScreen extends StatelessWidget {
                   height: 5,
                 ),
                 forgetPassword(context),
-                firebaseUIButton(context, "Sign In As Admin", () {
+                firebaseUIButton(context, "Sign In As $designation", () {
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
