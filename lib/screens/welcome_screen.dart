@@ -30,7 +30,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
@@ -51,9 +51,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   )));
                     },
                     child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                        ),
                         padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          'Login as Student',
+                        child: const Text(
+                          'Student',
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -72,9 +75,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   )));
                     },
                     child: Container(
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                        ),
                         padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          'Login as Teacher',
+                        child: const Text(
+                          'Teacher',
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -93,9 +99,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                                   )));
                     },
                     child: Container(
-                        padding: EdgeInsets.symmetric(vertical: 15),
-                        child: Text(
-                          'Login as Admin',
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.all(Radius.circular(25)),
+                        ),
+                        padding: const EdgeInsets.symmetric(vertical: 15),
+                        child: const Text(
+                          'Admin',
                           style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
