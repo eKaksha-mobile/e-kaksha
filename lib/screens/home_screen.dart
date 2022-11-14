@@ -184,6 +184,9 @@
 //   }
 // }
 
+import 'dart:math';
+
+import 'package:ekaksha/screens/classroom_screen.dart';
 import 'package:ekaksha/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ekaksha/screens/signin_screen.dart';
@@ -203,11 +206,11 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   List data = [
     {
-      'name': 's1',
-      'email': 's1@gmail.com',
+      'name': 'ekaksha',
+      'email': 'ekaksha.official.app@gmail.com',
       'semester': 7,
-      'position': 'student',
-      'subject': ['math', 'phy', 'chm']
+      // 'position': 'student',
+      // 'subject': ['math', 'phy', 'chm']
     },
     {
       'name': 's2',
@@ -246,6 +249,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     currentUser();
+    for (var std in data) {
+      // print('hello ${std["email"]}');
+      if (std['email'] == loggedInUser.email) {
+        classRoom(std['semester']);
+        break;
+      }
+    }
   }
 
   void currentUser() async {
@@ -260,15 +270,65 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  List classRoomSection = [];
+
+  void classRoom(int n) {
+    for (var classes in semSubject['$n']) {
+      // if (classRoomSection.length < semSubject['$n'].length) {
+      classRoomSection.add(GestureDetector(
+        onTap: () {},
+        child: Container(
+          decoration: BoxDecoration(
+            color: Colors.blueGrey,
+            image: DecorationImage(
+                image: AssetImage(
+                    'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
+                fit: BoxFit.cover),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.blueGrey,
+                blurRadius: 1.0,
+                spreadRadius: 0.0,
+                offset: Offset(1.0, 1.0), // shadow direction: bottom right
+              )
+            ],
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+          margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                classes,
+                style: const TextStyle(
+                    fontSize: 25,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white),
+              ),
+              Text(
+                'Semester $n',
+                style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+            ],
+          ),
+        ),
+      ));
+      // }
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('eKaksha Classroom'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+        child: ListView(
+          children: [...classRoomSection],
         ),
       ),
     );
