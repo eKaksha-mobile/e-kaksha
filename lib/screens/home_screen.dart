@@ -236,7 +236,13 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   Map semSubject = {
-    '7': ['Data Mining', 'Deep Learning', 'Block Chain', 'Road Safety'],
+    '7': [
+      'Data Mining',
+      'Deep Learning',
+      'Block Chain',
+      'Road Safety',
+      'Network Security'
+    ],
     '6': [
       'Machine Learning',
       'Artificial Intelligence',
@@ -281,8 +287,9 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             color: Colors.blueGrey,
             image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
+                // image: AssetImage(
+                //     'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
+                image: AssetImage('assets/images/banner12.jpg'),
                 fit: BoxFit.cover),
             boxShadow: [
               BoxShadow(
@@ -323,12 +330,29 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      // extendBodyBehindAppBar: true,
       appBar: AppBar(
-        title: const Text('eKaksha Classroom'),
+        backgroundColor: Colors.orange.shade300,
+        elevation: 0,
+        title: const Text(
+          "eKaksha Classroom",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
       ),
-      body: Center(
-        child: ListView(
-          children: [...classRoomSection],
+      body: Container(
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.orange.shade300, Colors.red.shade300],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Center(
+          child: ListView(
+            children: [...classRoomSection],
+          ),
         ),
       ),
     );
