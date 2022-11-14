@@ -36,7 +36,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle sm = TextStyle(fontSize: 20, fontWeight: FontWeight.bold);
+    const TextStyle sm = TextStyle(
+        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
     BoxDecoration gradientdecoration = BoxDecoration(
       gradient: LinearGradient(
         colors: [Colors.orange.shade300, Colors.red.shade300],
@@ -84,7 +85,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         decoration: BoxDecoration(
                           color: Colors.orangeAccent,
                           image: const DecorationImage(
-                              image: AssetImage('assets/images/banner1.jpg'),
+                              image: AssetImage('assets/images/banner9.jpg'),
                               fit: BoxFit.cover),
                           boxShadow: const [
                             BoxShadow(
@@ -111,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               width: 200,
                               child: Text(
                                 (loggedInUser.email).toString(),
-                                style: sm,
+                                style: sm.copyWith(fontSize: 22),
                               ),
                             ),
                           ],
@@ -130,16 +131,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          AnnouncementScreen()));
+                                          const AnnouncementScreen()));
                             },
                             t2: 'Classroom',
-                            t2Icon: Icons.campaign,
+                            t2Icon: Icons.school,
                             t2OnTap: () {
                               HomeScreen.loggedInUser = loggedInUser;
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => HomeScreen()));
+                                      builder: (context) =>
+                                          const HomeScreen()));
                               //used HomeScreen as ClassroomScreen
                             },
                           ),
@@ -149,10 +151,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                         flex: 2,
                         child: GestureDetector(
                           child: Container(
-                            margin: EdgeInsets.fromLTRB(0, 2, 0, 5),
+                            margin: const EdgeInsets.fromLTRB(0, 2, 0, 5),
                             child: IndividualRowSet(
                               t1: 'Profile',
-                              t2: 'Progress Visualization',
+                              t2: 'Progress Report',
                               t1Icon: Icons.person,
                               t2Icon: Icons.auto_graph,
                               t1OnTap: () {
@@ -161,7 +163,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => ProfileScreen()));
+                                        builder: (context) =>
+                                            const ProfileScreen()));
                               },
                               t2OnTap: () {
                                 HomeScreen.loggedInUser = loggedInUser;
@@ -169,7 +172,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                                     context,
                                     MaterialPageRoute(
                                         builder: (context) =>
-                                            ProgressScreen()));
+                                            const ProgressScreen()));
                               },
                             ),
                           ),
@@ -188,14 +191,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     width: double.infinity,
                     // height: 50,
                     alignment: Alignment.center,
-                    child: Text(
+                    margin: const EdgeInsets.only(top: 5.0),
+                    decoration: gradientdecoration,
+                    child: const Text(
                       'Logout',
                       style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
                     ),
-                    margin: const EdgeInsets.all(5.0),
-                    decoration: gradientdecoration,
                   ),
                 ),
               ),
@@ -241,12 +244,15 @@ class IndividualRowSet extends StatelessWidget {
                   t1Icon,
                   size: 35,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   t1,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -265,12 +271,15 @@ class IndividualRowSet extends StatelessWidget {
                   t2Icon,
                   size: 35,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 Text(
                   t2,
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                      fontSize: 21,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black54),
                   textAlign: TextAlign.center,
                 ),
               ],
@@ -298,7 +307,7 @@ class ContainerBox extends StatelessWidget {
       decoration: BoxDecoration(
           color: colour,
           image: const DecorationImage(
-              image: AssetImage('assets/images/plainbanner.jpg'),
+              image: AssetImage('assets/images/banner1.jpg'),
               fit: BoxFit.cover),
           boxShadow: const [
             BoxShadow(

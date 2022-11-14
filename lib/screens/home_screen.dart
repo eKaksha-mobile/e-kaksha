@@ -1,10 +1,6 @@
 import 'dart:math';
 
-import 'package:ekaksha/screens/classroom_screen.dart';
-import 'package:ekaksha/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ekaksha/screens/signin_screen.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -20,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
     {
       'name': 'ekaksha',
       'email': 'ekaksha.official.app@gmail.com',
-      'semester': 7,
+      'semester': 6,
       // 'position': 'student',
       // 'subject': ['math', 'phy', 'chm']
     },
@@ -67,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     for (var std in data) {
-      print(HomeScreen.loggedInUser?.email);
+      // print(HomeScreen.loggedInUser?.email);
       if (std['email'] == HomeScreen.loggedInUser?.email) {
         classRoom(std['semester']);
         break;
@@ -90,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
                 // image: AssetImage('assets/images/banner12.jpg'),
                 fit: BoxFit.cover),
-            boxShadow: [
+            boxShadow: const [
               BoxShadow(
                 color: Colors.black87,
                 blurRadius: 2.0,
@@ -100,24 +96,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
             borderRadius: BorderRadius.circular(20.0),
           ),
-          padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
+          height: 150,
+          padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
+                'Semester $n',
+                style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white),
+              ),
+              Text(
                 classes,
                 style: const TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
-                    color: Colors.white),
-              ),
-              Text(
-                'Semester $n',
-                style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
                     color: Colors.white),
               ),
             ],
@@ -128,12 +125,13 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       // extendBodyBehindAppBar: true,
       appBar: AppBar(
         backgroundColor: Colors.orange.shade300,
-        elevation: 0,
+        elevation: 2,
         title: const Text(
           "eKaksha Classroom",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
