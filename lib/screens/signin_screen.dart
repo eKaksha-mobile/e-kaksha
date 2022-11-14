@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/screens/classroom_screen.dart';
+import 'package:ekaksha/screens/dashboard_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ekaksha/reusable_widgets/reusable_widget.dart';
 import 'package:ekaksha/screens/home_screen.dart';
@@ -137,8 +139,10 @@ class _SignInScreenState extends State<SignInScreen> {
                         content: Text("Signed In Successfully"),
                       ),
                     );
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomeScreen()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => DashboardScreen()));
                   }).onError((error, stackTrace) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
