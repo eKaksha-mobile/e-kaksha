@@ -23,7 +23,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
       final user = _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-        // print(loggedInUser.email);
+        print(loggedInUser.email);
       }
     } catch (e) {
       // print(e);
@@ -34,7 +34,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Classroom'),
+        title: const Text('eKaksha Classroom'),
         actions: <Widget>[
           IconButton(
               icon: const Icon(

@@ -187,7 +187,11 @@
 import 'package:ekaksha/screens/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ekaksha/screens/signin_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+final _auth = FirebaseAuth.instance;
+late User loggedInUser;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -197,35 +201,74 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List data = [
+    {
+      'name': 's1',
+      'email': 's1@gmail.com',
+      'semester': 7,
+      'position': 'student',
+      'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 's2',
+      'email': 'abc@gmail.com',
+      'semester': 7,
+      'position': 'student',
+      'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 's3',
+      'email': 's3@gmail.com',
+      'semester': 6,
+      'position': 'student',
+      'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 't1',
+      'email': 't1@gmail.com',
+      'semester': 6,
+      'position': 'teacher',
+      'subject': ['math']
+    },
+  ];
+
+  Map semSubject = {
+    '7': ['Data Mining', 'Deep Learning', 'Block Chain', 'Road Safety'],
+    '6': [
+      'Machine Learning',
+      'Artificial Intelligence',
+      'Cloud Computing',
+      'Compiler Design'
+    ]
+  };
+
   @override
+  void initState() {
+    super.initState();
+    currentUser();
+  }
+
+  void currentUser() async {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+        print(loggedInUser.email);
+      }
+    } catch (e) {
+      // print('e');
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Home Screen'),
+        title: const Text('eKaksha Classroom'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/underconstruction.jpg'),
-            const SizedBox(
-              height: 20,
-            ),
-            ElevatedButton(
-              child: Text("Logout"),
-              onPressed: () {
-                FirebaseAuth.instance.signOut().then((value) {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Signed Out Successfully"),
-                    ),
-                  );
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => WelcomeScreen()));
-                });
-              },
-            ),
-          ],
+          children: [],
         ),
       ),
     );
