@@ -1,9 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:ekaksha/reusable_widgets/reusable_widget.dart';
 import 'package:ekaksha/screens/home_screen.dart';
 import 'package:ekaksha/screens/reset_password.dart';
 import 'package:ekaksha/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
+
+final _firestore = FirebaseFirestore.instance;
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -17,6 +20,51 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController _passwordTextController = TextEditingController();
 
   TextEditingController _emailTextController = TextEditingController();
+
+  Future<bool> isAdminEmailExists(String requiredEmail) async {
+    bool result = false;
+
+    final docRef = _firestore.collection("admin");
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    return result;
+  }
+
+  Future<bool> isStudentEmailExists(String requiredEmail) async {
+    bool result = false;
+
+    final docRef = _firestore.collection("students");
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    return result;
+  }
+
+  Future<bool> isTeacherEmailExists(String requiredEmail) async {
+    bool result = false;
+
+    final docRef = _firestore.collection("teachers");
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    return result;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +99,34 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 forgetPassword(context),
                 firebaseUIButton(
-                    context, "Sign In As ${SignInScreen.designation}", () {
+                    context, "Sign In As ${SignInScreen.designation}",
+                    () async {
+                  bool result = false;
+                  if (SignInScreen.designation == 'Admin') {
+                    result =
+                        await isAdminEmailExists(_emailTextController.text);
+                  } else if (SignInScreen.designation == 'Student') {
+                    result =
+                        await isStudentEmailExists(_emailTextController.text);
+                  } else if (SignInScreen.designation == 'Teacher') {
+                    result =
+                        await isTeacherEmailExists(_emailTextController.text);
+                  }
+                  // String actual_email = 'await getAdminEmail();';
+
+                  // print(actual_email);
+                  // print(result);
+
+                  if (!result) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            "Email Can't be signed in as ${SignInScreen.designation}"),
+                      ),
+                    );
+                    return;
+                  }
+
                   FirebaseAuth.instance
                       .signInWithEmailAndPassword(
                           email: _emailTextController.text,
