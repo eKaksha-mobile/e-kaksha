@@ -287,18 +287,19 @@ class _HomeScreenState extends State<HomeScreen> {
           decoration: BoxDecoration(
             color: Colors.blueGrey,
             image: DecorationImage(
-                // image: AssetImage(
-                //     'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
-                image: AssetImage('assets/images/banner12.jpg'),
+                image: AssetImage(
+                    'assets/images/banner${Random().nextInt(12) + 1}.jpg'),
+                // image: AssetImage('assets/images/banner12.jpg'),
                 fit: BoxFit.cover),
             boxShadow: [
               BoxShadow(
-                color: Colors.blueGrey,
-                blurRadius: 1.0,
-                spreadRadius: 0.0,
-                offset: Offset(1.0, 1.0), // shadow direction: bottom right
+                color: Colors.black87,
+                blurRadius: 2.0,
+                spreadRadius: 1.0,
+                offset: Offset(2.0, 2.0), // shadow direction: bottom right
               )
             ],
+            borderRadius: BorderRadius.circular(20.0),
           ),
           padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 10),
           margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
