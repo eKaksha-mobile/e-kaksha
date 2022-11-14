@@ -21,45 +21,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
       TextEditingController();
 
   Future<bool> isAdminEmailExists(String requiredEmail) async {
-    // final messages = _firestore.collection('messages').get();
-    // const snapshot = await firebase.firestore().collection('events').get();
-    // return snapshot.docs.map(doc => doc.data());
-
-    // for (var message in messages.d) {}
-
-    // foreach()
-
     bool result = false;
 
     final docRef = _firestore.collection("admin");
-    await docRef.get().then(
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
       (res) async {
-        for (var message in res.docs) {
-          // print(message.data());
-          String email =
-              await (message.data() as Map<String, dynamic>)['email'];
-          // print('email $email, req $requiredEmail');
-          if (email == requiredEmail) {
-            result = true;
-            break;
-          }
+        if (res.docs.isNotEmpty) {
+          result = true;
         }
-        // print(data);
-        // ...
-        // print(email);
       },
       onError: (e) => print("Error getting document: $e"),
     );
+    return result;
+  }
 
-    //   _firestore.collection("admin").get().then(
-    //     (res) {
-    //       for (var message in res.docs) {
-    //         print(message.data());
-    //       }
-    //     },
-    //     onError: (e) => print("Error completing: $e"),
-    //   );
-    // }
+  Future<bool> isStudentEmailExists(String requiredEmail) async {
+    bool result = false;
+
+    final docRef = _firestore.collection("students");
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    return result;
+  }
+
+  Future<bool> isTeacherEmailExists(String requiredEmail) async {
+    bool result = false;
+
+    final docRef = _firestore.collection("teachers");
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
     return result;
   }
 
@@ -116,6 +118,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   if (SignUpScreen.designation == 'Admin') {
                     result =
                         await isAdminEmailExists(_emailTextController.text);
+                  } else if (SignUpScreen.designation == 'Student') {
+                    result =
+                        await isStudentEmailExists(_emailTextController.text);
+                  } else if (SignUpScreen.designation == 'Teacher') {
+                    result =
+                        await isTeacherEmailExists(_emailTextController.text);
                   }
                   // String actual_email = 'await getAdminEmail();';
 
