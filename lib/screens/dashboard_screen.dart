@@ -1,3 +1,6 @@
+import 'package:ekaksha/reusable_widgets/constant.dart';
+import 'package:ekaksha/reusable_widgets/top_intro_banner.dart';
+import 'package:ekaksha/reusable_widgets/two_row_set.dart';
 import 'package:ekaksha/screens/announcement_screen.dart';
 import 'package:ekaksha/screens/home_screen.dart';
 import 'package:ekaksha/screens/profile_screen.dart';
@@ -36,16 +39,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const TextStyle sm = TextStyle(
-        color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold);
-    BoxDecoration gradientdecoration = BoxDecoration(
-      gradient: LinearGradient(
-        colors: [Colors.orange.shade300, Colors.red.shade300],
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-      ),
-    );
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.orange.shade300,
@@ -67,57 +60,18 @@ class _DashboardScreenState extends State<DashboardScreen> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: gradientdecoration,
+        decoration: gradientdecoration_YR,
         child: Center(
           child: Column(
             children: [
+              TopIntroCard(
+                text1: 'Welcome ,',
+                text2: (loggedInUser.email).toString(),
+              ),
               Expanded(
                   flex: 9,
                   child: Column(
                     children: [
-                      Container(
-                        margin: const EdgeInsets.symmetric(
-                            vertical: 5, horizontal: 5),
-                        height: 180,
-                        width: double.infinity,
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 15, horizontal: 15),
-                        decoration: BoxDecoration(
-                          color: Colors.orangeAccent,
-                          image: const DecorationImage(
-                              image: AssetImage('assets/images/banner9.jpg'),
-                              fit: BoxFit.cover),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black87,
-                              blurRadius: 3.0,
-                              spreadRadius: 1.0,
-                              offset: Offset(
-                                  1.0, 1.0), // shadow direction: bottom right
-                            )
-                          ],
-                          borderRadius: BorderRadius.circular(10.0),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const Text(
-                              'Welcome ,',
-                              style: sm,
-                            ),
-                            const SizedBox(
-                              height: 3,
-                            ),
-                            SizedBox(
-                              width: 200,
-                              child: Text(
-                                (loggedInUser.email).toString(),
-                                style: sm.copyWith(fontSize: 22),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
                       Expanded(
                         flex: 2,
                         child: Container(
@@ -189,10 +143,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   },
                   child: Container(
                     width: double.infinity,
-                    // height: 50,
                     alignment: Alignment.center,
                     margin: const EdgeInsets.only(top: 5.0),
-                    decoration: gradientdecoration,
+                    decoration: gradientdecoration_YR,
                     child: const Text(
                       'Logout',
                       style:
@@ -206,118 +159,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class IndividualRowSet extends StatelessWidget {
-  const IndividualRowSet(
-      {Key? key,
-      required this.t1,
-      required this.t2,
-      required this.t1OnTap,
-      required this.t2OnTap,
-      this.t1Icon = Icons.priority_high,
-      this.t2Icon = Icons.priority_high})
-      : super(key: key);
-
-  final String t1;
-  final IconData t1Icon;
-  final VoidCallback t1OnTap;
-  final IconData t2Icon;
-  final String t2;
-  final VoidCallback t2OnTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-            child: GestureDetector(
-          onTap: t1OnTap,
-          child: ContainerBox(
-            colour: Colors.orange,
-            cardChild: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  t1Icon,
-                  size: 35,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  t1,
-                  style: const TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-        )),
-        Expanded(
-            child: GestureDetector(
-          onTap: t2OnTap,
-          child: ContainerBox(
-            colour: Colors.orange,
-            cardChild: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  t2Icon,
-                  size: 35,
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Text(
-                  t2,
-                  style: const TextStyle(
-                      fontSize: 21,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black54),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-        ))
-      ],
-    );
-  }
-}
-
-class ContainerBox extends StatelessWidget {
-  ContainerBox({required this.colour, this.cardChild});
-
-  final Color colour;
-  final Widget? cardChild;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(10),
-      alignment: Alignment.center,
-      child: cardChild,
-      margin: const EdgeInsets.all(5.0),
-      decoration: BoxDecoration(
-          color: colour,
-          image: const DecorationImage(
-              image: AssetImage('assets/images/banner1.jpg'),
-              fit: BoxFit.cover),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black87,
-              blurRadius: 3.0,
-              spreadRadius: 1.0,
-              offset: Offset(1.5, 1.5), // shadow direction: bottom right
-            )
-          ],
-          borderRadius: BorderRadius.circular(15.0)),
     );
   }
 }
