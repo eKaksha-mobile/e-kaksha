@@ -1,3 +1,4 @@
+import 'package:ekaksha/screens/assignment_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import './screens/classroom_screen.dart';
@@ -20,7 +21,11 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.orange,
       ),
-      home: ClassroomScreen(),
+      // home: ClassroomScreen(),
+      routes: {
+    '/' : (context) => ClassroomScreen(),
+    AssignmentScreen.route : (context) => const AssignmentScreen(),
+    },
     );
   }
 }
