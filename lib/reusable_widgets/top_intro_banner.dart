@@ -2,14 +2,15 @@ import 'package:ekaksha/reusable_widgets/constant.dart';
 import 'package:flutter/material.dart';
 
 class TopIntroCard extends StatelessWidget {
-  TopIntroCard({this.text1 = '', this.text2 = ''});
   final String text1;
   final String text2;
+
+  const TopIntroCard({super.key, required this.text1, required this.text2});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 8),
+      margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       height: 180,
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),

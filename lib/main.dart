@@ -1,7 +1,6 @@
-import 'package:ekaksha/screens/signin_screen.dart';
-import 'package:ekaksha/screens/welcome_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import './screens/classroom_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +20,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.orange,
       ),
-      home: const WelcomeScreen(),
+      home: ClassroomScreen(),
     );
   }
 }
