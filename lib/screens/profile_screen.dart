@@ -40,15 +40,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
       );
     }
   }
+  //
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // backgroundColor: Color(0xFF121927),
+
       appBar: AppBar(
         title: const Text(
           'Student Profile',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
         ),
+        // backgroundColor: Color(0xFF0D1520),
       ),
       body: Center(
         child: ListView(
@@ -56,10 +60,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
             Container(
               margin: const EdgeInsets.only(top: 10),
               child: const CircleAvatar(
-                radius: 76.0,
-                backgroundColor: Colors.white,
+                radius: 66.0,
+                // backgroundColor: Colors.blueGrey,
                 child: CircleAvatar(
-                  radius: 73.0,
+                  radius: 63.0,
                   backgroundImage: NetworkImage(
                       'https://cdn-icons-png.flaticon.com/512/4139/4139981.png'),
                 ),
@@ -84,12 +88,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
               textAlign: TextAlign.center,
             ),
-            SizedBox(
-              height: 25.0,
+            const SizedBox(
+              height: 15.0,
               width: 100.0,
-              child: Divider(
-                color: Colors.teal[100],
-              ),
+              // child: Divider(
+              //   color: Colors.teal.shade900,
+              // ),
             ),
             CardWidget(
               heading: (currentUserData['email']).toString(),
