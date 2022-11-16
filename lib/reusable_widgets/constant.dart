@@ -10,3 +10,18 @@ BoxDecoration gradientdecoration_YR = BoxDecoration(
     end: Alignment.bottomCenter,
   ),
 );
+
+BoxDecoration gradientdecoration_PP = const BoxDecoration(
+    gradient: LinearGradient(
+      colors: [Color(0xFFF65A61), Color(0xFFF65A61)],
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+    ),
+    boxShadow: [
+      BoxShadow(
+        color: Colors.black87,
+        blurRadius: 3.0,
+        spreadRadius: 3.0,
+        offset: Offset(2, 6), // shadow direction: bottom right
+      )
+    ]);

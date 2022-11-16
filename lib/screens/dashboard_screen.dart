@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 
 final _auth = FirebaseAuth.instance;
 late User loggedInUser;
+// late var currentUserData;
 
 class DashboardScreen extends StatefulWidget {
   const DashboardScreen({super.key});
@@ -19,6 +20,53 @@ class DashboardScreen extends StatefulWidget {
 }
 
 class _DashboardScreenState extends State<DashboardScreen> {
+  List data = [
+    {
+      'name': 'ekaksha',
+      'email': 'ekaksha.official.app@gmail.com',
+      'semester': 6,
+      // 'position': 'student',
+      // 'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 's2',
+      'email': 's1@gmail.com',
+      'semester': 7,
+      'position': 'student',
+      'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 's3',
+      'email': 's3@gmail.com',
+      'semester': 6,
+      'position': 'student',
+      'subject': ['math', 'phy', 'chm']
+    },
+    {
+      'name': 't1',
+      'email': 't1@gmail.com',
+      'semester': 6,
+      'position': 'teacher',
+      'subject': ['math']
+    },
+  ];
+
+  Map semSubject = {
+    '7': [
+      'Data Mining',
+      'Deep Learning',
+      'Block Chain',
+      'Road Safety',
+      'Network Security'
+    ],
+    '6': [
+      'Machine Learning',
+      'Artificial Intelligence',
+      'Cloud Computing',
+      'Compiler Design'
+    ]
+  };
+
   @override
   void initState() {
     super.initState();
@@ -91,6 +139,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                             t2Icon: Icons.school,
                             t2OnTap: () {
                               HomeScreen.loggedInUser = loggedInUser;
+                              HomeScreen.data = data;
+                              HomeScreen.semSubject = semSubject;
                               Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -113,12 +163,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
                               t2Icon: Icons.auto_graph,
                               t1OnTap: () {
                                 // print(loggedInUser);
-                                HomeScreen.loggedInUser = loggedInUser;
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            const ProfileScreen()));
+                                ProfileScreen.loggedInUser = loggedInUser;
+                                ProfileScreen.data = data;
+                                ProfileScreen.semSubject = semSubject;
+
+                                Navigator.pushNamed(
+                                    context, ProfileScreen.route);
                               },
                               t2OnTap: () {
                                 HomeScreen.loggedInUser = loggedInUser;
@@ -144,8 +194,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
                   child: Container(
                     width: double.infinity,
                     alignment: Alignment.center,
-                    margin: const EdgeInsets.only(top: 5.0),
-                    decoration: gradientdecoration_YR,
+                    // margin: const EdgeInsets.only(top: 5.0),
+                    decoration: gradientdecoration_PP,
                     child: const Text(
                       'Logout',
                       style:
