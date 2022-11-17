@@ -1,9 +1,11 @@
-import 'package:ekaksha/screens/assignment_screen.dart';
-import 'package:ekaksha/screens/profile_screen.dart';
-import 'package:ekaksha/screens/welcome_screen.dart';
+import 'package:ekaksha/home/classes_screen.dart';
+import 'package:ekaksha/home/login/welcome_screen.dart';
+import 'package:ekaksha/model/student_model.dart';
+import 'home/class/assignment_screen.dart';
+
+import 'home/profile/profile_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import './screens/classroom_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,21 +16,41 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  static StudentModel studentModel = StudentModel('Sidharth Mudgil', 'smudgil102@gmail.com', 7, []);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Ekaksha',
+      title: 'EKaksha',
       theme: ThemeData(
-        // is not restarted.
-        primarySwatch: Colors.orange,
+        textTheme: ThemeData.light().textTheme.copyWith(
+              bodyMedium: const TextStyle(color: Color.fromRGBO(25, 50, 50, 1)),
+              titleLarge: const TextStyle(fontSize: 22, fontFamily: 'Poppins'),
+              titleMedium: const TextStyle(fontSize: 18, fontFamily: 'Poppins'),
+              titleSmall: const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
+            ),
       ),
+      // theme: ThemeData.dark(),
+      // themeMode: ThemeMode.dark,
+      // theme: ThemeData(
+      //   brightness: Brightness.light,
+      // ),
+      // darkTheme: ThemeData(
+      //   brightness: Brightness.dark,
+      //   backgroundColor: const Color(0xFF212121),
+      //   dividerColor: Colors.black12, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
+      //   // primarySwatch:
+      // ),
       initialRoute: '/',
       routes: {
         '/': (context) => WelcomeScreen(),
+        ClassesScreen.route: (context) => const ClassesScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
         ProfileScreen.route: (context) => const ProfileScreen(),
       },
+      // onGenerateRoute: (settings) {},
+      // onUnknownRoute: (settings) {},
     );
   }
 }
