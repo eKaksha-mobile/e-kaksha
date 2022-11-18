@@ -5,7 +5,7 @@ import 'signin_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
-  static const route = '/welcome-screen';
+  static const route = '/';
 
   const WelcomeScreen({Key? key}) : super(key: key);
 

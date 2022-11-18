@@ -23,7 +23,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
   @override
   void initState() {
     super.initState();
-    for (var std in ClassesScreen.data!) {
+    for (var std in ClassesScreen.data) {
       // print(HomeScreen.loggedInUser?.email);
       if (std['email'] == ClassesScreen.loggedInUser?.email) {
         classRoom(std['semester']);
@@ -35,7 +35,7 @@ class _ClassesScreenState extends State<ClassesScreen> {
   List classRoomSection = [];
 
   void classRoom(int n) {
-    for (var classes in ClassesScreen.semSubject!['$n']) {
+    for (var classes in ClassesScreen.semSubject['$n']) {
       // if (classRoomSection.length < semSubject['$n'].length) {
       classRoomSection.add(GestureDetector(
         onTap: () {},
@@ -90,7 +90,11 @@ class _ClassesScreenState extends State<ClassesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const DrawerMenu(),
-      appBar: AppBar(title: const Text("eKaksha Classroom",),),
+      appBar: AppBar(
+        title: const Text(
+          "eKaksha Classroom",
+        ),
+      ),
       body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
