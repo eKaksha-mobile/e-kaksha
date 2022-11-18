@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
+import 'package:ekaksha/home/login/widget/input_text_field.dart';
+import 'package:ekaksha/home/login/widget/logo.dart';
 import '../classes_screen.dart';
-import 'widget/reusable_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -92,86 +94,96 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
+                const Logo(
+                    imageName: "assets/images/eKaksha_transparent_yellow.png"),
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
-                    _emailTextController),
+                InputTextField(
+                    text: "Enter Email",
+                    icon: Icons.person_outline,
+                    isPasswordType: false,
+                    controller: _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outlined, true,
-                    _passwordTextController),
+                InputTextField(
+                    text: "Enter Password",
+                    icon: Icons.lock_outline,
+                    isPasswordType: true,
+                    controller: _passwordTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Confirm Password", Icons.lock_outlined, true,
-                    _confirmPasswordTextController),
+                InputTextField(
+                    text: "Confirm Password",
+                    icon: Icons.lock_outlined,
+                    isPasswordType: true,
+                    controller: _confirmPasswordTextController),
                 const SizedBox(
                   height: 20,
                 ),
                 firebaseUIButton(
-                    context, "Sign Up as ${SignUpScreen.designation}",
-                    () async {
-                  bool result = false;
-                  if (SignUpScreen.designation == 'Admin') {
-                    result =
-                        await isAdminEmailExists(_emailTextController.text);
-                  } else if (SignUpScreen.designation == 'Student') {
-                    result =
-                        await isStudentEmailExists(_emailTextController.text);
-                  } else if (SignUpScreen.designation == 'Teacher') {
-                    result =
-                        await isTeacherEmailExists(_emailTextController.text);
-                  }
-                  // String actual_email = 'await getAdminEmail();';
+                    title: "Sign Up as ${SignUpScreen.designation}",
+                    onTap: () async {
+                      bool result = false;
+                      if (SignUpScreen.designation == 'Admin') {
+                        result =
+                            await isAdminEmailExists(_emailTextController.text);
+                      } else if (SignUpScreen.designation == 'Student') {
+                        result = await isStudentEmailExists(
+                            _emailTextController.text);
+                      } else if (SignUpScreen.designation == 'Teacher') {
+                        result = await isTeacherEmailExists(
+                            _emailTextController.text);
+                      }
+                      // String actual_email = 'await getAdminEmail();';
 
-                  // print(actual_email);
-                  // print(result);
+                      // print(actual_email);
+                      // print(result);
 
-                  if (!result) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                            "Email Can't be registered as ${SignUpScreen.designation}"),
-                      ),
-                    );
-                    return;
-                  }
+                      if (!result) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                "Email Can't be registered as ${SignUpScreen.designation}"),
+                          ),
+                        );
+                        return;
+                      }
 
-                  if (_passwordTextController.text ==
-                      _confirmPasswordTextController.text) {
-                    FirebaseAuth.instance
-                        .createUserWithEmailAndPassword(
-                            email: _emailTextController.text,
-                            password: _passwordTextController.text)
-                        .then((value) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text(
-                              "New ${SignUpScreen.designation} account created"),
-                        ),
-                      );
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ClassesScreen()));
-                    }).onError((error, stackTrace) {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Error ${error.toString()}"),
-                        ),
-                      );
-                    });
-                  } else {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Please use same password"),
-                      ),
-                    );
-                  }
-                })
+                      if (_passwordTextController.text ==
+                          _confirmPasswordTextController.text) {
+                        FirebaseAuth.instance
+                            .createUserWithEmailAndPassword(
+                                email: _emailTextController.text,
+                                password: _passwordTextController.text)
+                            .then((value) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                  "New ${SignUpScreen.designation} account created"),
+                            ),
+                          );
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ClassesScreen()));
+                        }).onError((error, stackTrace) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text("Error ${error.toString()}"),
+                            ),
+                          );
+                        });
+                      } else {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Please use same password"),
+                          ),
+                        );
+                      }
+                    }),
               ],
             ),
           ))),

@@ -1,5 +1,7 @@
+import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
+import 'package:ekaksha/home/login/widget/input_text_field.dart';
+import 'package:ekaksha/home/login/widget/logo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'widget/reusable_widget.dart';
 import 'package:flutter/material.dart';
 
 class ResetPassword extends StatefulWidget {
@@ -35,31 +37,38 @@ class _ResetPasswordState extends State<ResetPassword> {
           ),
           child: SingleChildScrollView(
               child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
+                const Logo(
+                    imageName: "assets/images/eKaksha_transparent_yellow.png"),
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
-                    _emailTextController),
+                InputTextField(
+                    text: "Enter Email",
+                    icon: Icons.person_outline,
+                    isPasswordType: false,
+                    controller: _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(context, "Reset Password", () {
-                  FirebaseAuth.instance
-                      .sendPasswordResetEmail(email: _emailTextController.text)
-                      .then((value) => Navigator.of(context).pop())
-                      .onError((error, stackTrace) {
-                    // print("Error ${error.toString()}");
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("Error ${error.toString()}"),
-                      ),
-                    );
-                  });
-                }),
+                firebaseUIButton(
+                    title: "Reset Password",
+                    onTap: () {
+                      FirebaseAuth.instance
+                          .sendPasswordResetEmail(
+                              email: _emailTextController.text)
+                          .then((value) => Navigator.of(context).pop())
+                          .onError((error, stackTrace) {
+                        // print("Error ${error.toString()}");
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Error ${error.toString()}"),
+                          ),
+                        );
+                      });
+                    })
               ],
             ),
           ))),

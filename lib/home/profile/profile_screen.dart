@@ -22,7 +22,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
-    for (var std in ProfileScreen.data!) {
+    for (var std in ProfileScreen.data) {
       // print(HomeScreen.loggedInUser?.email);
       if (std['email'] == ProfileScreen.loggedInUser?.email) {
         currentUserData = std;
@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   List semCard = [];
   void semCardWidget(int n) {
-    for (var subject in ProfileScreen.semSubject!['$n']) {
+    for (var subject in ProfileScreen.semSubject['$n']) {
       semCard.add(
         CardWidget(
           heading: subject,

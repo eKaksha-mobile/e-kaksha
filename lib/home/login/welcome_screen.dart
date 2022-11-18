@@ -1,5 +1,7 @@
+import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
+import 'package:ekaksha/home/login/widget/logo.dart';
+
 import 'signin_screen.dart';
-import 'widget/reusable_widget.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -32,7 +34,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: <Widget>[
-                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
+                const Logo(
+                    imageName: "assets/images/eKaksha_transparent_yellow.png"),
                 // const SizedBox(
                 //   height: 30,
                 // ),
@@ -40,9 +43,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   height: 60,
                 ),
                 firebaseUIButton(
-                  context,
-                  'Student',
-                  () {
+                  title: 'Student',
+                  onTap: () {
                     SignInScreen.designation = 'Student';
                     Navigator.push(
                         context,
@@ -52,11 +54,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-
                 firebaseUIButton(
-                  context,
-                  'Teacher',
-                  () {
+                  title: 'Teacher',
+                  onTap: () {
                     SignInScreen.designation = 'Teacher';
                     Navigator.push(
                         context,
@@ -68,9 +68,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 ),
 
                 firebaseUIButton(
-                  context,
-                  'Admin',
-                  () {
+                  title: 'Teacher',
+                  onTap: () {
                     SignInScreen.designation = 'Admin';
                     Navigator.push(
                         context,

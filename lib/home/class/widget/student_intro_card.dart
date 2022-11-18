@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../../widget/constant.dart';
 
 class StudentIntroCard extends StatelessWidget {
   final String text1;
@@ -33,7 +32,8 @@ class StudentIntroCard extends StatelessWidget {
         children: [
           Text(
             text1,
-            style: smText,
+            style: const TextStyle(
+                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
             height: 3,
@@ -42,7 +42,10 @@ class StudentIntroCard extends StatelessWidget {
             width: 200,
             child: Text(
               text2,
-              style: smText.copyWith(fontSize: 22),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
             ),
           ),
         ],

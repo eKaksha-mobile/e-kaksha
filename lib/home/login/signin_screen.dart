@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/home/login/reset_password.dart';
 import 'package:ekaksha/home/login/signup_screen.dart';
-import 'package:ekaksha/home/login/widget/reusable_widget.dart';
+import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
+import 'package:ekaksha/home/login/widget/input_text_field.dart';
+import 'package:ekaksha/home/login/widget/logo.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -81,75 +83,82 @@ class _SignInScreenState extends State<SignInScreen> {
         ),
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.fromLTRB(20, 60, 20, 0),
+            padding: const EdgeInsets.fromLTRB(20, 60, 20, 0),
             child: Column(
               children: <Widget>[
-                logoWidget("assets/images/eKaksha_transparent_yellow.png"),
+                const Logo(
+                    imageName: "assets/images/eKaksha_transparent_yellow.png"),
                 const SizedBox(
                   height: 30,
                 ),
-                reusableTextField("Enter Email", Icons.person_outline, false,
-                    _emailTextController),
+                InputTextField(
+                    text: "Enter Email",
+                    icon: Icons.person_outline,
+                    isPasswordType: false,
+                    controller: _emailTextController),
                 const SizedBox(
                   height: 20,
                 ),
-                reusableTextField("Enter Password", Icons.lock_outline, true,
-                    _passwordTextController),
+                InputTextField(
+                    text: "Enter Password",
+                    icon: Icons.lock_outline,
+                    isPasswordType: true,
+                    controller: _passwordTextController),
                 const SizedBox(
                   height: 5,
                 ),
                 forgetPassword(context),
                 firebaseUIButton(
-                    context, "Sign In As ${SignInScreen.designation}",
-                    () async {
-                  bool result = false;
-                  if (SignInScreen.designation == 'Admin') {
-                    result =
-                        await isAdminEmailExists(_emailTextController.text);
-                  } else if (SignInScreen.designation == 'Student') {
-                    result =
-                        await isStudentEmailExists(_emailTextController.text);
-                  } else if (SignInScreen.designation == 'Teacher') {
-                    result =
-                        await isTeacherEmailExists(_emailTextController.text);
-                  }
-                  // String actual_email = 'await getAdminEmail();';
+                    title: "Sign In As ${SignInScreen.designation}",
+                    onTap: () async {
+                      bool result = false;
+                      if (SignInScreen.designation == 'Admin') {
+                        result =
+                            await isAdminEmailExists(_emailTextController.text);
+                      } else if (SignInScreen.designation == 'Student') {
+                        result = await isStudentEmailExists(
+                            _emailTextController.text);
+                      } else if (SignInScreen.designation == 'Teacher') {
+                        result = await isTeacherEmailExists(
+                            _emailTextController.text);
+                      }
+                      // String actual_email = 'await getAdminEmail();';
 
-                  // print(actual_email);
-                  // print(result);
+                      // print(actual_email);
+                      // print(result);
 
-                  if (!result) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text(
-                            "Email Can't be signed in as ${SignInScreen.designation}"),
-                      ),
-                    );
-                    return;
-                  }
+                      if (!result) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text(
+                                "Email Can't be signed in as ${SignInScreen.designation}"),
+                          ),
+                        );
+                        return;
+                      }
 
-                  FirebaseAuth.instance
-                      .signInWithEmailAndPassword(
-                          email: _emailTextController.text,
-                          password: _passwordTextController.text)
-                      .then((value) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text("Signed In Successfully"),
-                      ),
-                    );
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => ClassesScreen()));
-                  }).onError((error, stackTrace) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(
-                        content: Text("Error ${error.toString()}"),
-                      ),
-                    );
-                  });
-                }),
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: _emailTextController.text,
+                              password: _passwordTextController.text)
+                          .then((value) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text("Signed In Successfully"),
+                          ),
+                        );
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ClassesScreen()));
+                      }).onError((error, stackTrace) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Error ${error.toString()}"),
+                          ),
+                        );
+                      });
+                    }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
