@@ -5,7 +5,7 @@ class AssignmentModel {
   final int _tAttachments;
   final String _image;
 
-  AssignmentModel(this._title, this._dateTime, this._question, this._tAttachments,
+  const AssignmentModel(this._title, this._dateTime, this._question, this._tAttachments,
       this._image);
 
   int get tAttachments => _tAttachments;

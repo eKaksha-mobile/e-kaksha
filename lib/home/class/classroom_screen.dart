@@ -1,3 +1,4 @@
+import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/model/ClassModel.dart';
 import 'package:flutter/material.dart';
 
@@ -10,24 +11,7 @@ class ClassRoomScreen extends StatelessWidget {
 
   ClassRoomScreen({Key? key}) : super(key: key);
 
-  final List<AssignmentModel> models = [
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-    AssignmentModel('_title', DateTime.now(), '_question', 3,
-        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
-  ];
+  final List<AssignmentModel> models = dummyAssignments;
 
   @override
   Widget build(BuildContext context) {
