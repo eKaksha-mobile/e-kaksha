@@ -5,10 +5,10 @@ import '../assignment_screen.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
 
-class NotesItem extends StatelessWidget {
+class NotesItemCard extends StatelessWidget {
   final AssignmentModel notesModel;
 
-  const NotesItem(this.notesModel, {Key? key}) : super(key: key);
+  const NotesItemCard(this.notesModel, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,32 +1,34 @@
+import 'home/model/ClassModel.dart';
+
 const List dummyData = [
   {
     'name': 'ekaksha',
     'email': 'ekaksha.official.app@gmail.com',
     'semester': 6,
-    // 'position': 'student',
-    // 'subject': ['math', 'phy', 'chm']
   },
   {
     'name': 's2',
     'email': 's1@gmail.com',
     'semester': 7,
-    'position': 'student',
-    'subject': ['math', 'phy', 'chm']
   },
   {
     'name': 's3',
     'email': 's3@gmail.com',
     'semester': 6,
-    'position': 'student',
-    'subject': ['math', 'phy', 'chm']
   },
   {
     'name': 't1',
     'email': 't1@gmail.com',
     'semester': 6,
-    'position': 'teacher',
-    'subject': ['math']
   },
+];
+
+const List<ClassModel> dummyClasses = [
+  ClassModel('_id1', 'Data Mining', 'Jagpreet', 'Singh', 7, 'assets/images/banner1.jpg'),
+  ClassModel('_id2', 'Deep Learning', 'Jagpreet', 'Singh', 7, 'assets/images/banner2.jpg'),
+  ClassModel('_id3', 'Block Chain', 'Aditya', 'Sharma', 7, 'assets/images/banner3.jpg'),
+  ClassModel('_id4', 'Road Safety', 'Suraj', 'Shrivastva', 7, 'assets/images/banner4.jpg'),
+  ClassModel('_id5', 'Network Security', 'Monika', 'Sachdeva', 7, 'assets/images/banner5.jpg'),
 ];
 
 const Map dummySemSubject = {

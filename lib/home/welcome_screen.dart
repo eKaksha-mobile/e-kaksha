@@ -1,7 +1,7 @@
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
 
-import 'signin_screen.dart';
+import 'login/signin_screen.dart';
 import 'package:flutter/material.dart';
 
 class WelcomeScreen extends StatefulWidget {

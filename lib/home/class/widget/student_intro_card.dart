@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 
 class StudentIntroCard extends StatelessWidget {
-  final String text1;
-  final String text2;
+  final String _title;
+  final String _subtitle;
 
-  const StudentIntroCard({super.key, required this.text1, required this.text2});
+
+  const StudentIntroCard(this._title, this._subtitle, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class StudentIntroCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            text1,
+            _title,
             style: const TextStyle(
                 color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
           ),
@@ -41,7 +42,7 @@ class StudentIntroCard extends StatelessWidget {
           SizedBox(
             width: 200,
             child: Text(
-              text2,
+              _subtitle,
               style: const TextStyle(
                   color: Colors.white,
                   fontSize: 22,

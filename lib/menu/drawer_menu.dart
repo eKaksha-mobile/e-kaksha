@@ -1,4 +1,4 @@
-import 'package:ekaksha/home/login/welcome_screen.dart';
+import 'package:ekaksha/home/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +6,6 @@ import '../home/profile/profile_screen.dart';
 import '../main.dart';
 import 'widget/header_drawer_menu.dart';
 import 'widget/item_drawer_menu.dart';
-// _auth.signOut();
-// Navigator.pop(context);
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({Key? key}) : super(key: key);

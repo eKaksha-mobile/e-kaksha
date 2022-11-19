@@ -1,5 +1,6 @@
+import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/classes_screen.dart';
-import 'package:ekaksha/home/login/welcome_screen.dart';
+import 'package:ekaksha/home/welcome_screen.dart';
 import 'package:ekaksha/model/student_model.dart';
 import 'home/class/assignment_screen.dart';
 
@@ -44,8 +45,9 @@ class MyApp extends StatelessWidget {
       // ),
       initialRoute: '/',
       routes: {
-        '/': (context) => WelcomeScreen(),
+        '/': (context) => ClassesScreen(),
         ClassesScreen.route: (context) => const ClassesScreen(),
+        ClassRoomScreen.route: (context) => ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
         ProfileScreen.route: (context) => const ProfileScreen(),
       },
