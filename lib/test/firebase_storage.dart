@@ -12,6 +12,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 final _firestore = FirebaseFirestore.instance;
 
@@ -26,6 +27,22 @@ class TestStorage extends StatefulWidget {
 
 class _TestStorage extends State<TestStorage> {
   late PlatformFile pickedFile;
+
+  void extractText() {
+    try {
+      //Load an existing PDF document.
+      final PdfDocument document =
+          PdfDocument(inputBytes: File(pickedFile.path!).readAsBytesSync());
+      //Extract the text from all the pages.
+      String text = PdfTextExtractor(document).extractText();
+      //Dispose the document.
+      fileText = text;
+      document.dispose();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   Future selectFile() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles();
 
@@ -91,6 +108,7 @@ class _TestStorage extends State<TestStorage> {
 //   assert(mountainsRef.fullPath != mountainImagesRef.fullPath);
 
   String filename = '';
+  String fileText = '';
 
   @override
   Widget build(BuildContext context) {
@@ -121,6 +139,13 @@ class _TestStorage extends State<TestStorage> {
                         style: TextStyle(color: Colors.white70)),
                   ],
                 ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(fileText == '' ? 'No File Text' : fileText,
+                        style: TextStyle(color: Colors.white70)),
+                  ],
+                ),
                 const SizedBox(
                   height: 50,
                 ),
@@ -129,6 +154,12 @@ class _TestStorage extends State<TestStorage> {
                     title: "Select File",
                     onTap: () async {
                       await selectFile();
+                      setState(() {});
+                    }),
+                firebaseUIButton(
+                    title: "Extract File",
+                    onTap: () {
+                      extractText();
                       setState(() {});
                     }),
                 firebaseUIButton(
