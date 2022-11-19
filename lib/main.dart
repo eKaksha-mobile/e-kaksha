@@ -1,13 +1,22 @@
 import 'package:ekaksha/home/classes_screen.dart';
 import 'package:ekaksha/home/login/welcome_screen.dart';
 import 'package:ekaksha/model/student_model.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
+import 'package:get_it/get_it.dart';
 import 'home/class/assignment_screen.dart';
 
 import 'home/profile/profile_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+GetIt locator = GetIt.instance;
+
+void setupSingletons() async {
+  locator.registerLazySingleton<FirebaseService>(() => FirebaseService());
+}
+
 void main() async {
+  setupSingletons();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(const MyApp());
@@ -16,13 +25,14 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static StudentModel studentModel = StudentModel('Sidharth Mudgil', 'smudgil102@gmail.com', 7, []);
+  static StudentModel studentModel =
+      StudentModel('Sidharth Mudgil', 'smudgil102@gmail.com', 7, []);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'EKaksha',
+      title: 'eKaksha',
       theme: ThemeData(
         textTheme: ThemeData.light().textTheme.copyWith(
               bodyMedium: const TextStyle(color: Color.fromRGBO(25, 50, 50, 1)),

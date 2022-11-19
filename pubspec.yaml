@@ -36,7 +36,9 @@ dependencies:
   firebase_core: ^2.2.0
   firebase_auth: ^4.1.2
   cloud_firestore: ^4.0.4
+  firebase_storage: ^11.0.6
   intl: ^0.17.0
+  get_it: ^7.2.0
 
 dev_dependencies:
   flutter_test:
