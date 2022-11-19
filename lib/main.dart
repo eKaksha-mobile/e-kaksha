@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => const TestStorage(),
         // '/': (context) => WelcomeScreen(),
-        '/': (context) => ClassesScreen(),
+        // '/': (context) => ClassesScreen(),
         ClassesScreen.route: (context) => const ClassesScreen(),
         ClassRoomScreen.route: (context) => ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
