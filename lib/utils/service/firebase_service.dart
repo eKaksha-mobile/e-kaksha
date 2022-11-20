@@ -144,6 +144,8 @@ class FirebaseService {
       onError: (e) => print("Error getting document: $e"),
     );
     if (result) {
+      print("dob :");
+      print(map['dob']);
       return StudentModel(
         rollNo: map['rollNo'],
         firstName: map['firstName'],
