@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
           StudentCover(),
           StudentDetailsSegment(),
           const Divider(),
-          const StudentScoreSegment(75.43, 1),
+          const StudentScoreSegment(),
           const Divider(),
           const StudentSubjectsSegment(dummyClasses),
           const Divider(),

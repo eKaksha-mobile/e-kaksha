@@ -1,14 +1,14 @@
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/value/style.dart';
 import '../../../../utils/widget/vertical_spacer.dart';
 
 class StudentScoreSegment extends StatelessWidget {
-  final double score;
-  final int pending;
+  // final double score;
+  // final int pending;
 
-  const StudentScoreSegment(this.score, this.pending, {Key? key})
-      : super(key: key);
+  const StudentScoreSegment({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class StudentScoreSegment extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '$score',
+                GlobalData.studentModel.totalScore.toString(),
                 style: textStyle1,
               ),
               const Text(
@@ -37,7 +37,7 @@ class StudentScoreSegment extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                '$pending',
+                GlobalData.studentModel.pendingAssignments.toString(),
                 style: textStyle1,
               ),
               const Text(
