@@ -2,7 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/home/login/reset_password.dart';
-import 'package:ekaksha/home/login/signup_screen.dart';
+import 'package:ekaksha/home/login/ttsignup_screen.dart';
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';

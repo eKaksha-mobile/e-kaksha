@@ -6,6 +6,7 @@ class InputCard extends StatefulWidget {
   final String label;
   final String hint;
   final bool isPassword;
+  final TextEditingController controller;
 
   static const _icons = [
     Icons.visibility_rounded,
@@ -16,7 +17,8 @@ class InputCard extends StatefulWidget {
       {Key? key,
       required this.label,
       required this.hint,
-      required this.isPassword})
+      required this.isPassword,
+      required this.controller})
       : super(key: key);
 
   @override
@@ -50,6 +52,7 @@ class _InputCardState extends State<InputCard> {
               ),
             ),
             TextField(
+              controller: widget.controller,
               obscureText: visibility == 0 && widget.isPassword,
               enableSuggestions: !widget.isPassword,
               autocorrect: !widget.isPassword,

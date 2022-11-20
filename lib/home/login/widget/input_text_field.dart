@@ -3,8 +3,9 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class InputTextField extends StatelessWidget {
-  InputTextField(
-      {required this.text,
+  const InputTextField(
+      {super.key,
+      required this.text,
       required this.icon,
       required this.isPasswordType,
       required this.controller});

@@ -13,6 +13,7 @@ class CardButton extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
     var theme = Theme.of(context);
+// <<<<<<< Updated upstream
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
@@ -20,8 +21,7 @@ class CardButton extends StatelessWidget {
             borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(15),
                 bottomLeft: Radius.circular(15),
-                bottomRight: Radius.circular(15))
-        ),
+                bottomRight: Radius.circular(15))),
         onTap: callback,
         child: Container(
           alignment: Alignment.center,
@@ -35,7 +35,28 @@ class CardButton extends StatelessWidget {
                 bottomLeft: Radius.circular(15),
                 bottomRight: Radius.circular(15)),
           ),
-          child: Text(title,style: textStyle5,),
+          child: Text(
+            title,
+            style: textStyle5,
+          ),
+// =======
+//     return GestureDetector(
+//       onTap: callback,
+//       child: Container(
+//         alignment: Alignment.center,
+//         width: mediaQuery.size.width * 0.75,
+//         padding: const EdgeInsets.all(10),
+//         decoration: BoxDecoration(
+//           color: theme.primaryColor,
+//           borderRadius: const BorderRadius.only(
+//               topLeft: Radius.circular(15),
+//               bottomLeft: Radius.circular(15),
+//               bottomRight: Radius.circular(15)),
+//         ),
+//         child: Text(
+//           title,
+//           style: textStyle5,
+// >>>>>>> Stashed changes
         ),
       ),
     );

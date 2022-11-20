@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
 class CheckBoxTextCard extends StatefulWidget {
-  const CheckBoxTextCard({Key? key}) : super(key: key);
+  CheckBoxTextCard({Key? key, required this.callback}) : super(key: key);
+  final Function(bool) callback;
 
   @override
   State<CheckBoxTextCard> createState() => _CheckBoxTextCardState();
@@ -21,6 +22,7 @@ class _CheckBoxTextCardState extends State<CheckBoxTextCard> {
               onChanged: (value) {
                 setState(() {
                   _value = value as bool;
+                  widget.callback(_value);
                 });
               }),
           const Text(

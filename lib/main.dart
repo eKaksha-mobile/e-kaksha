@@ -8,7 +8,7 @@ import 'package:ekaksha/home/classes_screen.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import 'home/login/tsignup_screen.dart';
+import 'home/login/signup_screen.dart';
 import 'home/profile/tab_screen.dart';
 import 'home/login/login_screen.dart';
 import 'package:get_it/get_it.dart';

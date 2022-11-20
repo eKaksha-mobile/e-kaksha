@@ -1,12 +1,16 @@
+import 'package:ekaksha/home/classes_screen.dart';
 import 'package:ekaksha/home/login/reset_password.dart';
 import 'package:ekaksha/home/login/widget/card_button.dart';
 import 'package:ekaksha/home/login/widget/input_card.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../utils/widget/vertical_spacer.dart';
 import 'widget/checkbox_text_card.dart';
 import 'widget/spannable_text.dart';
-import 'tsignup_screen.dart';
+import 'signup_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const route = '/login_screen';
@@ -18,6 +22,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController _passwordTextController = TextEditingController();
+  TextEditingController _emailTextController = TextEditingController();
+  bool isTeacher = false;
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
@@ -72,32 +80,99 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ),
                     const VerticalSpacer(30),
-                    const InputCard(
+                    InputCard(
                       label: 'Email',
                       hint: 'email id',
                       isPassword: false,
+                      controller: _emailTextController,
                     ),
                     const VerticalSpacer(20),
-                    const InputCard(
+                    InputCard(
                       label: 'Password',
                       hint: 'password',
                       isPassword: true,
+                      controller: _passwordTextController,
                     ),
                     const VerticalSpacer(5),
-                    const CheckBoxTextCard(),
+                    CheckBoxTextCard(callback: (value) {
+                      setState(() {
+                        isTeacher = value;
+                      });
+                    }),
                     const VerticalSpacer(40),
-                    CardButton(title: 'Login', callback: () {}),
+                    CardButton(
+                        title: 'Login',
+                        callback: () async {
+                          if (isTeacher) {
+                            GlobalData.designation = 'Teacher';
+                          } else {
+                            GlobalData.designation = 'Student';
+                          }
+
+                          bool result = false;
+                          if (GlobalData.designation == 'Student') {
+                            result = await GetIt.I
+                                .get<FirebaseService>()
+                                .isStudentEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
+                          } else if (GlobalData.designation == 'Teacher') {
+                            result = await GetIt.I
+                                .get<FirebaseService>()
+                                .isTeacherEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
+                          }
+                          // String actual_email = 'await getAdminEmail();';
+
+                          // print(actual_email);
+                          // print(result);
+
+                          if (!result) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    "Email Can't be signed in as ${GlobalData.designation}"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          GetIt.I.get<FirebaseService>().firebaseAuthSignIn(
+                                context: context,
+                                email: _emailTextController.text,
+                                password: _passwordTextController.text,
+                                message: "Signed In Successfully",
+                                onSuccessfulSignIn: () async {
+                                  if (GlobalData.designation == 'Student') {
+                                    GlobalData.studentModel = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getStudentModel(
+                                            _emailTextController.text);
+                                  }
+                                  print(GlobalData.studentModel);
+
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => ClassesScreen()),
+                                  );
+                                },
+                              );
+                        }),
                     const VerticalSpacer(30),
                     SpannableText(
                       label: '',
                       action: 'Forgot password?',
-                      callback: () => Navigator.of(context).pushNamed(ResetPassword.route),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(ResetPassword.route),
                     ),
                     const VerticalSpacer(10),
                     SpannableText(
                       label: "Don't have any account? ",
                       action: 'Sign up',
-                      callback: () => Navigator.of(context).pushReplacementNamed(SignUpScreen.route),
+                      callback: () => Navigator.of(context)
+                          .pushReplacementNamed(SignUpScreen.route),
                     ),
                   ],
                 ),
