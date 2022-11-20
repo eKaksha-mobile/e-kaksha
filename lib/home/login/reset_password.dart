@@ -58,20 +58,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                 LongUIButton(
                     title: "Reset Password",
                     onTap: () {
-                      GetIt.I
-                          .get<FirebaseService>()
-                          .firebaseAuth
-                          .sendPasswordResetEmail(
-                              email: _emailTextController.text)
-                          .then((value) => Navigator.of(context).pop())
-                          .onError((error, stackTrace) {
-                        // print("Error ${error.toString()}");
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Error ${error.toString()}"),
-                          ),
-                        );
-                      });
+                      GetIt.I.get<FirebaseService>().firebaseAuthResetPassword(
+                            context: context,
+                            email: _emailTextController.text,
+                            onSuccessfulResetPassword: () =>
+                                Navigator.of(context).pop(),
+                          );
                     })
               ],
             ),

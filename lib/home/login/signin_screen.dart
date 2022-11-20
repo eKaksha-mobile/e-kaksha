@@ -26,53 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
   TextEditingController _emailTextController = TextEditingController();
 
-  Future<bool> isAdminEmailExists(String requiredEmail) async {
-    bool result = false;
-
-    final docRef = GetIt.I.get<FirebaseService>().firestore.collection("admin");
-    await docRef.where('email', isEqualTo: requiredEmail).get().then(
-      (res) async {
-        if (res.docs.isNotEmpty) {
-          result = true;
-        }
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-    return result;
-  }
-
-  Future<bool> isStudentEmailExists(String requiredEmail) async {
-    bool result = false;
-
-    final docRef =
-        GetIt.I.get<FirebaseService>().firestore.collection("students");
-    await docRef.where('email', isEqualTo: requiredEmail).get().then(
-      (res) async {
-        if (res.docs.isNotEmpty) {
-          result = true;
-        }
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-    return result;
-  }
-
-  Future<bool> isTeacherEmailExists(String requiredEmail) async {
-    bool result = false;
-
-    final docRef =
-        GetIt.I.get<FirebaseService>().firestore.collection("teachers");
-    await docRef.where('email', isEqualTo: requiredEmail).get().then(
-      (res) async {
-        if (res.docs.isNotEmpty) {
-          result = true;
-        }
-      },
-      onError: (e) => print("Error getting document: $e"),
-    );
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,14 +70,23 @@ class _SignInScreenState extends State<SignInScreen> {
                     onTap: () async {
                       bool result = false;
                       if (GlobalData.designation == 'Admin') {
-                        result =
-                            await isAdminEmailExists(_emailTextController.text);
+                        result = await GetIt.I
+                            .get<FirebaseService>()
+                            .isAdminEmailExists(
+                              requiredEmail: _emailTextController.text,
+                            );
                       } else if (GlobalData.designation == 'Student') {
-                        result = await isStudentEmailExists(
-                            _emailTextController.text);
+                        result = await GetIt.I
+                            .get<FirebaseService>()
+                            .isStudentEmailExists(
+                              requiredEmail: _emailTextController.text,
+                            );
                       } else if (GlobalData.designation == 'Teacher') {
-                        result = await isTeacherEmailExists(
-                            _emailTextController.text);
+                        result = await GetIt.I
+                            .get<FirebaseService>()
+                            .isTeacherEmailExists(
+                              requiredEmail: _emailTextController.text,
+                            );
                       }
                       // String actual_email = 'await getAdminEmail();';
 
@@ -141,29 +103,16 @@ class _SignInScreenState extends State<SignInScreen> {
                         return;
                       }
 
-                      GetIt.I
-                          .get<FirebaseService>()
-                          .firebaseAuth
-                          .signInWithEmailAndPassword(
-                              email: _emailTextController.text,
-                              password: _passwordTextController.text)
-                          .then((value) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          const SnackBar(
-                            content: Text("Signed In Successfully"),
-                          ),
-                        );
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ClassesScreen()));
-                      }).onError((error, stackTrace) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Error ${error.toString()}"),
-                          ),
-                        );
-                      });
+                      GetIt.I.get<FirebaseService>().firebaseAuthSignIn(
+                            context: context,
+                            email: _emailTextController.text,
+                            password: _passwordTextController.text,
+                            message: "Signed In Successfully",
+                            onSuccessfulSignIn: () => Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ClassesScreen())),
+                          );
                     }),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
