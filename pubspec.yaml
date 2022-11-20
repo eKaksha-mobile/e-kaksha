@@ -42,6 +42,7 @@ dependencies:
   permission_handler: ^10.2.0
   file_picker: ^5.2.2
   syncfusion_flutter_pdf: ^20.3.57
+  uuid: ^3.0.7
 
 dev_dependencies:
   flutter_test:

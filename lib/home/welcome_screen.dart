@@ -1,5 +1,6 @@
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 
 import 'login/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -39,13 +40,20 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 // const SizedBox(
                 //   height: 30,
                 // ),
+
+                // Hide this when using admin
                 const SizedBox(
                   height: 60,
                 ),
-                firebaseUIButton(
+
+                const SizedBox(
+                  height: 60,
+                ),
+                LongUIButton(
                   title: 'Student',
                   onTap: () {
-                    SignInScreen.designation = 'Student';
+                    // SignInScreen.designation = 'Student';
+                    GlobalData.designation = 'Student';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -54,10 +62,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                firebaseUIButton(
+                LongUIButton(
                   title: 'Teacher',
                   onTap: () {
-                    SignInScreen.designation = 'Teacher';
+                    // SignInScreen.designation = 'Teacher';
+                    GlobalData.designation = 'Teacher';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -67,18 +76,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
 
-                firebaseUIButton(
-                  title: 'Teacher',
-                  onTap: () {
-                    SignInScreen.designation = 'Admin';
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignInScreen(),
-                        ));
-                  },
-                  backgroundColor: Colors.deepOrangeAccent.shade100,
-                ),
+                // Hide Admin Button
+                // firebaseUIButton(
+                //   title: 'Admin',
+                //   onTap: () {
+                //     SignInScreen.designation = 'Admin';
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => const SignInScreen(),
+                //         ));
+                //   },
+                //   backgroundColor: Colors.deepOrangeAccent.shade100,
+                // ),
               ],
             ),
           ),

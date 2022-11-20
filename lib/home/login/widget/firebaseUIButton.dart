@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class firebaseUIButton extends StatelessWidget {
-  firebaseUIButton(
+class LongUIButton extends StatelessWidget {
+  LongUIButton(
       {required this.title,
       required this.onTap,
       this.backgroundColor = Colors.white});

@@ -44,7 +44,10 @@ class _TestStorage extends State<TestStorage> {
   }
 
   Future selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
 
     if (result != null) {
       pickedFile = result.files.first;
@@ -150,20 +153,19 @@ class _TestStorage extends State<TestStorage> {
                   height: 50,
                 ),
                 // forgetPassword(context),
-                firebaseUIButton(
+                LongUIButton(
                     title: "Select File",
                     onTap: () async {
                       await selectFile();
                       setState(() {});
                     }),
-                firebaseUIButton(
+                LongUIButton(
                     title: "Extract File",
                     onTap: () {
                       extractText();
                       setState(() {});
                     }),
-                firebaseUIButton(
-                    title: "Upload File", onTap: () => uploadFile()),
+                LongUIButton(title: "Upload File", onTap: () => uploadFile()),
               ],
             ),
           ),
