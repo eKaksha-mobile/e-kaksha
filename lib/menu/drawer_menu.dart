@@ -1,4 +1,5 @@
 import 'package:ekaksha/home/welcome_screen.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +18,7 @@ class DrawerMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          DrawerMenuHeader(MyApp.studentModel),
+          DrawerMenuHeader(),
           LeadingIconText(
             icon: Icons.account_circle_rounded, //assignment
             label: 'profile',

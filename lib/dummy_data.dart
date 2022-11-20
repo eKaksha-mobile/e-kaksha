@@ -87,15 +87,15 @@ List<AssignmentModel> dummyAssignments = [
 //     semester: 7,
 //     subject: dummySemSubject['7']);
 
-StudentModel dummyStudent = StudentModel(
-  rollNo: 2025712,
-  firstName: 'Manthan',
-  lastName: 'Sharma',
-  email: 'mathansharma79826@gmail.com',
-  mobile: 7018179826,
-  semester: 7,
-  gender: 'Male',
-  dob: Timestamp.fromDate(DateTime.parse('2001-09-04')),
-  totalScore: 75.80,
-  pendingAssignments: 2,
-);
+// StudentModel dummyStudent = StudentModel(
+//   rollNo: 2025712,
+//   firstName: 'Manthan',
+//   lastName: 'Sharma',
+//   email: 'mathansharma79826@gmail.com',
+//   mobile: 7018179826,
+//   semester: 7,
+//   gender: 'Male',
+//   dob: Timestamp.fromDate(DateTime.parse('2001-09-04')),
+//   totalScore: 75.80,
+//   pendingAssignments: 2,
+// );
