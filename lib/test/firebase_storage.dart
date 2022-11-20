@@ -153,20 +153,19 @@ class _TestStorage extends State<TestStorage> {
                   height: 50,
                 ),
                 // forgetPassword(context),
-                firebaseUIButton(
+                LongUIButton(
                     title: "Select File",
                     onTap: () async {
                       await selectFile();
                       setState(() {});
                     }),
-                firebaseUIButton(
+                LongUIButton(
                     title: "Extract File",
                     onTap: () {
                       extractText();
                       setState(() {});
                     }),
-                firebaseUIButton(
-                    title: "Upload File", onTap: () => uploadFile()),
+                LongUIButton(title: "Upload File", onTap: () => uploadFile()),
               ],
             ),
           ),

@@ -48,7 +48,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 const SizedBox(
                   height: 60,
                 ),
-                firebaseUIButton(
+                LongUIButton(
                   title: 'Student',
                   onTap: () {
                     SignInScreen.designation = 'Student';
@@ -60,7 +60,7 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   },
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
-                firebaseUIButton(
+                LongUIButton(
                   title: 'Teacher',
                   onTap: () {
                     SignInScreen.designation = 'Teacher';

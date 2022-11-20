@@ -1,8 +1,10 @@
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({Key? key}) : super(key: key);
@@ -53,10 +55,12 @@ class _ResetPasswordState extends State<ResetPassword> {
                 const SizedBox(
                   height: 20,
                 ),
-                firebaseUIButton(
+                LongUIButton(
                     title: "Reset Password",
                     onTap: () {
-                      FirebaseAuth.instance
+                      GetIt.I
+                          .get<FirebaseService>()
+                          .firebaseAuth
                           .sendPasswordResetEmail(
                               email: _emailTextController.text)
                           .then((value) => Navigator.of(context).pop())
