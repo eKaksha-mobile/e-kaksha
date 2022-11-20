@@ -10,22 +10,20 @@ const List dummyData = [
     'name': 'ekaksha',
     'email': 'ekaksha.official.app@gmail.com',
     'semester': 6,
+    'totalScore': 50
   },
   {
     'name': 's2',
     'email': 's1@gmail.com',
     'semester': 7,
+    'gender': "Male",
+    'pending': 0,
+    'phoneNo': 345678,
+    'rollNo': 103,
+    'totalScore': 30
   },
-  {
-    'name': 's3',
-    'email': 's3@gmail.com',
-    'semester': 6,
-  },
-  {
-    'name': 't1',
-    'email': 't1@gmail.com',
-    'semester': 6,
-  },
+  {'name': 's3', 'email': 's3@gmail.com', 'semester': 6, 'totalScore': 80},
+  {'name': 't1', 'email': 't1@gmail.com', 'semester': 6, 'totalScore': 100},
 ];
 
 const List<ClassModel> dummyClasses = [
