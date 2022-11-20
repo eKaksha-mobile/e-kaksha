@@ -4,6 +4,7 @@ import 'package:ekaksha/home/login/signup_screen.dart';
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -108,10 +109,20 @@ class _SignInScreenState extends State<SignInScreen> {
                             email: _emailTextController.text,
                             password: _passwordTextController.text,
                             message: "Signed In Successfully",
-                            onSuccessfulSignIn: () => Navigator.push(
+                            onSuccessfulSignIn: () async {
+                              if (GlobalData.designation == 'Student') {
+                                GlobalData.studentModel = await GetIt.I
+                                    .get<FirebaseService>()
+                                    .getStudentModel(_emailTextController.text);
+                              }
+                              print(GlobalData.studentModel);
+
+                              Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => ClassesScreen())),
+                                    builder: (context) => ClassesScreen()),
+                              );
+                            },
                           );
                     }),
                 Row(

@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/model/student_model.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -123,5 +125,39 @@ class FirebaseService {
         ),
       );
     });
+  }
+
+  Future<StudentModel> getStudentModel(String requiredEmail) async {
+    bool result = false;
+    late Map<String, dynamic> map;
+
+    final docRef = firestore.collection("students");
+
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+          map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      return StudentModel(
+        rollNo: map['rollNo'],
+        firstName: map['firstName'],
+        lastName: map['lastName'],
+        email: map['email'],
+        mobile: map['phoneNo'],
+        semester: map['sem'],
+        gender: map['gender'],
+        dob: map['dob'],
+        totalScore: map['totalScore'],
+        pendingAssignments: map['pending'],
+      );
+    } else {
+      return StudentModel();
+    }
   }
 }

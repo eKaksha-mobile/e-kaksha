@@ -1,6 +1,7 @@
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/classes_screen.dart';
+import 'package:ekaksha/home/welcome_screen.dart';
 import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:get_it/get_it.dart';
@@ -56,8 +57,8 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // '/': (context) => const TestStorage(),
-        // '/': (context) => const WelcomeScreen(),
-        '/': (context) => const ClassesScreen(),
+        '/': (context) => const WelcomeScreen(),
+        // '/': (context) => const ClassesScreen(),
         // '/': (context) => const TabScreen(),
         ClassesScreen.route: (context) => const ClassesScreen(),
         TabScreen.route: (context) => const TabScreen(),

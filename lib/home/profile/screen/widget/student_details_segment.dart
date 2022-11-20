@@ -17,7 +17,7 @@ class StudentDetailsSegment extends StatelessWidget {
         children: [
           LeadingIconText(
             icon: Icons.perm_identity_rounded,
-            label: model.rollNo,
+            label: model.rollNo.toString(),
             iconSize: 18.0,
             labelSize: 17.0,
             verticalMargin: 10.0,
@@ -26,7 +26,7 @@ class StudentDetailsSegment extends StatelessWidget {
           ),
           LeadingIconText(
             icon: Icons.phone_enabled_outlined,
-            label: model.mobile,
+            label: model.mobile.toString(),
             iconSize: 18.0,
             labelSize: 17.0,
             verticalMargin: 10.0,
