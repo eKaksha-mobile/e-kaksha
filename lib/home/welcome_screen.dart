@@ -39,6 +39,12 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 // const SizedBox(
                 //   height: 30,
                 // ),
+
+                // Hide this when using admin
+                const SizedBox(
+                  height: 60,
+                ),
+
                 const SizedBox(
                   height: 60,
                 ),
@@ -67,18 +73,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                   backgroundColor: Colors.deepOrangeAccent.shade100,
                 ),
 
-                firebaseUIButton(
-                  title: 'Teacher',
-                  onTap: () {
-                    SignInScreen.designation = 'Admin';
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const SignInScreen(),
-                        ));
-                  },
-                  backgroundColor: Colors.deepOrangeAccent.shade100,
-                ),
+                // Hide Admin Button
+                // firebaseUIButton(
+                //   title: 'Admin',
+                //   onTap: () {
+                //     SignInScreen.designation = 'Admin';
+                //     Navigator.push(
+                //         context,
+                //         MaterialPageRoute(
+                //           builder: (context) => const SignInScreen(),
+                //         ));
+                //   },
+                //   backgroundColor: Colors.deepOrangeAccent.shade100,
+                // ),
               ],
             ),
           ),

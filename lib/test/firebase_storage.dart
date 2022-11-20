@@ -44,7 +44,10 @@ class _TestStorage extends State<TestStorage> {
   }
 
   Future selectFile() async {
-    FilePickerResult? result = await FilePicker.platform.pickFiles();
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
 
     if (result != null) {
       pickedFile = result.files.first;
