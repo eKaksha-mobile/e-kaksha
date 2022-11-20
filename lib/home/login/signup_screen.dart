@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:get_it/get_it.dart';
 import '../classes_screen.dart';
@@ -12,7 +13,6 @@ import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
-  static String designation = '';
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -128,16 +128,16 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 LongUIButton(
-                    title: "Sign Up as ${SignUpScreen.designation}",
+                    title: "Sign Up as ${GlobalData.designation}",
                     onTap: () async {
                       bool result = false;
-                      if (SignUpScreen.designation == 'Admin') {
+                      if (GlobalData.designation == 'Admin') {
                         result =
                             await isAdminEmailExists(_emailTextController.text);
-                      } else if (SignUpScreen.designation == 'Student') {
+                      } else if (GlobalData.designation == 'Student') {
                         result = await isStudentEmailExists(
                             _emailTextController.text);
-                      } else if (SignUpScreen.designation == 'Teacher') {
+                      } else if (GlobalData.designation == 'Teacher') {
                         result = await isTeacherEmailExists(
                             _emailTextController.text);
                       }
@@ -150,7 +150,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                                "Email Can't be registered as ${SignUpScreen.designation}"),
+                                "Email Can't be registered as ${GlobalData.designation}"),
                           ),
                         );
                         return;
@@ -168,7 +168,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           ScaffoldMessenger.of(context).showSnackBar(
                             SnackBar(
                               content: Text(
-                                  "New ${SignUpScreen.designation} account created"),
+                                  "New ${GlobalData.designation} account created"),
                             ),
                           );
                           Navigator.push(

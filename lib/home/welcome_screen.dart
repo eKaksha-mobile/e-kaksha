@@ -1,5 +1,6 @@
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 
 import 'login/signin_screen.dart';
 import 'package:flutter/material.dart';
@@ -51,7 +52,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 LongUIButton(
                   title: 'Student',
                   onTap: () {
-                    SignInScreen.designation = 'Student';
+                    // SignInScreen.designation = 'Student';
+                    GlobalData.designation = 'Student';
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -63,7 +65,8 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                 LongUIButton(
                   title: 'Teacher',
                   onTap: () {
-                    SignInScreen.designation = 'Teacher';
+                    // SignInScreen.designation = 'Teacher';
+                    GlobalData.designation = 'Teacher';
                     Navigator.push(
                         context,
                         MaterialPageRoute(

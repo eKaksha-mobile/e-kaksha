@@ -4,6 +4,7 @@ import 'package:ekaksha/home/login/signup_screen.dart';
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
 import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,6 @@ import '../classes_screen.dart';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
-  static String designation = '';
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
@@ -113,16 +113,16 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 forgetPassword(context),
                 LongUIButton(
-                    title: "Sign In As ${SignInScreen.designation}",
+                    title: "Sign In As ${GlobalData.designation}",
                     onTap: () async {
                       bool result = false;
-                      if (SignInScreen.designation == 'Admin') {
+                      if (GlobalData.designation == 'Admin') {
                         result =
                             await isAdminEmailExists(_emailTextController.text);
-                      } else if (SignInScreen.designation == 'Student') {
+                      } else if (GlobalData.designation == 'Student') {
                         result = await isStudentEmailExists(
                             _emailTextController.text);
-                      } else if (SignInScreen.designation == 'Teacher') {
+                      } else if (GlobalData.designation == 'Teacher') {
                         result = await isTeacherEmailExists(
                             _emailTextController.text);
                       }
@@ -135,7 +135,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text(
-                                "Email Can't be signed in as ${SignInScreen.designation}"),
+                                "Email Can't be signed in as ${GlobalData.designation}"),
                           ),
                         );
                         return;
@@ -172,7 +172,6 @@ class _SignInScreenState extends State<SignInScreen> {
                         style: TextStyle(color: Colors.white70)),
                     GestureDetector(
                       onTap: () {
-                        SignUpScreen.designation = SignInScreen.designation;
                         Navigator.push(
                             context,
                             MaterialPageRoute(
