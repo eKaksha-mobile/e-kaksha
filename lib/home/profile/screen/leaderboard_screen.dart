@@ -16,7 +16,7 @@ class LeaderboardScreen extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(top: 5),
       child: ListView.builder(
-        itemBuilder: (context, index) => LeaderboadItems(
+        itemBuilder: (context, index) => LeaderboardItem(
           index: index + 1,
         ),
         itemCount: 10,
