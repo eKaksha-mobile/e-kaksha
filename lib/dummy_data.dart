@@ -1,5 +1,6 @@
 import 'home/class/model/assignment_model.dart';
 import 'home/model/ClassModel.dart';
+import 'model/student_model.dart';
 
 const List dummyData = [
   {
@@ -25,11 +26,16 @@ const List dummyData = [
 ];
 
 const List<ClassModel> dummyClasses = [
-  ClassModel('_id1', 'Data Mining', 'Jagpreet', 'Singh', 7, 'assets/images/banner1.jpg'),
-  ClassModel('_id2', 'Deep Learning', 'Jagpreet', 'Singh', 7, 'assets/images/banner2.jpg'),
-  ClassModel('_id3', 'Block Chain', 'Aditya', 'Sharma', 7, 'assets/images/banner3.jpg'),
-  ClassModel('_id4', 'Road Safety', 'Suraj', 'Shrivastva', 7, 'assets/images/banner4.jpg'),
-  ClassModel('_id5', 'Network Security', 'Monika', 'Sachdeva', 7, 'assets/images/banner5.jpg'),
+  ClassModel('_id1', 'Data Mining', 'Jagpreet', 'Singh', 7,
+      'assets/images/banner1.jpg'),
+  ClassModel('_id2', 'Deep Learning', 'Jagpreet', 'Singh', 7,
+      'assets/images/banner2.jpg'),
+  ClassModel('_id3', 'Block Chain', 'Aditya', 'Sharma', 7,
+      'assets/images/banner3.jpg'),
+  ClassModel('_id4', 'Road Safety', 'Suraj', 'Shrivastva', 7,
+      'assets/images/banner4.jpg'),
+  ClassModel('_id5', 'Network Security', 'Monika', 'Sachdeva', 7,
+      'assets/images/banner5.jpg'),
 ];
 
 const Map dummySemSubject = {
@@ -66,3 +72,14 @@ List<AssignmentModel> dummyAssignments = [
   AssignmentModel('_title', DateTime.now(), '_question', 3,
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
 ];
+
+StudentModel dummyStudent = StudentModel(
+    rollNo: '1917285',
+    firstName: 'Sidharth',
+    lastName: 'Mudgil',
+    age: 21,
+    gender: 'male',
+    email: 'smudgil102@gmail.com',
+    mobile: '9928313184',
+    semester: 7,
+    subject: dummySemSubject['7']);

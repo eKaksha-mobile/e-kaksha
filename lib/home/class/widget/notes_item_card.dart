@@ -14,7 +14,8 @@ class NotesItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context).pushNamed(AssignmentScreen.route, arguments: notesModel);
+        Navigator.of(context)
+            .pushNamed(AssignmentScreen.route, arguments: notesModel);
       },
       child: Card(
         child: Padding(
@@ -35,7 +36,10 @@ class NotesItemCard extends StatelessWidget {
               const SizedBox(
                 height: 10,
               ),
-              LeadingIconText(Icons.attach_file, '${notesModel.tAttachments} attachments'),
+              LeadingIconText(
+                icon: Icons.attach_file,
+                label: '${notesModel.tAttachments} attachments',
+              ),
             ],
           ),
         ),

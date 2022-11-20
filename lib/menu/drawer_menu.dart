@@ -2,10 +2,10 @@ import 'package:ekaksha/home/welcome_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../home/profile/profile_screen.dart';
+import '../home/profile/tab_screen.dart';
 import '../main.dart';
 import 'widget/header_drawer_menu.dart';
-import 'widget/item_drawer_menu.dart';
+import '../utils/widget/leading_icon_text.dart';
 
 class DrawerMenu extends StatelessWidget {
   const DrawerMenu({Key? key}) : super(key: key);
@@ -18,29 +18,29 @@ class DrawerMenu extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           DrawerMenuHeader(MyApp.studentModel),
-          DrawerMenuItem(
+          LeadingIconText(
             icon: Icons.account_circle_rounded, //assignment
-            title: 'profile',
+            label: 'profile',
             callback: () {
-              Navigator.pushNamed(context, ProfileScreen.route);
+              Navigator.pushNamed(context, TabScreen.route);
             },
           ),
-          DrawerMenuItem(
+          LeadingIconText(
             // icon: Icons.class_outlined,
             icon: Icons.class_rounded,
-            title: 'classes',
+            label: 'classes',
             callback: () => Navigator.of(context).pop(),
           ),
           const Divider(),
-          DrawerMenuItem(
+          LeadingIconText(
             icon: Icons.notifications_rounded,
-            title: 'announcement',
+            label: 'announcement',
             callback: () {},
           ),
           const Divider(),
-          DrawerMenuItem(
+          LeadingIconText(
             icon: Icons.logout_rounded,
-            title: 'logout',
+            label: 'logout',
             callback: () {
               FirebaseAuth.instance.signOut();
               Scaffold.of(context).closeDrawer();

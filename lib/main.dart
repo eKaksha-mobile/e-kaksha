@@ -1,15 +1,15 @@
+import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/classes_screen.dart';
-import 'package:ekaksha/home/welcome_screen.dart';
 import 'package:ekaksha/model/student_model.dart';
-import 'package:ekaksha/test/firebase_storage.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:get_it/get_it.dart';
 import 'home/class/assignment_screen.dart';
 
-import 'home/profile/profile_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+
+import 'home/profile/tab_screen.dart';
 
 GetIt locator = GetIt.instance;
 
@@ -27,8 +27,7 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  static StudentModel studentModel =
-      StudentModel('Sidharth Mudgil', 'smudgil102@gmail.com', 7, []);
+  static StudentModel studentModel = dummyStudent;
 
   // This widget is the root of your application.
   @override
@@ -57,11 +56,13 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // '/': (context) => const TestStorage(),
-        '/': (context) => const WelcomeScreen(),
+        // '/': (context) => const WelcomeScreen(),
+        // '/': (context) => const ClassesScreen(),
+        '/': (context) => const TabScreen(),
         ClassesScreen.route: (context) => const ClassesScreen(),
+        TabScreen.route: (context) => const TabScreen(),
         ClassRoomScreen.route: (context) => ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
-        ProfileScreen.route: (context) => const ProfileScreen(),
       },
       // onGenerateRoute: (settings) {},
       // onUnknownRoute: (settings) {},
