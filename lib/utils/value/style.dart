@@ -27,3 +27,11 @@ const textStyle4 = TextStyle(
   fontWeight: FontWeight.w300,
   wordSpacing: 10
 );
+
+const textStyle5 = TextStyle(
+    fontFamily: 'Poppins',
+    color: Colors.white,
+    fontSize: 18,
+    fontWeight: FontWeight.w600,
+    // wordSpacing: 10
+);

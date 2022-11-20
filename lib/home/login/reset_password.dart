@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 class ResetPassword extends StatefulWidget {
+  static const route = '/reset-password';
   const ResetPassword({Key? key}) : super(key: key);
 
   @override

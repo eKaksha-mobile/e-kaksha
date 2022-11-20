@@ -63,8 +63,20 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/images/
-  #   - images/a_dot_ham.jpeg
+    - assets/images/banner0.jpg
+    - assets/images/banner1.jpg
+    - assets/images/banner2.jpg
+    - assets/images/banner3.jpg
+    - assets/images/banner4.jpg
+    - assets/images/banner5.jpg
+    - assets/images/banner6.jpg
+    - assets/images/banner7.jpg
+    - assets/images/banner8.jpg
+    - assets/images/banner9.jpg
+    - assets/images/banner10.jpg
+    - assets/images/banner11.jpg
+    - assets/images/banner12.jpg
+    - assets/images/logo.png
 
   
   fonts:
