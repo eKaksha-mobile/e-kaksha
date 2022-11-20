@@ -16,6 +16,12 @@ class CardButton extends StatelessWidget {
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
+        customBorder: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15),
+                bottomLeft: Radius.circular(15),
+                bottomRight: Radius.circular(15))
+        ),
         onTap: callback,
         child: Container(
           alignment: Alignment.center,
