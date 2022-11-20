@@ -1,22 +1,16 @@
 import 'package:ekaksha/home/login/reset_password.dart';
-import 'package:ekaksha/home/login/signin_screen.dart';
+import 'package:ekaksha/home/profile/screen/profile_screen.dart';
+
 import 'package:flutter/material.dart';
 
-import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/classes_screen.dart';
-import 'package:ekaksha/home/welcome_screen.dart';
-import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 import 'home/login/tsignup_screen.dart';
 import 'home/profile/tab_screen.dart';
-import 'dummy_data.dart';
-import 'home/class/classroom_screen.dart';
-import 'home/classes_screen.dart';
 import 'home/login/login_screen.dart';
-import 'model/student_model.dart';
 import 'package:get_it/get_it.dart';
 import 'home/class/assignment_screen.dart';
 
@@ -65,11 +59,12 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         // '/': (context) => const TestStorage(),
+        // '/': (context) => const ProfileScreen(),
         '/': (context) => const LoginScreen(),
         LoginScreen.route: (context) => const LoginScreen(),
         SignUpScreen.route: (context) => const SignUpScreen(),
         ResetPassword.route: (context) => const ResetPassword(),
-        '/': (context) => const WelcomeScreen(),
+        // '/': (context) => const WelcomeScreen(),
         // '/': (context) => const ClassesScreen(),
         // '/': (context) => const TabScreen(),
         ClassesScreen.route: (context) => const ClassesScreen(),

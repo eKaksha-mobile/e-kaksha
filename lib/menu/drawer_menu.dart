@@ -1,10 +1,8 @@
-import 'package:ekaksha/home/welcome_screen.dart';
-import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/home/login/login_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../home/profile/tab_screen.dart';
-import '../main.dart';
 import 'widget/header_drawer_menu.dart';
 import '../utils/widget/leading_icon_text.dart';
 
@@ -18,7 +16,7 @@ class DrawerMenu extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          DrawerMenuHeader(),
+          const DrawerMenuHeader(),
           LeadingIconText(
             icon: Icons.account_circle_rounded, //assignment
             label: 'profile',
@@ -45,7 +43,7 @@ class DrawerMenu extends StatelessWidget {
             callback: () {
               FirebaseAuth.instance.signOut();
               Scaffold.of(context).closeDrawer();
-              Navigator.popAndPushNamed(context, WelcomeScreen.route);
+              Navigator.popAndPushNamed(context, LoginScreen.route);
             },
           ),
         ],

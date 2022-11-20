@@ -49,32 +49,35 @@ class LeadingIconText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-
-      onTap: _callback,
-      child: Container(
-        margin: EdgeInsets.symmetric(vertical: _verticalMargin, horizontal: _horizontalMargin),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              _icon,
-              size: _iconSize,
-              color: _iconColor,
-            ),
-            HorizontalSpacer(_iconSpacing),
-            Text(
-              _label,
-              style: TextStyle(
-                color: _labelColor,
-                fontSize: _labelSize,
-                fontFamily: 'Poppins',
-                fontWeight: FontWeight.w400,
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: _callback,
+        child: Container(
+          decoration: BoxDecoration(backgroundBlendMode: BlendMode.multiply),
+          margin: EdgeInsets.symmetric(vertical: _verticalMargin, horizontal: _horizontalMargin),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Icon(
+                _icon,
+                size: _iconSize,
+                color: _iconColor,
               ),
-              textAlign: TextAlign.center,
-            ),
-          ],
+              HorizontalSpacer(_iconSpacing),
+              Text(
+                _label,
+                style: TextStyle(
+                  color: _labelColor,
+                  fontSize: _labelSize,
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w400,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
