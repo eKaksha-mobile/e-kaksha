@@ -32,7 +32,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         child: Stack(
           children: [
             SizedBox(
-              height: mediaQuery.size.height * 0.4,
+              height: mediaQuery.size.height * 0.3,
+              width: double.infinity,
               child: const Image(
                 image: AssetImage('assets/images/banner0.jpg'),
                 fit: BoxFit.cover,
@@ -43,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             //   color: theme.primaryColor,
             // ),
             Positioned(
-              top: 100,
+              top: 70,
               child: SizedBox(
                 width: mediaQuery.size.width,
                 child: const Text(
@@ -64,7 +65,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: mediaQuery.size.height * 0.75,
                 width: mediaQuery.size.width,
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(45),
+                      topRight: Radius.circular(45)),
                   color: Colors.white,
                 ),
                 child: Column(
@@ -77,14 +80,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       isPassword: false,
                       controller: _emailTextController,
                     ),
-                    const VerticalSpacer(30),
+                    const VerticalSpacer(15),
                     InputCard(
                       label: 'Password',
                       hint: 'password',
                       isPassword: true,
                       controller: _passwordTextController,
                     ),
-                    const VerticalSpacer(20),
+                    const VerticalSpacer(15),
                     InputCard(
                       label: 'Confirm Password',
                       hint: 'password',

@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
     var mediaQuery = MediaQuery.of(context);
     return Scaffold(
       body: SizedBox(
-        height: mediaQuery.size.height,
+        height: mediaQuery.size.height * 50,
         child: Stack(
           children: [
             SizedBox(
@@ -42,7 +42,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Positioned(
-              top: 100,
+              top: 50,
               child: Container(
                 width: mediaQuery.size.width,
                 alignment: Alignment.topCenter,
@@ -60,10 +60,12 @@ class _LoginScreenState extends State<LoginScreen> {
             Positioned(
               bottom: 0,
               child: Container(
-                height: mediaQuery.size.height * 0.65,
+                height: mediaQuery.size.height * 0.7,
                 width: mediaQuery.size.width,
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(topLeft: Radius.circular(60)),
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(45),
+                      topRight: Radius.circular(45)),
                   color: Colors.white,
                 ),
                 child: Column(
@@ -76,17 +78,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         fontFamily: 'Poppins',
                         color: Colors.black,
                         fontSize: 36,
-                        fontWeight: FontWeight.w400,
+                        fontWeight: FontWeight.w500,
                       ),
                     ),
-                    const VerticalSpacer(30),
+                    const VerticalSpacer(10),
                     InputCard(
                       label: 'Email',
                       hint: 'email id',
                       isPassword: false,
                       controller: _emailTextController,
                     ),
-                    const VerticalSpacer(20),
+                    const VerticalSpacer(5),
                     InputCard(
                       label: 'Password',
                       hint: 'password',
@@ -99,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         isTeacher = value;
                       });
                     }),
-                    const VerticalSpacer(40),
+                    const VerticalSpacer(30),
                     CardButton(
                         title: 'Login',
                         callback: () async {
@@ -160,7 +162,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 },
                               );
                         }),
-                    const VerticalSpacer(30),
+                    const VerticalSpacer(40),
                     SpannableText(
                       label: '',
                       action: 'Forgot password?',

@@ -60,9 +60,9 @@ class MyApp extends StatelessWidget {
       routes: {
         // '/': (context) => const TestStorage(),
         // '/': (context) => const ProfileScreen(),
-        // '/': (context) => const LoginScreen(),
-        '/': (context) => const TabScreen(),
-        LoginScreen.route: (context) => const LoginScreen(),
+        '/': (context) => const LoginScreen(),
+        // '/': (context) => const TabScreen(),
+        // LoginScreen.route: (context) => const LoginScreen(),
         SignUpScreen.route: (context) => const SignUpScreen(),
         ResetPassword.route: (context) => const ResetPassword(),
         // '/': (context) => const WelcomeScreen(),
