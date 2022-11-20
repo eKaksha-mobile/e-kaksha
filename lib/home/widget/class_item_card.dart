@@ -9,7 +9,8 @@ class ClassItemCard extends StatelessWidget {
   const ClassItemCard(this._classModel, {Key? key}) : super(key: key);
 
   void _navigateToClassroom(BuildContext context) {
-    Navigator.of(context).pushNamed(ClassRoomScreen.route, arguments: _classModel);
+    Navigator.of(context)
+        .pushNamed(ClassRoomScreen.route, arguments: _classModel);
   }
 
   @override
