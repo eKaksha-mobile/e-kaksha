@@ -1,3 +1,4 @@
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../model/student_model.dart';
@@ -5,9 +6,9 @@ import '../../../../utils/value/style.dart';
 import '../../../../utils/widget/horizontal_spacer.dart';
 
 class StudentCover extends StatelessWidget {
-  final StudentModel student;
+  // final StudentModel student;
 
-  const StudentCover(this.student, {Key? key}) : super(key: key);
+  const StudentCover({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,11 +30,11 @@ class StudentCover extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                '${student.firstName} ${student.lastName}',
+                '${GlobalData.studentModel.firstName} ${GlobalData.studentModel.lastName}',
                 style: textStyle3,
               ),
               Text(
-                '${student.gender}, ${student.age}',
+                '${GlobalData.studentModel.gender}, ${GlobalData.studentModel.age}',
                 style: textStyle4,
               ),
             ],

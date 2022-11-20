@@ -1,50 +1,67 @@
+import 'package:age_calculator/age_calculator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class StudentModel {
-  final String _rollNo;
+  final int _rollNo;
   final String _firstName;
   final String _lastName;
-  final int _age;
-  final String _gender;
   final String _email;
-  final String _mobile;
+  final int _mobile;
   final int _semester;
-  final List<String> _subject;
+  final String _gender;
+  final Timestamp _dob;
+  final double _totalScore;
+  final int _pendingAssignments;
 
-  const StudentModel(
-      {required rollNo,
-      required firstName,
-      required lastName,
-      required age,
-      required gender,
-      required email,
-      required mobile,
-      required semester,
-      required subject})
-      : _rollNo = rollNo,
+  late final int? _age;
+  late final List<String>? _subject;
+
+  StudentModel({
+    rollNo = 0,
+    firstName = '',
+    lastName = '',
+    email = '',
+    mobile = 0,
+    semester = 0,
+    gender = '',
+    dob = 0,
+    totalScore = 0.0,
+    pendingAssignments = 0,
+  })  : _rollNo = rollNo,
         _firstName = firstName,
         _lastName = lastName,
-        _age = age,
-        _gender = gender,
         _email = email,
         _mobile = mobile,
         _semester = semester,
-        _subject = subject;
+        _gender = gender,
+        _dob = dob,
+        _totalScore = totalScore.toDouble(),
+        _pendingAssignments = pendingAssignments,
+        _age = AgeCalculator.age(dob.toDate()).years;
 
+  // int get age => _age;
 
-  int get age => _age;
+  // List<String> get subject => _subject;
 
-  List<String> get subject => _subject;
-
-  int get semester => _semester;
-
-  String get mobile => _mobile;
-
-  String get email => _email;
-
-  String get lastName => _lastName;
+  int get rollNo => _rollNo;
 
   String get firstName => _firstName;
 
-  String get rollNo => _rollNo;
+  String get lastName => _lastName;
+
+  String get email => _email;
+
+  int get mobile => _mobile;
+
+  int get semester => _semester;
 
   String get gender => _gender;
+
+  Timestamp get dob => _dob;
+
+  double get totalScore => _totalScore;
+
+  int get pendingAssignments => _pendingAssignments;
+
+  int? get age => _age;
 }

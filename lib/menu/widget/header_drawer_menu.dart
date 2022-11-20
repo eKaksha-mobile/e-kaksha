@@ -1,10 +1,11 @@
 import 'package:ekaksha/model/student_model.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
 class DrawerMenuHeader extends StatelessWidget {
-  final StudentModel student;
+  // final StudentModel student;
 
-  const DrawerMenuHeader(this.student, {Key? key}) : super(key: key);
+  const DrawerMenuHeader({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class DrawerMenuHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            '${student.firstName} ${student.lastName}',
+            '${GlobalData.studentModel.firstName} ${GlobalData.studentModel.lastName}',
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -29,7 +30,7 @@ class DrawerMenuHeader extends StatelessWidget {
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            student.email,
+            GlobalData.studentModel.email,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,

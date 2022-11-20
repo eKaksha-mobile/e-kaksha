@@ -1,3 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+
 import 'home/class/model/assignment_model.dart';
 import 'home/model/ClassModel.dart';
 import 'model/student_model.dart';
@@ -73,13 +76,26 @@ List<AssignmentModel> dummyAssignments = [
       'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cGVyc29ufGVufDB8fDB8fA%3D%3D&w=1000&q=80'),
 ];
 
-StudentModel dummyStudent = StudentModel(
-    rollNo: '1917285',
-    firstName: 'Sidharth',
-    lastName: 'Mudgil',
-    age: 21,
-    gender: 'male',
-    email: 'smudgil102@gmail.com',
-    mobile: '9928313184',
-    semester: 7,
-    subject: dummySemSubject['7']);
+// StudentModel dummyStudent = StudentModel(
+//     rollNo: '1917285',
+//     firstName: 'Sidharth',
+//     lastName: 'Mudgil',
+//     age: 21,
+//     gender: 'male',
+//     email: 'smudgil102@gmail.com',
+//     mobile: '9928313184',
+//     semester: 7,
+//     subject: dummySemSubject['7']);
+
+// StudentModel dummyStudent = StudentModel(
+//   rollNo: 2025712,
+//   firstName: 'Manthan',
+//   lastName: 'Sharma',
+//   email: 'mathansharma79826@gmail.com',
+//   mobile: 7018179826,
+//   semester: 7,
+//   gender: 'Male',
+//   dob: Timestamp.fromDate(DateTime.parse('2001-09-04')),
+//   totalScore: 75.80,
+//   pendingAssignments: 2,
+// );

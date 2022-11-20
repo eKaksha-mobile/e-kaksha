@@ -1,3 +1,4 @@
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
 import 'widget/student_cover.dart';
@@ -17,10 +18,10 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          StudentCover(dummyStudent),
-          StudentDetailsSegment(dummyStudent),
+          StudentCover(),
+          StudentDetailsSegment(),
           const Divider(),
-          const StudentScoreSegment(75.43, 1),
+          const StudentScoreSegment(),
           const Divider(),
           const StudentSubjectsSegment(dummyClasses),
           const Divider(),
@@ -35,6 +36,6 @@ class ProfileScreen extends StatelessWidget {
           ),
         ],
       ),
-    );;
+    );
   }
 }
