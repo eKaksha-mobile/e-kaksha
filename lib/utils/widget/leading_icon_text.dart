@@ -54,8 +54,6 @@ class LeadingIconText extends StatelessWidget {
       child: InkWell(
         onTap: _callback,
         child: Container(
-          color: Colors.white,
-          decoration: BoxDecoration(backgroundBlendMode: BlendMode.multiply),
           margin: EdgeInsets.symmetric(
               vertical: _verticalMargin, horizontal: _horizontalMargin),
           child: Row(

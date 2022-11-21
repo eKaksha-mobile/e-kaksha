@@ -1,7 +1,7 @@
 import 'package:ekaksha/home/classes_screen.dart';
-import 'package:ekaksha/home/login/reset_password.dart';
 import 'package:ekaksha/home/login/widget/card_button.dart';
 import 'package:ekaksha/home/login/widget/input_card.dart';
+import 'package:ekaksha/home/login/widget/reset_password_dialog.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +22,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _resetEmailTextController =
+      TextEditingController();
   bool isTeacher = false;
 
   @override
@@ -150,23 +152,36 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .getStudentModel(
                                             _emailTextController.text);
                                   }
-                                  print(GlobalData.studentModel);
+                                  debugPrint('${GlobalData.studentModel}');
 
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => ClassesScreen()),
-                                  );
+                                  Navigator.of(context).pushReplacementNamed(
+                                      ClassesScreen.route);
                                 },
                               );
                         }),
                     const VerticalSpacer(30),
                     SpannableText(
-                      label: '',
-                      action: 'Forgot password?',
-                      callback: () =>
-                          Navigator.of(context).pushNamed(ResetPassword.route),
-                    ),
+                        label: '',
+                        action: 'Forgot password?',
+                        callback: () => showDialog(
+                              context: context,
+                              builder: (context) => ResetPasswordDialog(
+                                  textController: _resetEmailTextController,
+                                  positiveCallback: () {
+                                    GetIt.I
+                                        .get<FirebaseService>()
+                                        .firebaseAuthResetPassword(
+                                          context: context,
+                                          email: _resetEmailTextController.text,
+                                          onSuccessfulResetPassword: () =>
+                                              Navigator.of(context).pop(),
+                                        );
+                                  },
+                                  negativeCallback: () =>
+                                      Navigator.pop(context)),
+                            )
+                        // Navigator.of(context).pushNamed(ResetPassword.route),
+                        ),
                     const VerticalSpacer(10),
                     SpannableText(
                       label: "Don't have any account? ",

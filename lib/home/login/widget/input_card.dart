@@ -38,6 +38,7 @@ class _InputCardState extends State<InputCard> {
       child: Container(
         padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
         width: mediaQuery.size.width * 0.8,
+        height: 88,
         // shape: ,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
