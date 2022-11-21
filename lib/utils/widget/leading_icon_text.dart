@@ -67,9 +67,9 @@ class LeadingIconText extends StatelessWidget {
                 color: _iconColor,
               ),
               HorizontalSpacer(_iconSpacing),
-              SizedBox(
-                width: mediaQuery.size.width * 0.7,
+              Flexible(
                 child: Text(
+                  overflow: TextOverflow.visible,
                   _label,
                   style: TextStyle(
                     color: _labelColor,
