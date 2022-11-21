@@ -21,20 +21,24 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _passwordTextController = TextEditingController();
-  final TextEditingController _confirmPasswordTextController = TextEditingController();
+  final TextEditingController _confirmPasswordTextController =
+      TextEditingController();
   final TextEditingController _emailTextController = TextEditingController();
   bool isTeacher = false;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
+    bool smallScreen = mediaQuery.size.height < 750;
     return Scaffold(
       body: SizedBox(
         height: mediaQuery.size.height,
         child: Stack(
           children: [
             SizedBox(
-              height: mediaQuery.size.height * 0.3,
+              height: smallScreen
+                  ? mediaQuery.size.height * 0.3
+                  : mediaQuery.size.height * 0.4,
               width: double.infinity,
               child: const Image(
                 image: AssetImage('assets/images/banner0.jpg'),
@@ -46,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             //   color: theme.primaryColor,
             // ),
             Positioned(
-              top: 70,
+              top: smallScreen ? 70 : 100,
               child: SizedBox(
                 width: mediaQuery.size.width,
                 child: const Text(
@@ -67,9 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 height: mediaQuery.size.height * 0.75,
                 width: mediaQuery.size.width,
                 decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(45),
-                      topRight: Radius.circular(45)),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(50)),
                   color: Colors.white,
                 ),
                 child: Column(
@@ -82,14 +84,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       isPassword: false,
                       controller: _emailTextController,
                     ),
-                    const VerticalSpacer(15),
+                    VerticalSpacer(smallScreen ? 15 : 30),
                     InputCard(
                       label: 'Password',
                       hint: 'password',
                       isPassword: true,
                       controller: _passwordTextController,
                     ),
-                    const VerticalSpacer(15),
+                    VerticalSpacer(smallScreen ? 15 : 20),
                     InputCard(
                       label: 'Confirm Password',
                       hint: 'password',
@@ -149,8 +151,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   context: context,
                                   email: _emailTextController.text,
                                   password: _passwordTextController.text,
-                                  message: "New ${GlobalData.designation} account created",
-                                  onSuccessfulSignUp: () => Navigator.of(context).pushNamed(ClassesScreen.route),
+                                  message:
+                                      "New ${GlobalData.designation} account created",
+                                  onSuccessfulSignUp: () =>
+                                      Navigator.of(context)
+                                          .pushNamed(ClassesScreen.route),
                                 );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
