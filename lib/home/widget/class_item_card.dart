@@ -1,6 +1,8 @@
 import 'package:ekaksha/home/class/classroom_screen.dart';
 // import 'package:ekaksha/utils/model/ClassModel.dart';/
 import 'package:ekaksha/utils/model/subject_model.dart';
+import 'package:ekaksha/utils/widget/horizontal_spacer.dart';
+import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
 
 // import '../../model/ClassModel.dart';
@@ -21,14 +23,17 @@ class ClassItemCard extends StatelessWidget {
     return InkWell(
       onTap: () => _navigateToClassroom(context),
       child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.only(bottom: 3),
         child: Stack(children: [
-          SizedBox(
-            width: mediaQuery.size.width,
-            height: mediaQuery.size.height * 0.26,
-            child: Image(
-              image: AssetImage(_subjectModel.assetName),
-              fit: BoxFit.cover,
+          Card(
+            elevation: 5,
+            child: SizedBox(
+              width: mediaQuery.size.width,
+              height: mediaQuery.size.height * 0.24,
+              child: Image(
+                image: AssetImage(_subjectModel.assetName),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           Positioned(
@@ -37,18 +42,24 @@ class ClassItemCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  _subjectModel.title,
-                  style: const TextStyle(
-                      color: Colors.white,
-                      fontFamily: 'Poppins',
-                      height: 1.2,
-                      fontSize: 24,
-                      fontWeight: FontWeight.w600),
+                SizedBox(
+                  width: mediaQuery.size.width * 0.75,
+                  child: Text(
+                    _subjectModel.title,
+                    style: const TextStyle(
+                        overflow: TextOverflow.visible,
+                        color: Colors.white,
+                        fontFamily: 'Poppins',
+                        height: 1.2,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
+                const VerticalSpacer(5),
                 Text(
                   '${_subjectModel.teacherFirstName} ${_subjectModel.teacherLastName}',
                   style: const TextStyle(
+                      overflow: TextOverflow.visible,
                       color: Colors.white,
                       fontFamily: 'Poppins',
                       height: 1.2,

@@ -1,3 +1,4 @@
+import 'package:ekaksha/home/widget/popup_box.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
@@ -20,7 +21,16 @@ class AssignmentScreen extends StatelessWidget {
       floatingActionButton: GlobalData.designation == 'Student'
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
-              onPressed: (() {}),
+              onPressed: (() {
+                showDialog(
+                    context: context,
+                    builder: (context) => const PopupBox(
+                          labelInput1: "Title",
+                          labelInput2: "Doc Link",
+                          hintInput1: 'Assignment Name',
+                          hintInput2: 'Assignment Link',
+                        ));
+              }),
               child: const Icon(
                 Icons.add,
               ),

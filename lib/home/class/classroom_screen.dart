@@ -1,4 +1,5 @@
 import 'package:ekaksha/dummy_data.dart';
+import 'package:ekaksha/home/widget/popup_box.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 // import 'package:ekaksha/model/ClassModel.dart';
 // import 'package:ekaksha/utils/model/ClassModel.dart';
@@ -11,6 +12,8 @@ import 'widget/student_intro_card.dart';
 
 class ClassRoomScreen extends StatelessWidget {
   static const route = '/classroom_screen';
+  final TextEditingController _resetEmailTextController =
+      TextEditingController();
 
   ClassRoomScreen({Key? key}) : super(key: key);
 
@@ -28,7 +31,16 @@ class ClassRoomScreen extends StatelessWidget {
       floatingActionButton: GlobalData.designation == 'Teacher'
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
-              onPressed: (() {}),
+              onPressed: (() {
+                showDialog(
+                    context: context,
+                    builder: (context) => const PopupBox(
+                          labelInput1: "Title",
+                          labelInput2: "Doc Link",
+                          hintInput1: 'Assignment Name',
+                          hintInput2: 'Assignment Link',
+                        ));
+              }),
               child: const Icon(
                 Icons.add,
               ),
