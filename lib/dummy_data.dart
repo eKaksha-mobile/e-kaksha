@@ -8,26 +8,26 @@ import 'package:ekaksha/utils/model/subject_model.dart';
 // import 'model/ClassModel.dart';
 // import 'model/student_model.dart';
 
-const List dummyData = [
-  {
-    'name': 'ekaksha',
-    'email': 'ekaksha.official.app@gmail.com',
-    'semester': 6,
-    'totalScore': 50
-  },
-  {
-    'name': 's2',
-    'email': 's1@gmail.com',
-    'semester': 7,
-    'gender': "Male",
-    'pending': 0,
-    'phoneNo': 345678,
-    'rollNo': 103,
-    'totalScore': 30
-  },
-  {'name': 's3', 'email': 's3@gmail.com', 'semester': 6, 'totalScore': 80},
-  {'name': 't1', 'email': 't1@gmail.com', 'semester': 6, 'totalScore': 100},
-];
+// const List dummyData = [
+//   {
+//     'name': 'ekaksha',
+//     'email': 'ekaksha.official.app@gmail.com',
+//     'semester': 6,
+//     'totalScore': 50
+//   },
+//   {
+//     'name': 's2',
+//     'email': 's1@gmail.com',
+//     'semester': 7,
+//     'gender': "Male",
+//     'pending': 0,
+//     'phoneNo': 345678,
+//     'rollNo': 103,
+//     'totalScore': 30
+//   },
+//   {'name': 's3', 'email': 's3@gmail.com', 'semester': 6, 'totalScore': 80},
+//   {'name': 't1', 'email': 't1@gmail.com', 'semester': 6, 'totalScore': 100},
+// ];
 
 // const List<SubjectModel> dummyClasses = [
 //   SubjectModel(
@@ -42,21 +42,21 @@ const List dummyData = [
 //       'assets/images/banner5.jpg'),
 // ];
 
-const Map dummySemSubject = {
-  '7': [
-    'Data Mining',
-    'Deep Learning',
-    'Block Chain',
-    'Road Safety',
-    'Network Security'
-  ],
-  '6': [
-    'Machine Learning',
-    'Artificial Intelligence',
-    'Cloud Computing',
-    'Compiler Design'
-  ]
-};
+// const Map dummySemSubject = {
+//   '7': [
+//     'Data Mining',
+//     'Deep Learning',
+//     'Block Chain',
+//     'Road Safety',
+//     'Network Security'
+//   ],
+//   '6': [
+//     'Machine Learning',
+//     'Artificial Intelligence',
+//     'Cloud Computing',
+//     'Compiler Design'
+//   ]
+// };
 
 List<AssignmentModel> dummyAssignments = [
   AssignmentModel('_title', DateTime.now(), '_question', 3,

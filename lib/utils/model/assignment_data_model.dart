@@ -12,19 +12,21 @@ class AssignmentDataModel {
   final String _teacherEmail;
   final String _teacherFirstName;
   final String _teacherLastName;
+  final String _description;
 
-  AssignmentDataModel({
-    assignmentId = 0,
-    assignmentName = '',
-    dueDate = 0,
-    semester = 0,
-    maxMarks = 0,
-    subjectId = '',
-    subjectName = '',
-    teacherEmail = '',
-    teacherFirstName = '',
-    teacherLastName = '',
-  })  : _assignmentId = assignmentId,
+  AssignmentDataModel(
+      {assignmentId = 0,
+      assignmentName = '',
+      dueDate = 0,
+      semester = 0,
+      maxMarks = 0,
+      subjectId = '',
+      subjectName = '',
+      teacherEmail = '',
+      teacherFirstName = '',
+      teacherLastName = '',
+      description = ''})
+      : _assignmentId = assignmentId,
         _assignmentName = assignmentName,
         _dueDate = dueDate,
         _semester = semester,
@@ -33,7 +35,8 @@ class AssignmentDataModel {
         _subjectName = subjectName,
         _teacherEmail = teacherEmail,
         _teacherFirstName = teacherFirstName,
-        _teacherLastName = teacherLastName;
+        _teacherLastName = teacherLastName,
+        _description = description;
 
   String get teacherLastName => _teacherLastName;
 
