@@ -1,4 +1,5 @@
 import 'package:ekaksha/home/login/login_screen.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
 import 'widget/student_cover.dart';
@@ -23,7 +24,7 @@ class ProfileScreen extends StatelessWidget {
           const Divider(),
           const StudentScoreSegment(),
           const Divider(),
-          const StudentSubjectsSegment(dummyClasses),
+          StudentSubjectsSegment(GlobalData.subjectModels),
           const Divider(),
           Container(
             margin: const EdgeInsets.only(left: 15),
@@ -32,7 +33,8 @@ class ProfileScreen extends StatelessWidget {
               label: 'Logout',
               labelColor: alertRed,
               iconColor: alertRed,
-              callback: () => Navigator.of(context).pushReplacementNamed(LoginScreen.route),
+              callback: () =>
+                  Navigator.of(context).pushReplacementNamed(LoginScreen.route),
             ),
           ),
         ],

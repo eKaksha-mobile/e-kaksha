@@ -45,7 +45,7 @@ class _TabScreenState extends State<TabScreen> {
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
-        children: const [ProfileScreen(), LeaderboardScreen()],
+        children: [const ProfileScreen(), LeaderboardScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).colorScheme.primary,

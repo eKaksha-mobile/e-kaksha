@@ -15,9 +15,9 @@ import 'widget/class_item_card.dart';
 class ClassesScreen extends StatelessWidget {
   static const route = '/classes_screen';
 
-  const ClassesScreen({Key? key}) : super(key: key);
+  ClassesScreen({Key? key}) : super(key: key);
 
-  final List<SubjectModel> classes = dummyClasses;
+  final List<SubjectModel> classes = GlobalData.subjectModels;
 
   @override
   Widget build(BuildContext context) {

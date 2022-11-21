@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/student_model.dart';
+import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -161,6 +162,47 @@ class FirebaseService {
       );
     } else {
       return StudentModel();
+    }
+  }
+
+  Future<List<SubjectModel>> getSubjectModelList(int semester) async {
+    bool result = false;
+    late List<Map<String, dynamic>> mapList = [];
+
+    final docRef = firestore.collection("subjects");
+
+    await docRef.where('sem', isEqualTo: semester).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<SubjectModel> subjectModels = [];
+
+      for (var map in mapList) {
+        subjectModels.add(SubjectModel(
+            id: map['subjectId'],
+            title: map['name'],
+            semester: map['sem'],
+            teacherEmail: map['teacherEmail'],
+            teacherFirstName: map['firstName'],
+            teacherLastName: map['lastName'],
+            assetName: 'assets/images/1.png'));
+      }
+      return subjectModels;
+    } else {
+      return <SubjectModel>[];
     }
   }
 }

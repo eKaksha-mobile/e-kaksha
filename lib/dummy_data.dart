@@ -29,18 +29,18 @@ const List dummyData = [
   {'name': 't1', 'email': 't1@gmail.com', 'semester': 6, 'totalScore': 100},
 ];
 
-const List<SubjectModel> dummyClasses = [
-  SubjectModel('_id1', 'Data Mining', 'Jagpreet', 'Singh', 7,
-      'assets/images/banner1.jpg'),
-  SubjectModel('_id2', 'Deep Learning', 'Jagpreet', 'Singh', 7,
-      'assets/images/banner2.jpg'),
-  SubjectModel('_id3', 'Block Chain', 'Aditya', 'Sharma', 7,
-      'assets/images/banner3.jpg'),
-  SubjectModel('_id4', 'Road Safety', 'Suraj', 'Shrivastva', 7,
-      'assets/images/banner4.jpg'),
-  SubjectModel('_id5', 'Network Security', 'Monika', 'Sachdeva', 7,
-      'assets/images/banner5.jpg'),
-];
+// const List<SubjectModel> dummyClasses = [
+//   SubjectModel(
+//       '_id1', 'Data Mining', 'Jagpreet', 'Singh', 7, 'assets/images/1.png'),
+//   SubjectModel(
+//       '_id2', 'Deep Learning', 'Jagpreet', 'Singh', 7, 'assets/images/2.png'),
+//   SubjectModel(
+//       '_id3', 'Block Chain', 'Aditya', 'Sharma', 7, 'assets/images/3.png'),
+//   SubjectModel('_id4', 'Road Safety', 'Suraj', 'Shrivastva', 7,
+//       'assets/images/banner4.jpg'),
+//   SubjectModel('_id5', 'Network Security', 'Monika', 'Sachdeva', 7,
+//       'assets/images/banner5.jpg'),
+// ];
 
 const Map dummySemSubject = {
   '7': [
