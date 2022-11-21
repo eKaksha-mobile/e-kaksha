@@ -14,7 +14,7 @@ class StudentModel {
   final int _pendingAssignments;
 
   late final int? _age;
-  late final List<String>? _subject;
+  // late final List<String>? _subject;
 
   StudentModel({
     rollNo = 0,
