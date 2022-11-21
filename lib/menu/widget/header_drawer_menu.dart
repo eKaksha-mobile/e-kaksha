@@ -22,7 +22,9 @@ class DrawerMenuHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           Text(
-            '${GlobalData.studentModel.firstName} ${GlobalData.studentModel.lastName}',
+            GlobalData.designation == 'Student'
+                ? '${GlobalData.studentModel.firstName} ${GlobalData.studentModel.lastName}'
+                : '${GlobalData.teacherModel.firstName} ${GlobalData.teacherModel.lastName}',
             style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
@@ -30,7 +32,9 @@ class DrawerMenuHeader extends StatelessWidget {
                 fontWeight: FontWeight.w500),
           ),
           Text(
-            GlobalData.studentModel.email,
+            GlobalData.designation == 'Student'
+                ? GlobalData.studentModel.email
+                : GlobalData.teacherModel.email,
             style: const TextStyle(
               color: Colors.white,
               fontSize: 16,
