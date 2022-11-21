@@ -95,8 +95,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                 context: context,
                                 email: _emailTextController.text,
                                 onSuccessfulResetPassword: () =>
-                                    Navigator.of(context).pushReplacementNamed(
-                                        LoginScreen.route),
+                                    Navigator.of(context).pop(),
                               );
                         }),
                     const VerticalSpacer(40),
@@ -109,8 +108,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                     SpannableText(
                       label: "Back to SignIn? ",
                       action: 'Sign In',
-                      callback: () => Navigator.of(context)
-                          .pushReplacementNamed(LoginScreen.route),
+                      callback: () => Navigator.of(context).pop(),
                     ),
                   ],
                 ),

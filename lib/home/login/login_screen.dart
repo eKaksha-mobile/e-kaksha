@@ -176,8 +176,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     SpannableText(
                       label: "Don't have any account? ",
                       action: 'Sign up',
-                      callback: () => Navigator.of(context)
-                          .pushReplacementNamed(SignUpScreen.route),
+                      callback: () =>
+                          Navigator.of(context).pushNamed(SignUpScreen.route),
                     ),
                   ],
                 ),
