@@ -16,7 +16,6 @@ import '../../../utils/value/colors.dart';
 class LeaderboardScreen extends StatelessWidget {
   LeaderboardScreen({Key? key}) : super(key: key);
   // final List<SubjectModel> classes = GlobalData.subjectModels;
-
   List<StudentModel> studentList = GlobalData.allStudentModelList;
 
   @override

@@ -20,13 +20,14 @@ class _TabScreenState extends State<TabScreen> {
   late PageController _pageController;
 
   @override
-  void initState() async {
+  void initState() {
     super.initState();
-
-    if (GlobalData.allStudentModelList.isEmpty) {
-      GlobalData.allStudentModelList =
-          await GetIt.I.get<FirebaseService>().getAllStudentModelList();
-    }
+    () async {
+      if (GlobalData.allStudentModelList.isEmpty) {
+        GlobalData.allStudentModelList =
+            await GetIt.I.get<FirebaseService>().getAllStudentModelList();
+      }
+    };
     _pageController = PageController(initialPage: _page);
   }
 
