@@ -1,9 +1,10 @@
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/profile/screen/widget/leaderboard_item.dart';
+import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/value/colors.dart';
-import '../../model/ClassModel.dart';
+// import '../../../model/ClassModel.dart';
 
 // fresher, sophomore, junior, senior
 

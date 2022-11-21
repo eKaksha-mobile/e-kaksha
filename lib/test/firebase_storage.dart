@@ -2,11 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/home/login/widget/firebaseUIButton.dart';
-import 'package:ekaksha/home/login/widget/input_text_field.dart';
 import 'package:ekaksha/home/login/widget/logo.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
