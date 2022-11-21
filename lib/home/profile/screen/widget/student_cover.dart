@@ -1,7 +1,7 @@
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../model/student_model.dart';
+// import '../../../../model/student_model.dart';
 import '../../../../utils/value/style.dart';
 import '../../../../utils/widget/horizontal_spacer.dart';
 

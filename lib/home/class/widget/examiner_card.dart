@@ -1,4 +1,5 @@
-import 'package:ekaksha/home/class/model/assignment_model.dart';
+// import 'package:ekaksha/model/assignment_model.dart';
+import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

@@ -1,6 +1,6 @@
+import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:flutter/material.dart';
 
-import 'model/assignment_model.dart';
 import 'widget/examiner_card.dart';
 
 class AssignmentScreen extends StatelessWidget {
@@ -10,7 +10,8 @@ class AssignmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var notesModel = ModalRoute.of(context)?.settings.arguments as AssignmentModel;
+    var notesModel =
+        ModalRoute.of(context)?.settings.arguments as AssignmentModel;
 
     return Scaffold(
       appBar: AppBar(),

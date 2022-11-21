@@ -1,9 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/model/ClassModel.dart';
+import 'package:ekaksha/utils/model/assignment_model.dart';
 
-import 'home/class/model/assignment_model.dart';
-import 'home/model/ClassModel.dart';
-import 'model/student_model.dart';
+// import 'model/assignment_model.dart';
+// import 'model/ClassModel.dart';
+// import 'model/student_model.dart';
 
 const List dummyData = [
   {

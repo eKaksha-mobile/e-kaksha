@@ -1,6 +1,7 @@
+import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:flutter/material.dart';
 
-import '../model/assignment_model.dart';
+// import '../../../model/assignment_model.dart';
 import '../assignment_screen.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';

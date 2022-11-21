@@ -1,7 +1,8 @@
 import 'package:ekaksha/home/class/classroom_screen.dart';
+import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:flutter/material.dart';
 
-import '../model/ClassModel.dart';
+// import '../../model/ClassModel.dart';
 
 class ClassItemCard extends StatelessWidget {
   final ClassModel _classModel;

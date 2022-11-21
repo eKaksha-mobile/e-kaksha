@@ -1,9 +1,10 @@
+import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/value/colors.dart';
 import '../../../../utils/widget/leading_icon_text.dart';
 import '../../../class/classroom_screen.dart';
-import '../../../model/ClassModel.dart';
+// import '../../../../model/ClassModel.dart';
 
 class StudentSubjectsSegment extends StatelessWidget {
   final List<ClassModel> subjects;
