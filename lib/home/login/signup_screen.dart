@@ -29,7 +29,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    bool smallScreen = mediaQuery.size.height < 750;
+    bool smallScreen = mediaQuery.size.height < 800;
     return Scaffold(
       body: SizedBox(
         height: mediaQuery.size.height,

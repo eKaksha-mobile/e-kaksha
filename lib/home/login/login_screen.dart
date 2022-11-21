@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    bool smallScreen = mediaQuery.size.height < 750;
+    bool smallScreen = mediaQuery.size.height < 800;
     return Scaffold(
       body: SizedBox(
         height:
@@ -132,10 +132,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   requiredEmail: _emailTextController.text,
                                 );
                           }
-                          // String actual_email = 'await getAdminEmail();';
-
-                          // print(actual_email);
-                          // print(result);
 
                           if (!result) {
                             ScaffoldMessenger.of(context).showSnackBar(
