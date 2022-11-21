@@ -34,7 +34,7 @@ class ClassRoomScreen extends StatelessWidget {
               onPressed: (() {
                 showDialog(
                     context: context,
-                    builder: (context) => const PopupBox(
+                    builder: (context) => PopupBox(
                           labelInput1: "Title",
                           labelInput2: "Doc Link",
                           hintInput1: 'Assignment Name',
@@ -46,7 +46,7 @@ class ClassRoomScreen extends StatelessWidget {
               ),
             )
           : null,
-      body: Column(
+      body: ListView(
         children: [
           StudentIntroCard(model.title, model.teacherFirstName),
           SizedBox(

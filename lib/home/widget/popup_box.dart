@@ -2,15 +2,15 @@ import 'package:ekaksha/home/widget/input_text.dart';
 import 'package:flutter/material.dart';
 
 class PopupBox extends StatelessWidget {
-  const PopupBox(
+  PopupBox(
       {required this.labelInput1,
       required this.labelInput2,
-      required this.hintInput1,
-      required this.hintInput2});
+      this.hintInput1 = '',
+      this.hintInput2 = ''});
   final String labelInput1;
   final String labelInput2;
-  final String hintInput1;
-  final String hintInput2;
+  late String hintInput1;
+  late String hintInput2;
 
   @override
   Widget build(BuildContext context) {
