@@ -28,33 +28,31 @@ class AssignmentScreen extends StatelessWidget {
           : null,
       body: Column(
         children: [
-          ExaminerCard(notesModel),
+          Card(
+            elevation: 5,
+            child: Container(
+                // decoration: BoxDecoration(
+                //     border: Border.all(width: 2, color: Colors.grey)),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+                margin: const EdgeInsets.all(2),
+                child: ExaminerCard(notesModel)),
+          ),
           const SizedBox(
             height: 10,
           ),
-          Container(
-            decoration:
-                BoxDecoration(border: Border.all(width: 2, color: Colors.grey)),
-            padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
-            margin: const EdgeInsets.all(5),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  notesModel.question,
-                  textAlign: TextAlign.start,
-                  style: const TextStyle(color: Colors.black),
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const Text(
-                  'Attachments',
-                  textAlign: TextAlign.start,
-                  style: TextStyle(color: Colors.black),
-                ),
-              ],
-            ),
+          Text(
+            notesModel.question,
+            textAlign: TextAlign.start,
+            style: const TextStyle(color: Colors.black),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          const Text(
+            'Attachments',
+            textAlign: TextAlign.start,
+            style: TextStyle(color: Colors.black),
           ),
         ],
       ),
