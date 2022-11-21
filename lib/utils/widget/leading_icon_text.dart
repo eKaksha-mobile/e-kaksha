@@ -49,6 +49,7 @@ class LeadingIconText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context);
     return Material(
       type: MaterialType.transparency,
       child: InkWell(
@@ -66,15 +67,18 @@ class LeadingIconText extends StatelessWidget {
                 color: _iconColor,
               ),
               HorizontalSpacer(_iconSpacing),
-              Text(
-                _label,
-                style: TextStyle(
-                  color: _labelColor,
-                  fontSize: _labelSize,
-                  fontFamily: 'Poppins',
-                  fontWeight: FontWeight.w400,
+              SizedBox(
+                width: mediaQuery.size.width * 0.7,
+                child: Text(
+                  _label,
+                  style: TextStyle(
+                    color: _labelColor,
+                    fontSize: _labelSize,
+                    fontFamily: 'Poppins',
+                    fontWeight: FontWeight.w400,
+                  ),
+                  textAlign: TextAlign.start,
                 ),
-                textAlign: TextAlign.center,
               ),
             ],
           ),
