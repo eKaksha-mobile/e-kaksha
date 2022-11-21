@@ -19,7 +19,14 @@ class LeaderboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    studentList.sort((b, a) => a.totalScore.compareTo(b.totalScore));
+    studentList.sort((b, a) {
+      var comparisonResult = a.semester.compareTo(b.semester);
+      if (comparisonResult != 0) {
+        return comparisonResult;
+      }
+      // Surnames are the same, so subsort by given name.
+      return a.totalScore.compareTo(b.totalScore);
+    });
     return Container(
       margin: const EdgeInsets.only(top: 5),
       child: ListView.builder(

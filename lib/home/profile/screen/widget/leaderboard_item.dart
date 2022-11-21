@@ -71,6 +71,17 @@ class LeaderboardItem extends StatelessWidget {
                           height: 1.5,
                         ),
                         Text(
+                          "Score : ${_studentModel.semester}",
+                          style: TextStyle(
+                              fontSize: 15,
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w500,
+                              color: Colors.blueGrey[200]),
+                        ),
+                        const SizedBox(
+                          height: 1.5,
+                        ),
+                        Text(
                           "Score : ${_studentModel.totalScore}",
                           style: TextStyle(
                               fontSize: 15,
