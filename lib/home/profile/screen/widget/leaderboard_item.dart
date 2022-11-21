@@ -1,9 +1,11 @@
+import 'package:ekaksha/utils/model/student_model.dart';
 import 'package:flutter/material.dart';
 
 class LeaderboardItem extends StatelessWidget {
+  final StudentModel _studentModel;
   final int index;
 
-  const LeaderboardItem({required this.index, super.key});
+  const LeaderboardItem(this._studentModel, {required this.index, super.key});
 
   EdgeInsetsGeometry getMargin(index) {
     if (index == 1) {
@@ -58,7 +60,8 @@ class LeaderboardItem extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Student_0$index".toUpperCase(),
+                          "${_studentModel.firstName} ${_studentModel.lastName}"
+                              .toUpperCase(),
                           style: const TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w500,
@@ -68,7 +71,7 @@ class LeaderboardItem extends StatelessWidget {
                           height: 1.5,
                         ),
                         Text(
-                          "Score : 000",
+                          "Score : ${_studentModel.totalScore}",
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: 'Poppins',

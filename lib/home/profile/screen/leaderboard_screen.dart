@@ -1,6 +1,7 @@
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/profile/screen/widget/leaderboard_item.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/model/student_model.dart';
 // import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
@@ -12,17 +13,21 @@ import '../../../utils/value/colors.dart';
 
 class LeaderboardScreen extends StatelessWidget {
   LeaderboardScreen({Key? key}) : super(key: key);
-  final List<SubjectModel> classes = GlobalData.subjectModels;
+  // final List<SubjectModel> classes = GlobalData.subjectModels;
+
+  List<StudentModel> studentList = GlobalData.allStudentModelList;
 
   @override
   Widget build(BuildContext context) {
+    studentList.sort((b, a) => a.totalScore.compareTo(b.totalScore));
     return Container(
       margin: const EdgeInsets.only(top: 5),
       child: ListView.builder(
         itemBuilder: (context, index) => LeaderboardItem(
+          studentList.elementAt(index),
           index: index + 1,
         ),
-        itemCount: 10,
+        itemCount: studentList.length,
       ),
     );
   }
