@@ -1,6 +1,11 @@
+import 'package:ekaksha/home/classes_screen.dart';
 import 'package:ekaksha/home/login/login_screen.dart';
+import 'package:ekaksha/home/login/widget/checkbox_text_card.dart';
 import 'package:ekaksha/home/login/widget/spannable_text.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../utils/widget/vertical_spacer.dart';
 import 'widget/card_button.dart';
@@ -76,7 +81,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   children: [
                     InputCard(
                       label: 'Email',
-                      hint: 'sidharth@gmail.com',
+                      hint: 'email',
                       isPassword: false,
                       controller: _emailTextController,
                     ),
@@ -94,8 +99,75 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       isPassword: true,
                       controller: _confirmPasswordTextController,
                     ),
+                    const VerticalSpacer(5),
+                    CheckBoxTextCard(
+                        label: 'I will be signing as teacher?',
+                        callback: (value) {
+                          setState(() {
+                            isTeacher = value;
+                          });
+                        }),
                     const VerticalSpacer(50),
-                    CardButton(title: 'Sign Up', callback: () {}),
+                    CardButton(
+                        title: 'Sign Up',
+                        callback: () async {
+                          if (isTeacher) {
+                            GlobalData.designation = 'Teacher';
+                          } else {
+                            GlobalData.designation = 'Student';
+                          }
+
+                          bool result = false;
+                          if (GlobalData.designation == 'Student') {
+                            result = await GetIt.I
+                                .get<FirebaseService>()
+                                .isStudentEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
+                          } else if (GlobalData.designation == 'Teacher') {
+                            result = await GetIt.I
+                                .get<FirebaseService>()
+                                .isTeacherEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
+                          }
+                          // String actual_email = 'await getAdminEmail();';
+
+                          // print(actual_email);
+                          // print(result);
+
+                          if (!result) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(
+                                content: Text(
+                                    "Email Can't be registered as ${GlobalData.designation}"),
+                              ),
+                            );
+                            return;
+                          }
+
+                          if (_passwordTextController.text ==
+                              _confirmPasswordTextController.text) {
+                            GetIt.I.get<FirebaseService>().firebaseAuthSignUp(
+                                  context: context,
+                                  email: _emailTextController.text,
+                                  password: _passwordTextController.text,
+                                  message:
+                                      "New ${GlobalData.designation} account created",
+                                  onSuccessfulSignUp: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ClassesScreen())),
+                                );
+                          } else {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text("Please use same password"),
+                              ),
+                            );
+                          }
+                        }),
                     const VerticalSpacer(20),
                     SpannableText(
                       label: "Already have any account? ",

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class CheckBoxTextCard extends StatefulWidget {
-  CheckBoxTextCard({Key? key, required this.callback}) : super(key: key);
+  CheckBoxTextCard({Key? key, required this.callback, required this.label})
+      : super(key: key);
   final Function(bool) callback;
+  final String label;
 
   @override
   State<CheckBoxTextCard> createState() => _CheckBoxTextCardState();
@@ -25,8 +27,8 @@ class _CheckBoxTextCardState extends State<CheckBoxTextCard> {
                   widget.callback(_value);
                 });
               }),
-          const Text(
-            'I will be signing as teacher?',
+          Text(
+            widget.label,
             style: TextStyle(
               fontFamily: 'Poppins',
               fontSize: 14,

@@ -96,11 +96,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       controller: _passwordTextController,
                     ),
                     const VerticalSpacer(5),
-                    CheckBoxTextCard(callback: (value) {
-                      setState(() {
-                        isTeacher = value;
-                      });
-                    }),
+                    CheckBoxTextCard(
+                      callback: (value) {
+                        setState(() {
+                          isTeacher = value;
+                        });
+                      },
+                      label: 'I will be signing as teacher?',
+                    ),
                     const VerticalSpacer(30),
                     CardButton(
                         title: 'Login',
