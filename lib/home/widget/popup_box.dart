@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 
 class PopupBox extends StatelessWidget {
   PopupBox(
-      {required this.labelInput1,
+      {required this.title,
+      required this.labelInput1,
       required this.labelInput2,
       this.hintInput1 = '',
       this.hintInput2 = ''});
+  final String title;
   final String labelInput1;
   final String labelInput2;
   late String hintInput1;
@@ -30,10 +32,12 @@ class PopupBox extends StatelessWidget {
               label: labelInput1,
               hint: hintInput1,
             ),
-            InputText(
-              label: labelInput2,
-              hint: hintInput2,
-            ),
+            labelInput2.length != 0
+                ? InputText(
+                    label: labelInput2,
+                    hint: hintInput2,
+                  )
+                : Container(),
           ],
         ),
       ),

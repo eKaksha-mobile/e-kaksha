@@ -25,10 +25,11 @@ class AssignmentScreen extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (context) => PopupBox(
-                          labelInput1: "Title",
-                          labelInput2: "Doc Link",
+                          title: "Upload Assignment",
+                          labelInput1: "Doc Link",
+                          labelInput2: "",
                           hintInput1: 'Assignment Name',
-                          hintInput2: 'Assignment Link',
+                          hintInput2: '',
                         ));
               }),
               child: const Icon(

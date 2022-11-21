@@ -35,6 +35,7 @@ class ClassRoomScreen extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (context) => PopupBox(
+                          title: "Add Assignment",
                           labelInput1: "Title",
                           labelInput2: "Doc Link",
                           hintInput1: 'Assignment Name',
