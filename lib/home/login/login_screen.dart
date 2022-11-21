@@ -164,8 +164,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                     // Get Subject Models List
                                     GlobalData.subjectModels = await GetIt.I
                                         .get<FirebaseService>()
-                                        .getSubjectModelList(
+                                        .getSubjectModelListBySem(
                                             GlobalData.studentModel.semester);
+                                  } else if (GlobalData.designation ==
+                                      'Teacher') {
+                                    // Get Student Model
+                                    GlobalData.teacherModel = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getTeacherModel(
+                                            _emailTextController.text);
+
+                                    // Get Subject Models List
+                                    GlobalData.subjectModels = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getSubjectModelListByEmail(
+                                            GlobalData.teacherModel.email);
                                   }
                                   debugPrint('${GlobalData.studentModel}');
 
