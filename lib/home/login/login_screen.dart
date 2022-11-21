@@ -31,7 +31,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    print(mediaQuery.size.height);
+    // print(mediaQuery.size.height);
     bool smallScreen = mediaQuery.size.height < 800;
     return Scaffold(
       body: SizedBox(
