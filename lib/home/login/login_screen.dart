@@ -65,7 +65,7 @@ class _LoginScreenState extends State<LoginScreen> {
               bottom: 0,
               child: Container(
                 height: smallScreen
-                    ? mediaQuery.size.height * 0.65
+                    ? mediaQuery.size.height * 0.7
                     : mediaQuery.size.height * 0.65,
                 width: mediaQuery.size.width,
                 decoration: const BoxDecoration(
