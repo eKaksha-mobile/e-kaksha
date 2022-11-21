@@ -34,10 +34,12 @@ class StudentModel {
         _mobile = mobile,
         _semester = semester,
         _gender = gender,
-        _dob = dob,
+        _dob = dob == 0 ? Timestamp.now() : dob,
         _totalScore = totalScore.toDouble(),
         _pendingAssignments = pendingAssignments,
-        _age = AgeCalculator.age(dob.toDate()).years;
+        _age = AgeCalculator.age(
+                dob == 0 ? Timestamp.now().toDate() : dob.toDate())
+            .years;
 
   // int get age => _age;
 
