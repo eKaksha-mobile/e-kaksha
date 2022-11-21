@@ -1,9 +1,10 @@
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 // import 'package:ekaksha/model/ClassModel.dart';
-import 'package:ekaksha/utils/model/ClassModel.dart';
+// import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
+import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 import 'widget/notes_item_card.dart';
 import 'widget/student_intro_card.dart';
@@ -17,8 +18,8 @@ class ClassRoomScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ClassModel model =
-        ModalRoute.of(context)?.settings.arguments as ClassModel;
+    final SubjectModel model =
+        ModalRoute.of(context)?.settings.arguments as SubjectModel;
 
     return Scaffold(
       appBar: AppBar(

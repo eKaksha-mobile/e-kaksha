@@ -1,4 +1,5 @@
-import 'package:ekaksha/utils/model/ClassModel.dart';
+// import 'package:ekaksha/utils/model/ClassModel.dart';
+import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/value/colors.dart';
@@ -7,7 +8,7 @@ import '../../../class/classroom_screen.dart';
 // import '../../../../model/ClassModel.dart';
 
 class StudentSubjectsSegment extends StatelessWidget {
-  final List<ClassModel> subjects;
+  final List<SubjectModel> subjects;
 
   const StudentSubjectsSegment(this.subjects, {Key? key}) : super(key: key);
 

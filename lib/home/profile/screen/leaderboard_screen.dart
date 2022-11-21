@@ -1,6 +1,7 @@
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/profile/screen/widget/leaderboard_item.dart';
-import 'package:ekaksha/utils/model/ClassModel.dart';
+// import 'package:ekaksha/utils/model/ClassModel.dart';
+import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/value/colors.dart';
@@ -10,7 +11,7 @@ import '../../../utils/value/colors.dart';
 
 class LeaderboardScreen extends StatelessWidget {
   const LeaderboardScreen({Key? key}) : super(key: key);
-  final List<ClassModel> classes = dummyClasses;
+  final List<SubjectModel> classes = dummyClasses;
 
   @override
   Widget build(BuildContext context) {

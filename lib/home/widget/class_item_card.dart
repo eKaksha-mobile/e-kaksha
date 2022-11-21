@@ -1,17 +1,18 @@
 import 'package:ekaksha/home/class/classroom_screen.dart';
-import 'package:ekaksha/utils/model/ClassModel.dart';
+// import 'package:ekaksha/utils/model/ClassModel.dart';/
+import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 
 // import '../../model/ClassModel.dart';
 
 class ClassItemCard extends StatelessWidget {
-  final ClassModel _classModel;
+  final SubjectModel _subjectModel;
 
-  const ClassItemCard(this._classModel, {Key? key}) : super(key: key);
+  const ClassItemCard(this._subjectModel, {Key? key}) : super(key: key);
 
   void _navigateToClassroom(BuildContext context) {
     Navigator.of(context)
-        .pushNamed(ClassRoomScreen.route, arguments: _classModel);
+        .pushNamed(ClassRoomScreen.route, arguments: _subjectModel);
   }
 
   @override
@@ -26,7 +27,7 @@ class ClassItemCard extends StatelessWidget {
             width: mediaQuery.size.width,
             height: mediaQuery.size.height * 0.26,
             child: Image(
-              image: AssetImage(_classModel.assetName),
+              image: AssetImage(_subjectModel.assetName),
               fit: BoxFit.cover,
             ),
           ),
@@ -37,7 +38,7 @@ class ClassItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  _classModel.title,
+                  _subjectModel.title,
                   style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'Poppins',
@@ -46,7 +47,7 @@ class ClassItemCard extends StatelessWidget {
                       fontWeight: FontWeight.w600),
                 ),
                 Text(
-                  '${_classModel.teacherFirstName} ${_classModel.teacherLastName}',
+                  '${_subjectModel.teacherFirstName} ${_subjectModel.teacherLastName}',
                   style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'Poppins',

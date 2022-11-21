@@ -1,4 +1,4 @@
-class ClassModel {
+class SubjectModel {
   final String _id;
   final String _title;
   final String _teacherFirstName;
@@ -6,7 +6,7 @@ class ClassModel {
   final int _semester;
   final String _assetName;
 
-  const ClassModel(this._id, this._title, this._teacherFirstName,
+  const SubjectModel(this._id, this._title, this._teacherFirstName,
       this._teacherLastName, this._semester, this._assetName);
 
   String get assetName => _assetName;
