@@ -181,10 +181,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                             GlobalData.teacherModel.email);
                                   }
 
-                                  GlobalData.allStudentModelList = await GetIt.I
-                                      .get<FirebaseService>()
-                                      .getAllStudentModelList();
-
                                   debugPrint('${GlobalData.studentModel}');
 
                                   Navigator.of(context).pushReplacementNamed(

@@ -4,7 +4,9 @@ import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/student_model.dart';
 // import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../../utils/value/colors.dart';
 // import '../../../model/ClassModel.dart';
@@ -14,7 +16,6 @@ import '../../../utils/value/colors.dart';
 class LeaderboardScreen extends StatelessWidget {
   LeaderboardScreen({Key? key}) : super(key: key);
   // final List<SubjectModel> classes = GlobalData.subjectModels;
-
   List<StudentModel> studentList = GlobalData.allStudentModelList;
 
   @override
