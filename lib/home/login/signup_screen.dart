@@ -1,5 +1,4 @@
 import 'package:ekaksha/home/classes_screen.dart';
-import 'package:ekaksha/home/login/login_screen.dart';
 import 'package:ekaksha/home/login/widget/checkbox_text_card.dart';
 import 'package:ekaksha/home/login/widget/spannable_text.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
@@ -21,16 +20,14 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
-  TextEditingController _passwordTextController = TextEditingController();
-  TextEditingController _confirmPasswordTextController =
-      TextEditingController();
-  TextEditingController _emailTextController = TextEditingController();
+  final TextEditingController _passwordTextController = TextEditingController();
+  final TextEditingController _confirmPasswordTextController = TextEditingController();
+  final TextEditingController _emailTextController = TextEditingController();
   bool isTeacher = false;
 
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context);
-    var theme = Theme.of(context);
     return Scaffold(
       body: SizedBox(
         height: mediaQuery.size.height,
@@ -152,13 +149,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   context: context,
                                   email: _emailTextController.text,
                                   password: _passwordTextController.text,
-                                  message:
-                                      "New ${GlobalData.designation} account created",
-                                  onSuccessfulSignUp: () => Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              ClassesScreen())),
+                                  message: "New ${GlobalData.designation} account created",
+                                  onSuccessfulSignUp: () => Navigator.of(context).pushNamed(ClassesScreen.route),
                                 );
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(

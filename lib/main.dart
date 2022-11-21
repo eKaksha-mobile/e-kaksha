@@ -1,4 +1,3 @@
-import 'package:ekaksha/home/login/reset_password.dart';
 import 'package:ekaksha/home/profile/screen/profile_screen.dart';
 
 import 'package:flutter/material.dart';
@@ -67,7 +66,6 @@ class MyApp extends StatelessWidget {
         // '/': (context) => const TabScreen(),
         // LoginScreen.route: (context) => const LoginScreen(),
         SignUpScreen.route: (context) => const SignUpScreen(),
-        ResetPassword.route: (context) => const ResetPassword(),
         // '/': (context) => const WelcomeScreen(),
         // '/': (context) => const ClassesScreen(),
         // '/': (context) => const TabScreen(),
