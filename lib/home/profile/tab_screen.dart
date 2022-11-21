@@ -1,6 +1,9 @@
 import 'package:ekaksha/home/profile/screen/leaderboard_screen.dart';
 import 'package:ekaksha/home/profile/screen/profile_screen.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class TabScreen extends StatefulWidget {
   static const route = '/tab_screen';
@@ -17,8 +20,13 @@ class _TabScreenState extends State<TabScreen> {
   late PageController _pageController;
 
   @override
-  void initState() {
+  void initState() async {
     super.initState();
+
+    if (GlobalData.allStudentModelList.isEmpty) {
+      GlobalData.allStudentModelList =
+          await GetIt.I.get<FirebaseService>().getAllStudentModelList();
+    }
     _pageController = PageController(initialPage: _page);
   }
 
