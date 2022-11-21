@@ -28,7 +28,7 @@ class AssignmentScreen extends StatelessWidget {
                           title: "Upload Assignment",
                           labelInput1: "Doc Link",
                           labelInput2: "",
-                          hintInput1: 'Assignment Name',
+                          hintInput1: 'Assignment Link',
                           hintInput2: '',
                         ));
               }),

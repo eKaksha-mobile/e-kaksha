@@ -19,8 +19,8 @@ class PopupBox extends StatelessWidget {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       actionsPadding: const EdgeInsets.only(bottom: 10, right: 15),
-      title: const Text(
-        'New Assignment',
+      title: Text(
+        title,
         textAlign: TextAlign.center,
       ),
       scrollable: false,
@@ -32,7 +32,7 @@ class PopupBox extends StatelessWidget {
               label: labelInput1,
               hint: hintInput1,
             ),
-            labelInput2.length != 0
+            labelInput2.isNotEmpty
                 ? InputText(
                     label: labelInput2,
                     hint: hintInput2,
