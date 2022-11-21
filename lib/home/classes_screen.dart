@@ -25,7 +25,7 @@ class ClassesScreen extends StatelessWidget {
       drawer: const DrawerMenu(),
       appBar: AppBar(
         title: const Text(
-          "EKaksha",
+          "eKaksha",
         ),
       ),
       body: ListView.builder(

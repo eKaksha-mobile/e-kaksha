@@ -1,12 +1,16 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/student_model.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:ekaksha/utils/model/teacher_model.dart';
+import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class FirebaseService {
   late final FirebaseAuth firebaseAuth;
@@ -323,6 +327,71 @@ class FirebaseService {
       return studentModels;
     } else {
       return <StudentModel>[];
+    }
+  }
+
+  String extractText(PlatformFile pickedFile) {
+    String fileText = '';
+    try {
+      //Load an existing PDF document.
+      final PdfDocument document =
+          PdfDocument(inputBytes: File(pickedFile.path!).readAsBytesSync());
+      //Extract the text from all the pages.
+      String text = PdfTextExtractor(document).extractText();
+      //Dispose the document.
+      fileText = text;
+      document.dispose();
+    } catch (e) {
+      print(e);
+    }
+    return fileText;
+  }
+
+  Future<PlatformFile> selectFile() async {
+    PlatformFile pickedFile = PlatformFile(name: '', size: 0);
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf'],
+    );
+
+    if (result != null) {
+      pickedFile = result.files.first;
+      // filename = pickedFile.name;
+    }
+    return pickedFile;
+  }
+
+  void uploadFile(PlatformFile pickedFile, String path) async {
+    try {
+      // final path = 'assignments_pdf/${pickedFile.name}';
+      final file = File(pickedFile.path!);
+
+      final ref = database.ref().child(path).putFile(file);
+
+      ref.snapshotEvents.listen((TaskSnapshot taskSnapshot) {
+        switch (taskSnapshot.state) {
+          case TaskState.running:
+            final progress = 100.0 *
+                (taskSnapshot.bytesTransferred / taskSnapshot.totalBytes);
+            print("Upload is $progress% complete.");
+            break;
+          case TaskState.paused:
+            print("Upload is paused.");
+            break;
+          case TaskState.canceled:
+            print("Upload was canceled");
+            break;
+          case TaskState.error:
+            // Handle unsuccessful uploads
+            break;
+          case TaskState.success:
+            // Handle successful uploads on complete
+            // ...
+            break;
+        }
+      });
+    } catch (e) {
+      print(e);
     }
   }
 }

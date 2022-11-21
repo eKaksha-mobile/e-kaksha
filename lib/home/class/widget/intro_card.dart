@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class StudentIntroCard extends StatelessWidget {
+class IntroCard extends StatelessWidget {
   final String _title;
   final String _subtitle;
 
-  const StudentIntroCard(this._title, this._subtitle, {super.key});
+  const IntroCard(this._title, this._subtitle, {super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'package:ekaksha/dummy_data.dart';
-import 'package:ekaksha/home/widget/popup_box.dart';
+import 'package:ekaksha/home/class/widget/intro_card.dart';
+import 'package:ekaksha/home/class/widget/popup_box.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 // import 'package:ekaksha/model/ClassModel.dart';
 // import 'package:ekaksha/utils/model/ClassModel.dart';
@@ -8,7 +9,7 @@ import 'package:ekaksha/utils/value/colors.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 import 'widget/notes_item_card.dart';
-import 'widget/student_intro_card.dart';
+// import 'widget/student_intro_card.dart';
 
 class ClassRoomScreen extends StatelessWidget {
   static const route = '/classroom_screen';
@@ -17,7 +18,7 @@ class ClassRoomScreen extends StatelessWidget {
 
   ClassRoomScreen({Key? key}) : super(key: key);
 
-  final List<AssignmentModel> models = dummyAssignments;
+  final List<AssignmentModel> assignmentsData = dummyAssignments;
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +50,7 @@ class ClassRoomScreen extends StatelessWidget {
           : null,
       body: ListView(
         children: [
-          StudentIntroCard(model.title, model.teacherFirstName),
+          IntroCard(model.title, model.teacherFirstName),
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height -
@@ -58,8 +59,8 @@ class ClassRoomScreen extends StatelessWidget {
                 kToolbarHeight,
             child: ListView.builder(
               itemBuilder: (context, index) =>
-                  NotesItemCard(models.elementAt(index)),
-              itemCount: models.length,
+                  NotesItemCard(assignmentsData.elementAt(index)),
+              itemCount: assignmentsData.length,
             ),
           ),
         ],

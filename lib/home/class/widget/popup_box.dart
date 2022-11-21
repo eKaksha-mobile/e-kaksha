@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class PopupBox extends StatelessWidget {
   PopupBox(
-      {required this.title,
+      {super.key,
+      required this.title,
       required this.labelInput1,
       required this.labelInput2,
       this.hintInput1 = '',
@@ -26,7 +27,7 @@ class PopupBox extends StatelessWidget {
       scrollable: false,
       content: SizedBox(
         height: MediaQuery.of(context).size.height * 0.3,
-        child: ListView(
+        child: Column(
           children: [
             InputText(
               label: labelInput1,
@@ -53,3 +54,6 @@ class PopupBox extends StatelessWidget {
     );
   }
 }
+//
+// SizedBox(
+// height: MediaQuery.of(context).size.height * 0.3,

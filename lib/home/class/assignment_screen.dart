@@ -1,4 +1,4 @@
-import 'package:ekaksha/home/widget/popup_box.dart';
+import 'package:ekaksha/home/class/widget/popup_box.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
