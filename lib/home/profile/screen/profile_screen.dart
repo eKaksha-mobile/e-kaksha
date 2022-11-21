@@ -1,4 +1,6 @@
 import 'package:ekaksha/home/login/login_screen.dart';
+import 'package:ekaksha/home/profile/screen/widget/teacher_cover.dart';
+import 'package:ekaksha/home/profile/screen/widget/teacher_details_segment.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +21,14 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          const StudentCover(),
-          const StudentDetailsSegment(),
-          const Divider(),
-          const StudentScoreSegment(),
+          GlobalData.designation == 'Student' ? StudentCover() : TeacherCover(),
+          GlobalData.designation == 'Student'
+              ? StudentDetailsSegment()
+              : TeacherDetailsSegment(),
+          if (GlobalData.designation == 'Student') ...[
+            Divider(),
+            StudentScoreSegment(),
+          ],
           const Divider(),
           StudentSubjectsSegment(GlobalData.subjectModels),
           const Divider(),

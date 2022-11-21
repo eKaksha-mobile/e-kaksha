@@ -280,4 +280,49 @@ class FirebaseService {
       return <SubjectModel>[];
     }
   }
+
+  Future<List<StudentModel>> getAllStudentModelList() async {
+    bool result = false;
+    late List<Map<String, dynamic>> mapList = [];
+
+    final docRef = firestore.collection("students");
+
+    await docRef.get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<StudentModel> studentModels = [];
+
+      for (var map in mapList) {
+        studentModels.add(StudentModel(
+          rollNo: map['rollNo'],
+          firstName: map['firstName'],
+          lastName: map['lastName'],
+          email: map['email'],
+          mobile: map['phoneNo'],
+          semester: map['sem'],
+          gender: map['gender'],
+          dob: map['dob'],
+          totalScore: map['totalScore'],
+          pendingAssignments: map['pending'],
+        ));
+      }
+      return studentModels;
+    } else {
+      return <StudentModel>[];
+    }
+  }
 }

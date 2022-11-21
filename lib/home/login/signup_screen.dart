@@ -118,17 +118,27 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                           bool result = false;
                           if (GlobalData.designation == 'Student') {
-                            result = await GetIt.I
+                            // Get Student Model
+                            GlobalData.studentModel = await GetIt.I
                                 .get<FirebaseService>()
-                                .isStudentEmailExists(
-                                  requiredEmail: _emailTextController.text,
-                                );
+                                .getStudentModel(_emailTextController.text);
+
+                            // Get Subject Models List
+                            GlobalData.subjectModels = await GetIt.I
+                                .get<FirebaseService>()
+                                .getSubjectModelListBySem(
+                                    GlobalData.studentModel.semester);
                           } else if (GlobalData.designation == 'Teacher') {
-                            result = await GetIt.I
+                            // Get Student Model
+                            GlobalData.teacherModel = await GetIt.I
                                 .get<FirebaseService>()
-                                .isTeacherEmailExists(
-                                  requiredEmail: _emailTextController.text,
-                                );
+                                .getTeacherModel(_emailTextController.text);
+
+                            // Get Subject Models List
+                            GlobalData.subjectModels = await GetIt.I
+                                .get<FirebaseService>()
+                                .getSubjectModelListByEmail(
+                                    GlobalData.teacherModel.email);
                           }
                           // String actual_email = 'await getAdminEmail();';
 

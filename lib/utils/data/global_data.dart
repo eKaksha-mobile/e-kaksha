@@ -9,4 +9,6 @@ class GlobalData {
   static StudentModel studentModel = StudentModel();
   static TeacherModel teacherModel = TeacherModel();
   static List<SubjectModel> subjectModels = <SubjectModel>[];
+
+  static List<StudentModel> allStudentModelList = <StudentModel>[];
 }
