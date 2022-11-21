@@ -1,7 +1,9 @@
 import 'package:ekaksha/dummy_data.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
 // import 'package:ekaksha/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
+import 'package:ekaksha/utils/value/colors.dart';
 import 'package:flutter/material.dart';
 import 'widget/notes_item_card.dart';
 import 'widget/student_intro_card.dart';
@@ -22,6 +24,15 @@ class ClassRoomScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(model.title),
       ),
+      floatingActionButton: GlobalData.designation == 'Teacher'
+          ? FloatingActionButton(
+              backgroundColor: oceanBlue,
+              onPressed: (() {}),
+              child: const Icon(
+                Icons.add,
+              ),
+            )
+          : null,
       body: Column(
         children: [
           StudentIntroCard(model.title, model.teacherFirstName),

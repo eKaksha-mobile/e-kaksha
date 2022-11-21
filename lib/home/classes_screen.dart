@@ -1,6 +1,7 @@
 // import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/ClassModel.dart';
+import 'package:ekaksha/utils/value/colors.dart';
 import 'package:flutter/material.dart';
 
 import 'package:ekaksha/dummy_data.dart';
