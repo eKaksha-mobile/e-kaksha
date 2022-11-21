@@ -25,7 +25,7 @@ class LeaderboardItem extends StatelessWidget {
     } else if (index == 3) {
       return 3.0;
     } else {
-      return 1.0;
+      return 1.50;
     }
   }
 
@@ -80,17 +80,29 @@ class LeaderboardItem extends StatelessWidget {
                   ),
                 ],
               ),
-              index < 2
+              index == 1
                   ? const Image(
                       height: 45,
                       width: 45,
                       image: NetworkImage(
-                          'https://cdn-icons-png.flaticon.com/512/2641/2641497.png'),
+                          'https://cdn-icons-png.flaticon.com/512/7645/7645279.png' // 'https://cdn-icons-png.flaticon.com/512/2641/2641497.png'
+                          ),
                     )
-                  : const Image(height: 40, width: 40, image: NetworkImage(
-
-                      // 'https://cdn-icons-png.flaticon.com/512/3557/3557510.png'
-                      'https://cdn-icons-png.flaticon.com/512/477/477406.png'))
+                  : index == 2
+                      ? const Image(
+                          height: 45,
+                          width: 45,
+                          image: NetworkImage(
+                              'https://cdn-icons-png.flaticon.com/512/7645/7645294.png'))
+                      : index == 3
+                          ? const Image(
+                              height: 45,
+                              width: 45,
+                              image: NetworkImage(
+                                  'https://cdn-icons-png.flaticon.com/512/7645/7645366.png'))
+                          : const Image(height: 40, width: 40, image: NetworkImage(
+                              // 'https://cdn-icons-png.flaticon.com/512/726/726271.png'
+                              'https://cdn-icons-png.flaticon.com/512/477/477406.png'))
             ],
           )),
     );
