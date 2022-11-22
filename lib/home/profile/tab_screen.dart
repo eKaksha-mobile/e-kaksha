@@ -1,6 +1,9 @@
 import 'package:ekaksha/home/profile/screen/leaderboard_screen.dart';
 import 'package:ekaksha/home/profile/screen/profile_screen.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 class TabScreen extends StatefulWidget {
   static const route = '/tab_screen';
@@ -45,7 +48,7 @@ class _TabScreenState extends State<TabScreen> {
       body: PageView(
         controller: _pageController,
         onPageChanged: _onPageChanged,
-        children: const [ProfileScreen(), LeaderboardScreen()],
+        children: [const ProfileScreen(), LeaderboardScreen()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         selectedItemColor: Theme.of(context).colorScheme.primary,

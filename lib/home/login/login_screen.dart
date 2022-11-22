@@ -150,11 +150,32 @@ class _LoginScreenState extends State<LoginScreen> {
                                 message: "Signed In Successfully",
                                 onSuccessfulSignIn: () async {
                                   if (GlobalData.designation == 'Student') {
+                                    // Get Student Model
                                     GlobalData.studentModel = await GetIt.I
                                         .get<FirebaseService>()
                                         .getStudentModel(
                                             _emailTextController.text);
+
+                                    // Get Subject Models List
+                                    GlobalData.subjectModels = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getSubjectModelListBySem(
+                                            GlobalData.studentModel.semester);
+                                  } else if (GlobalData.designation ==
+                                      'Teacher') {
+                                    // Get Student Model
+                                    GlobalData.teacherModel = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getTeacherModel(
+                                            _emailTextController.text);
+
+                                    // Get Subject Models List
+                                    GlobalData.subjectModels = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getSubjectModelListByEmail(
+                                            GlobalData.teacherModel.email);
                                   }
+
                                   debugPrint('${GlobalData.studentModel}');
 
                                   Navigator.of(context).pushReplacementNamed(

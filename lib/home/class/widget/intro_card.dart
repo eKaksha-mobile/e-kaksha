@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 
-class StudentIntroCard extends StatelessWidget {
+class IntroCard extends StatelessWidget {
   final String _title;
   final String _subtitle;
 
-
-  const StudentIntroCard(this._title, this._subtitle, {super.key});
+  const IntroCard(this._title, this._subtitle, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +14,9 @@ class StudentIntroCard extends StatelessWidget {
       width: double.infinity,
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       decoration: BoxDecoration(
-        color: Colors.orangeAccent,
+        color: Colors.purple[200],
         image: const DecorationImage(
-            image: AssetImage('assets/images/banner9.jpg'), fit: BoxFit.cover),
+            image: AssetImage('assets/images/1.png'), fit: BoxFit.cover),
         boxShadow: const [
           BoxShadow(
             color: Colors.black87,
@@ -34,10 +33,10 @@ class StudentIntroCard extends StatelessWidget {
           Text(
             _title,
             style: const TextStyle(
-                color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
           ),
           const SizedBox(
-            height: 3,
+            height: 4,
           ),
           SizedBox(
             width: 200,
@@ -45,7 +44,7 @@ class StudentIntroCard extends StatelessWidget {
               _subtitle,
               style: const TextStyle(
                   color: Colors.white,
-                  fontSize: 22,
+                  fontSize: 18,
                   fontWeight: FontWeight.bold),
             ),
           ),
