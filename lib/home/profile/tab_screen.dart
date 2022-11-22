@@ -22,12 +22,6 @@ class _TabScreenState extends State<TabScreen> {
   @override
   void initState() {
     super.initState();
-    () async {
-      if (GlobalData.allStudentModelList.isEmpty) {
-        GlobalData.allStudentModelList =
-            await GetIt.I.get<FirebaseService>().getAllStudentModelList();
-      }
-    };
     _pageController = PageController(initialPage: _page);
   }
 

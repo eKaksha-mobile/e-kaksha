@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // import 'package:ekaksha/model/student_model.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/model/assignment_data_model.dart';
 import 'package:ekaksha/utils/model/student_model.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:ekaksha/utils/model/teacher_model.dart';
@@ -392,6 +393,53 @@ class FirebaseService {
       });
     } catch (e) {
       print(e);
+    }
+  }
+
+  Future<List<AssignmentDataModel>> getAssignmentDataModelListBySubjectId(
+      String subjectId) async {
+    bool result = false;
+    late List<Map<String, dynamic>> mapList = [];
+
+    final docRef = firestore.collection("subjects");
+
+    await docRef.where('subjectId', isEqualTo: subjectId).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<AssignmentDataModel> assignmentDataModels = [];
+
+      for (var map in mapList) {
+        assignmentDataModels.add(AssignmentDataModel(
+          teacherFirstName: map['teacherFirstName'],
+          teacherLastName: map['teacherLastName'],
+          teacherEmail: map['teacherEmail'],
+          semester: map['sem'],
+          assignmentId: map['assignmentId'],
+          assignmentName: map['assignmentName'],
+          description: map['description'],
+          dueDate: map['dueDate'],
+          maxMarks: map['maxMarks'],
+          subjectId: map['subjectId'],
+          subjectName: map['subjectName'],
+        ));
+      }
+      return assignmentDataModels;
+    } else {
+      return <AssignmentDataModel>[];
     }
   }
 }
