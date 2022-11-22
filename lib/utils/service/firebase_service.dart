@@ -406,7 +406,7 @@ class FirebaseService {
     await docRef.where('subjectId', isEqualTo: subjectId).get().then(
       (res) async {
         if (res.docs.isNotEmpty) {
-          print(res.docs.length);
+          // print(res.docs.length);
           result = true;
           for (var doc in res.docs) {
             mapList.add(doc.data());
