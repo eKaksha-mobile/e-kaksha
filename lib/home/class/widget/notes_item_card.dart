@@ -1,3 +1,4 @@
+import 'package:ekaksha/utils/model/assignment_data_model.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:flutter/material.dart';
 
@@ -7,7 +8,7 @@ import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
 
 class NotesItemCard extends StatelessWidget {
-  final AssignmentModel notesModel;
+  final AssignmentDataModel notesModel;
 
   const NotesItemCard(this.notesModel, {Key? key}) : super(key: key);
 
@@ -30,17 +31,17 @@ class NotesItemCard extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                notesModel.question,
+                notesModel.description,
                 textAlign: TextAlign.start,
                 style: const TextStyle(color: Colors.black),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              LeadingIconText(
-                icon: Icons.attach_file,
-                label: '${notesModel.tAttachments} attachments',
-              ),
+              // const SizedBox(
+              //   height: 10,
+              // ),
+              // LeadingIconText(
+              //   icon: Icons.attach_file,
+              //   label: '${notesModel.tAttachments} attachments',
+              // ),
             ],
           ),
         ),

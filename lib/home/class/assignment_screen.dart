@@ -4,6 +4,7 @@ import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
 import 'package:flutter/material.dart';
 
+import '../../utils/model/assignment_data_model.dart';
 import 'widget/examiner_card.dart';
 
 class AssignmentScreen extends StatelessWidget {
@@ -14,7 +15,7 @@ class AssignmentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var notesModel =
-        ModalRoute.of(context)?.settings.arguments as AssignmentModel;
+        ModalRoute.of(context)?.settings.arguments as AssignmentDataModel;
 
     return Scaffold(
       appBar: AppBar(),
@@ -53,18 +54,18 @@ class AssignmentScreen extends StatelessWidget {
             height: 10,
           ),
           Text(
-            notesModel.question,
+            notesModel.description,
             textAlign: TextAlign.start,
             style: const TextStyle(color: Colors.black),
           ),
-          const SizedBox(
-            height: 15,
-          ),
-          const Text(
-            'Attachments',
-            textAlign: TextAlign.start,
-            style: TextStyle(color: Colors.black),
-          ),
+          // const SizedBox(
+          //   height: 15,
+          // ),
+          // const Text(
+          //   'Attachments',
+          //   textAlign: TextAlign.start,
+          //   style: TextStyle(color: Colors.black),
+          // ),
         ],
       ),
     );

@@ -15,7 +15,7 @@ class AssignmentDataModel {
   final String _description;
 
   AssignmentDataModel(
-      {assignmentId = 0,
+      {assignmentId = '',
       assignmentName = '',
       dueDate = 0,
       semester = 0,
@@ -28,7 +28,7 @@ class AssignmentDataModel {
       description = ''})
       : _assignmentId = assignmentId,
         _assignmentName = assignmentName,
-        _dueDate = dueDate,
+        _dueDate = dueDate == 0 ? Timestamp.now() : dueDate,
         _semester = semester,
         _maxMarks = maxMarks,
         _subjectId = subjectId,
@@ -57,4 +57,6 @@ class AssignmentDataModel {
   String get assignmentName => _assignmentName;
 
   String get assignmentId => _assignmentId;
+
+  String get description => _description;
 }

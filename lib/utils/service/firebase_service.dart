@@ -401,11 +401,12 @@ class FirebaseService {
     bool result = false;
     late List<Map<String, dynamic>> mapList = [];
 
-    final docRef = firestore.collection("subjects");
+    final docRef = firestore.collection("assignments_data");
 
     await docRef.where('subjectId', isEqualTo: subjectId).get().then(
       (res) async {
         if (res.docs.isNotEmpty) {
+          print(res.docs.length);
           result = true;
           for (var doc in res.docs) {
             mapList.add(doc.data());
