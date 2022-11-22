@@ -236,7 +236,7 @@ class FirebaseService {
             teacherEmail: map['teacherEmail'],
             teacherFirstName: map['firstName'],
             teacherLastName: map['lastName'],
-            assetName: 'assets/images/1.png'));
+            assetName: SubjectModel.getAssetName(map['subjectId'])));
       }
       return subjectModels;
     } else {
@@ -278,7 +278,7 @@ class FirebaseService {
             teacherEmail: map['teacherEmail'],
             teacherFirstName: map['firstName'],
             teacherLastName: map['lastName'],
-            assetName: 'assets/images/1.png'));
+            assetName: SubjectModel.getAssetName(map['subjectId'])));
       }
       return subjectModels;
     } else {
