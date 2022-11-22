@@ -71,7 +71,7 @@ class LeaderboardItem extends StatelessWidget {
                           height: 1.5,
                         ),
                         Text(
-                          "Score : ${_studentModel.semester}",
+                          "Score : ${_studentModel.totalScore}",
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: 'Poppins',
@@ -82,7 +82,7 @@ class LeaderboardItem extends StatelessWidget {
                           height: 1.5,
                         ),
                         Text(
-                          "Score : ${_studentModel.totalScore}",
+                          "Semester : ${_studentModel.semester}",
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: 'Poppins',
