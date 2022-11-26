@@ -33,7 +33,7 @@ class _InputTextState extends State<InputText> {
                 color: Colors.black,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w500,
-                fontSize: 10,
+                fontSize: 14,
               ),
             ),
             TextField(
@@ -41,7 +41,7 @@ class _InputTextState extends State<InputText> {
               style: const TextStyle(
                 color: lightGrey,
                 fontFamily: 'Poppins',
-                fontSize: 10,
+                fontSize: 12,
               ),
               keyboardType: widget.isMultiLineKeyboard
                   ? TextInputType.multiline

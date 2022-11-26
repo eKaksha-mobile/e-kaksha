@@ -36,6 +36,11 @@ class TeacherPopupBox extends StatelessWidget {
               label: 'Maximum Marks',
               hint: "Max Marks",
             ),
+            VerticalSpacer(5),
+            Text(
+              "*No File Uploaded", //apply condition
+              style: TextStyle(fontSize: 12, color: Colors.red),
+            )
           ],
         ),
       ),
