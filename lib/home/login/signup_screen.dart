@@ -118,50 +118,64 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                           bool result = false;
                           if (!GlobalData.isTeacher) {
-                            // Get Student Model
-                            GlobalData.studentModel = await GetIt.I
+                            result = await GetIt.I
                                 .get<FirebaseService>()
-                                .getStudentModel(_emailTextController.text);
-
-                            // Get Subject Models List
-                            GlobalData.subjectModels = await GetIt.I
-                                .get<FirebaseService>()
-                                .getSubjectModelListBySem(
-                                    GlobalData.studentModel.semester);
+                                .isStudentEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
                           } else if (GlobalData.isTeacher) {
-                            // Get Student Model
-                            GlobalData.teacherModel = await GetIt.I
+                            result = await GetIt.I
                                 .get<FirebaseService>()
-                                .getTeacherModel(_emailTextController.text);
-
-                            // Get Subject Models List
-                            GlobalData.subjectModels = await GetIt.I
-                                .get<FirebaseService>()
-                                .getSubjectModelListByEmail(
-                                    GlobalData.teacherModel.email);
+                                .isTeacherEmailExists(
+                                  requiredEmail: _emailTextController.text,
+                                );
                           }
-                          // String actual_email = 'await getAdminEmail();';
-
-                          // print(actual_email);
-                          // print(result);
 
                           if (!result) {
-                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registration failed")));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text("Registration failed")));
                             return;
                           }
 
                           if (_passwordTextController.text ==
                               _confirmPasswordTextController.text) {
                             GetIt.I.get<FirebaseService>().firebaseAuthSignUp(
-                                  context: context,
-                                  email: _emailTextController.text,
-                                  password: _passwordTextController.text,
-                                  message:
-                                      "New ${GlobalData.designation} account created",
-                                  onSuccessfulSignUp: () =>
-                                      Navigator.of(context)
-                                          .pushNamed(ClassesScreen.route),
-                                );
+                                context: context,
+                                email: _emailTextController.text,
+                                password: _passwordTextController.text,
+                                message:
+                                    "New ${GlobalData.designation} account created",
+                                onSuccessfulSignUp: () async {
+                                  if (!GlobalData.isTeacher) {
+                                    // Get Student Model
+                                    GlobalData.studentModel = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getStudentModel(
+                                            _emailTextController.text);
+
+                                    // Get Subject Models List
+                                    GlobalData.subjectModels = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getSubjectModelListBySem(
+                                            GlobalData.studentModel.semester);
+                                  } else if (GlobalData.isTeacher) {
+                                    // Get Teacher Model
+                                    GlobalData.teacherModel = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getTeacherModel(
+                                            _emailTextController.text);
+
+                                    // Get Subject Models List
+                                    GlobalData.subjectModels = await GetIt.I
+                                        .get<FirebaseService>()
+                                        .getSubjectModelListByEmail(
+                                            GlobalData.teacherModel.email);
+                                  }
+
+                                  Navigator.popAndPushNamed(
+                                      context, ClassesScreen.route);
+                                });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(
@@ -169,6 +183,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ),
                             );
                           }
+
+                          // String actual_email = 'await getAdminEmail();';
+
+                          // print(actual_email);
+                          // print(result);
                         }),
                     const VerticalSpacer(20),
                     SpannableText(
