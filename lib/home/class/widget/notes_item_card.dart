@@ -70,10 +70,20 @@ class _NotesItemCardState extends State<NotesItemCard> {
               const SizedBox(
                 height: 10,
               ),
-              LeadingIconTextSmall(
-                icon: Icons.attach_file,
-                label: attachments == '' ? 'No attachments' : attachments,
+              ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) => LeadingIconTextSmall(
+                  icon: Icons.attach_file,
+                  label: attachmentsList[index] == ''
+                      ? 'No attachments'
+                      : attachmentsList[index],
+                ),
+                itemCount: attachmentsList.length,
               ),
+              // LeadingIconTextSmall(
+              //   icon: Icons.attach_file,
+              //   label: attachments == '' ? 'No attachments' : attachments,
+              // ),
             ],
           ),
         ),
