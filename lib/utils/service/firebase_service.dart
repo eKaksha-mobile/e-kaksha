@@ -368,7 +368,7 @@ class FirebaseService {
     return pickedFile;
   }
 
-  void uploadFile(PlatformFile pickedFile, String path) async {
+  Future uploadFile(PlatformFile pickedFile, String path) async {
     try {
       // final path = 'assignments_pdf/${pickedFile.name}';
       final file = File(pickedFile.path!);
@@ -450,7 +450,7 @@ class FirebaseService {
     }
   }
 
-  void saveAssignmentDataModelInFireStore(
+  Future saveAssignmentDataModelInFireStore(
       AssignmentDataModel assignmentDataModel) async {
     bool result = false;
 

@@ -109,6 +109,7 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
   TextEditingController dueDateController = TextEditingController();
 
   String fileName = '';
+  late PlatformFile pickedFile;
 
   @override
   Widget build(BuildContext context) {
@@ -157,10 +158,9 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
       actions: [
         ElevatedButton(
             onPressed: () async {
-              PlatformFile file =
-                  await GetIt.I.get<FirebaseService>().selectFile();
+              pickedFile = await GetIt.I.get<FirebaseService>().selectFile();
               setState(() {
-                fileName = file.name;
+                fileName = pickedFile.name;
               });
             },
             child: const Text(
@@ -168,7 +168,7 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
               textAlign: TextAlign.center,
             )),
         ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               try {
                 if (assignmentNameController.text == '' ||
                     assignmentDescriptionController.text == '' ||
@@ -195,9 +195,14 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
                         ClassRoomScreen.currentSubjectModel.teacherLastName,
                   );
 
-                  GetIt.I
+                  await GetIt.I
                       .get<FirebaseService>()
                       .saveAssignmentDataModelInFireStore(tempModel);
+
+                  if (fileName != '') {
+                    await GetIt.I.get<FirebaseService>().uploadFile(pickedFile,
+                        'assignments_data_pdf/${tempModel.assignmentId}');
+                  }
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Assignment Added Successfully")));
