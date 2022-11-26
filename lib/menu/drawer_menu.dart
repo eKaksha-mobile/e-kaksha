@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../home/profile/tab_screen.dart';
+import '../utils/service/session_manager.dart';
 import 'widget/header_drawer_menu.dart';
 import '../utils/widget/leading_icon_text.dart';
 
@@ -43,6 +44,7 @@ class DrawerMenu extends StatelessWidget {
             callback: () {
               FirebaseAuth.instance.signOut();
               Scaffold.of(context).closeDrawer();
+              SessionManager.logoutUser();
               Navigator.popAndPushNamed(context, LoginScreen.route);
             },
           ),

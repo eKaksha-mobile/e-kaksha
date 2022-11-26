@@ -6,6 +6,7 @@ import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../utils/service/session_manager.dart';
 import '../../utils/widget/vertical_spacer.dart';
 import 'widget/card_button.dart';
 import 'widget/input_card.dart';
@@ -144,8 +145,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 context: context,
                                 email: _emailTextController.text,
                                 password: _passwordTextController.text,
-                                message:
-                                    "New ${GlobalData.designation} account created",
+                                message: "User signup successful",
                                 onSuccessfulSignUp: () async {
                                   if (!GlobalData.isTeacher) {
                                     // Get Student Model
@@ -172,9 +172,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         .getSubjectModelListByEmail(
                                             GlobalData.teacherModel.email);
                                   }
-
-                                  Navigator.popAndPushNamed(
-                                      context, ClassesScreen.route);
+                                  SessionManager.loginRegisterUser();
+                                  Navigator.popAndPushNamed(context, ClassesScreen.route);
                                 });
                           } else {
                             ScaffoldMessenger.of(context).showSnackBar(

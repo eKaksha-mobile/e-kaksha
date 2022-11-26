@@ -7,6 +7,7 @@ import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../utils/service/session_manager.dart';
 import '../../utils/widget/vertical_spacer.dart';
 import 'widget/checkbox_text_card.dart';
 import 'widget/spannable_text.dart';
@@ -175,6 +176,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
                                   Navigator.of(context).pushReplacementNamed(
                                       ClassesScreen.route);
+
+                                  SessionManager.loginRegisterUser();
                                 },
                               );
                         }),

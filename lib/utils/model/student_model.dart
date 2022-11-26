@@ -66,4 +66,9 @@ class StudentModel {
   int get pendingAssignments => _pendingAssignments;
 
   int? get age => _age;
+
+  @override
+  String toString() {
+    return 'StudentModel{_rollNo: $_rollNo, _firstName: $_firstName, _lastName: $_lastName, _email: $_email, _mobile: $_mobile, _semester: $_semester, _gender: $_gender, _dob: $_dob, _totalScore: $_totalScore, _pendingAssignments: $_pendingAssignments, _age: $_age}';
+  }
 }

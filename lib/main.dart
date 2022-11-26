@@ -1,5 +1,5 @@
-import 'package:ekaksha/home/profile/screen/profile_screen.dart';
-import 'package:ekaksha/test/firebase_storage.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/session_manager.dart';
 
 import 'package:flutter/material.dart';
 
@@ -20,19 +20,21 @@ void setupSingletons() async {
   locator.registerLazySingleton<FirebaseService>(() => FirebaseService());
 }
 
-void main() async {
+Future<void> main() async {
   setupSingletons();
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
+  if (await SessionManager.isActive()) {
+    await SessionManager.getActiveUser();
+    debugPrint('session ${GlobalData.sessionActive}');
+  }
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // static StudentModel studentModel = dummyStudent;
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -45,38 +47,25 @@ class MyApp extends StatelessWidget {
               titleSmall: const TextStyle(fontSize: 16, fontFamily: 'Poppins'),
             ),
       ),
-      // theme: ThemeData.dark(),
-      // themeMode: ThemeMode.dark,
-      // theme: ThemeData(
-      //   brightness: Brightness.light,
-      // ),
-      // darkTheme: ThemeData(
-      //   brightness: Brightness.dark,
-      //   backgroundColor: const Color(0xFF212121),
-      //   dividerColor: Colors.black12, colorScheme: ColorScheme.fromSwatch().copyWith(secondary: Colors.white),
-      //   // primarySwatch:
-      // ),
       initialRoute: '/',
       routes: {
-        '/': (context) => TestStorage(),
-        // '/': (context) => const ProfileScreen(),
-        // '/': (context) => const LoginScreen(),
-        // '/': (context) => const TabScreen(),
-        LoginScreen.route: (context) => const LoginScreen(),
-        '/': (context) => const LoginScreen(),
-        // '/': (context) => const TabScreen(),
-        // LoginScreen.route: (context) => const LoginScreen(),
-        SignUpScreen.route: (context) => const SignUpScreen(),
-        // '/': (context) => const WelcomeScreen(),
-        // '/': (context) => const ClassesScreen(),
-        // '/': (context) => const TabScreen(),
-        ClassesScreen.route: (context) => ClassesScreen(),
+        '/': (context) => GlobalData.sessionActive
+            ? const ClassesScreen()
+            : const LoginScreen(),
         TabScreen.route: (context) => const TabScreen(),
+        LoginScreen.route: (context) => const LoginScreen(),
+        SignUpScreen.route: (context) => const SignUpScreen(),
+        ClassesScreen.route: (context) => const ClassesScreen(),
         ClassRoomScreen.route: (context) => const ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
       },
-      // onGenerateRoute: (settings) {},
-      // onUnknownRoute: (settings) {},
+      // onGenerateRoute: (settings) {
+      //   if (settings.name == '/') {}
+      //   return null;
+      // },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) => const LoginScreen());
+      },
     );
   }
 }

@@ -85,8 +85,7 @@ class ClassRoomScreen extends StatefulWidget {
 class _ClassRoomScreenState extends State<ClassRoomScreen> {
   List<AssignmentDataModel> assignmentsData = [];
 
-  final TextEditingController _resetEmailTextController =
-      TextEditingController();
+  final TextEditingController _resetEmailTextController = TextEditingController();
 
   @override
   void initState() {

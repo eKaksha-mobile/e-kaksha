@@ -41,4 +41,9 @@ class TeacherModel {
   String get firstName => _firstName;
 
   int? get age => _age;
+
+  @override
+  String toString() {
+    return 'TeacherModel{_firstName: $_firstName, _lastName: $_lastName, _email: $_email, _mobile: $_mobile, _gender: $_gender, _dob: $_dob, _age: $_age}';
+  }
 }

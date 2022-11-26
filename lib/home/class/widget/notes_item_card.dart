@@ -20,6 +20,7 @@ class NotesItemCard extends StatelessWidget {
             .pushNamed(AssignmentScreen.route, arguments: notesModel);
       },
       child: Card(
+        elevation: 1,
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(

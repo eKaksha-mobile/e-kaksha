@@ -47,9 +47,13 @@ class SubjectModel {
             : sum += (96 - value.codeUnitAt(i));
       }
     }
-    print(sum);
-    assetName = assetName + (((sum) % 3) + 1).toString() + '.png';
+    assetName = '$assetName${(sum % 3) + 1}.png';
 
     return assetName;
+  }
+
+  @override
+  String toString() {
+    return 'SubjectModel{_id: $_id, _title: $_title, _teacherEmail: $_teacherEmail, _teacherFirstName: $_teacherFirstName, _teacherLastName: $_teacherLastName, _semester: $_semester, _assetName: $_assetName}';
   }
 }

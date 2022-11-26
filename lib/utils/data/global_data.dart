@@ -5,8 +5,8 @@ import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:ekaksha/utils/model/teacher_model.dart';
 
 class GlobalData {
+  static bool sessionActive = false;
   static bool login = false;
-  static String designation = '';
   static bool isTeacher = false;
   static StudentModel studentModel = StudentModel();
   static TeacherModel teacherModel = TeacherModel();
