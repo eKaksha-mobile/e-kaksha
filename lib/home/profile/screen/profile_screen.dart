@@ -2,7 +2,9 @@ import 'package:ekaksha/home/login/login_screen.dart';
 import 'package:ekaksha/home/profile/screen/widget/teacher_cover.dart';
 import 'package:ekaksha/home/profile/screen/widget/teacher_details_segment.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import 'widget/student_cover.dart';
 import 'widget/student_details_segment.dart';
@@ -31,6 +33,29 @@ class ProfileScreen extends StatelessWidget {
           ],
           const Divider(),
           StudentSubjectsSegment(GlobalData.subjectModels),
+          const Divider(),
+          Container(
+            margin: const EdgeInsets.only(left: 15),
+            child: LeadingIconText(
+              icon: Icons.lock_reset,
+              label: 'Reset Password',
+              labelColor: alertRed,
+              iconColor: alertRed,
+              callback: () => GetIt.I
+                  .get<FirebaseService>()
+                  .firebaseAuthResetPassword(
+                    context: context,
+                    email: GetIt.I.get<FirebaseService>().getCurrentUserEmail(),
+                    onSuccessfulResetPassword: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text("Reset Link has been sent to the mail"),
+                        ),
+                      );
+                    },
+                  ),
+            ),
+          ),
           const Divider(),
           Container(
             margin: const EdgeInsets.only(left: 15),

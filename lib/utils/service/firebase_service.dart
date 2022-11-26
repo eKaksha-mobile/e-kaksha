@@ -94,6 +94,10 @@ class FirebaseService {
     });
   }
 
+  String getCurrentUserEmail() {
+    return firebaseAuth.currentUser?.email ?? '';
+  }
+
   void firebaseAuthSignUp({
     required BuildContext context,
     required String email,
