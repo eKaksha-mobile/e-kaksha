@@ -11,7 +11,6 @@ import 'widget/student_details_segment.dart';
 import 'widget/student_score_segment.dart';
 import 'widget/student_subjects_segment.dart';
 
-import '../../../dummy_data.dart';
 import '../../../utils/value/colors.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 
@@ -23,13 +22,11 @@ class ProfileScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          GlobalData.designation == 'Student' ? StudentCover() : TeacherCover(),
-          GlobalData.designation == 'Student'
-              ? StudentDetailsSegment()
-              : TeacherDetailsSegment(),
-          if (GlobalData.designation == 'Student') ...[
-            Divider(),
-            StudentScoreSegment(),
+          !GlobalData.isTeacher ? const StudentCover() : const TeacherCover(),
+          !GlobalData.isTeacher ? const StudentDetailsSegment() : const TeacherDetailsSegment(),
+          if (!GlobalData.isTeacher) ...[
+            const Divider(),
+            const StudentScoreSegment(),
           ],
           const Divider(),
           StudentSubjectsSegment(GlobalData.subjectModels),

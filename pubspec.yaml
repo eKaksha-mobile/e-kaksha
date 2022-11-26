@@ -45,6 +45,7 @@ dependencies:
   uuid: ^3.0.7
   age_calculator: ^1.0.0
   flutter_datetime_picker: ^1.5.1
+  shared_preferences: ^2.0.15
 
 dev_dependencies:
   flutter_test:

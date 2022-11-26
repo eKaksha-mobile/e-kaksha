@@ -129,7 +129,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
       appBar: AppBar(
         title: Text(ClassRoomScreen.currentSubjectModel.title),
       ),
-      floatingActionButton: GlobalData.designation == 'Teacher'
+      floatingActionButton: GlobalData.isTeacher
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
               onPressed: (() {
