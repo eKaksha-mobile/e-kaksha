@@ -88,8 +88,11 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
 
   final TextEditingController _resetEmailTextController =
       TextEditingController();
+
   List<AssignmentDataModel> oldAssignmentsData = [];
   List<AssignmentDataModel> newAssignmentsData = [];
+
+  List<AssignmentDataModel> totalAssignmentsData = [];
 
   @override
   void initState() {
@@ -108,6 +111,9 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
     //   GlobalData.allStudentModelList =
     //   await GetIt.I.get<FirebaseService>().getAllStudentModelList();
     // }
+
+    oldAssignmentsData = [];
+    newAssignmentsData = [];
 
     assignmentsData = await GetIt.I
         .get<FirebaseService>()
@@ -132,17 +138,18 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
         oldAssignmentsData.add(assignmentsData[i]);
       }
     }
+
+    totalAssignmentsData = [
+      ...newAssignmentsData,
+      // ...newAssignmentsData.reversed.toList(),
+      ...oldAssignmentsData
+    ];
   }
 
   @override
   Widget build(BuildContext context) {
     // final SubjectModel model =
     //     ModalRoute.of(context)?.settings.arguments as SubjectModel;
-    List<AssignmentDataModel> totalAssignmentsData = [
-      ...newAssignmentsData,
-      // ...newAssignmentsData.reversed.toList(),
-      ...oldAssignmentsData
-    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -157,7 +164,9 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
                   builder: (context) => TeacherPopupBox(),
                 );
                 await loadAssignmentModelsData().whenComplete(() {
-                  setState(() {});
+                  setState(() {
+                    totalAssignmentsData;
+                  });
                 });
               }),
               child: const Icon(
@@ -169,7 +178,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
         children: [
           IntroCard(
               ClassRoomScreen.currentSubjectModel.title,
-              ClassRoomScreen.currentSubjectModel.teacherFirstName,
+              '${ClassRoomScreen.currentSubjectModel.teacherFirstName} ${ClassRoomScreen.currentSubjectModel.teacherLastName}',
               ClassRoomScreen.currentSubjectModel.assetName),
           SizedBox(
             width: double.infinity,

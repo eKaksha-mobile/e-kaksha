@@ -34,7 +34,9 @@ class ExaminerCard extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(2),
                 child: Text(
-                  DateFormat.yMMMd().format(notesModel.dueDate.toDate()),
+                  DateFormat.yMMMd()
+                      .add_jm()
+                      .format(notesModel.dueDate.toDate()),
                   style: const TextStyle(color: Colors.black45, fontSize: 16),
                 ),
               ),

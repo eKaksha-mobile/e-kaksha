@@ -38,8 +38,11 @@ class _NotesItemCardState extends State<NotesItemCard> {
             .getFileNamesFromPath(
                 'assignments_data_pdf/${widget.notesModel.assignmentId}/');
         setState(() {
-          attachments = attachmentsList.first;
+          attachmentsList;
         });
+        // setState(() {
+        //   attachments = attachmentsList.first;
+        // });
       }
     }();
   }
@@ -48,8 +51,10 @@ class _NotesItemCardState extends State<NotesItemCard> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .pushNamed(AssignmentScreen.route, arguments: widget.notesModel);
+        Navigator.of(context).pushNamed(AssignmentScreen.route, arguments: {
+          'notesModel': widget.notesModel,
+          'attachmentsList': attachmentsList
+        });
       },
       child: Card(
         elevation: 1,
@@ -81,9 +86,7 @@ class _NotesItemCardState extends State<NotesItemCard> {
                   iconColor: Colors.red,
                   labelColor: Colors.red,
                   icon: Icons.attach_file,
-                  label: attachmentsList[index] == ''
-                      ? 'No attachments'
-                      : attachmentsList[index],
+                  label: attachmentsList[index],
                 ),
                 itemCount: attachmentsList.length,
               ),
