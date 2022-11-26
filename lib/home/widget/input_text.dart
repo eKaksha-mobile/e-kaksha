@@ -22,11 +22,8 @@ class _InputTextState extends State<InputText> {
     return Card(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       elevation: 1,
-      child: Container(
+      child: Padding(
         padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-        width: MediaQuery.of(context).size.width * 0.8,
-        height: 88,
-        // shape: ,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -36,7 +33,7 @@ class _InputTextState extends State<InputText> {
                 color: Colors.black,
                 fontFamily: 'Poppins',
                 fontWeight: FontWeight.w500,
-                fontSize: 18,
+                fontSize: 10,
               ),
             ),
             TextField(
@@ -44,12 +41,14 @@ class _InputTextState extends State<InputText> {
               style: const TextStyle(
                 color: lightGrey,
                 fontFamily: 'Poppins',
-                fontSize: 18,
+                fontSize: 10,
               ),
               keyboardType: widget.isMultiLineKeyboard
                   ? TextInputType.multiline
                   : TextInputType.text,
               maxLines: widget.isMultiLineKeyboard ? null : 1,
+              // expands: widget.isMultiLineKeyboard ? true : false,
+
               decoration: InputDecoration(
                 hintText: widget.hint,
                 hintStyle: const TextStyle(color: extraLightGrey),
@@ -62,3 +61,8 @@ class _InputTextState extends State<InputText> {
     );
   }
 }
+
+// Container(
+// padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
+// width: MediaQuery.of(context).size.width * 0.8,
+// height: 88,
