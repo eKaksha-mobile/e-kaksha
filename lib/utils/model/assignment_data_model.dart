@@ -59,4 +59,21 @@ class AssignmentDataModel {
   String get assignmentId => _assignmentId;
 
   String get description => _description;
+
+  Map<String, dynamic> getMap() {
+    Map<String, dynamic> map = {
+      'assignmentId': _assignmentId,
+      'assignmentName': _assignmentName,
+      'description': _description,
+      'dueDate': _dueDate,
+      'maxMarks': _maxMarks,
+      'sem': _semester,
+      'subjectId': _subjectId,
+      'subjectName': _assignmentName,
+      'teacherEmail': _teacherEmail,
+      'teacherFirstName': _teacherFirstName,
+      'teacherLastName': _teacherLastName,
+    };
+    return map;
+  }
 }
