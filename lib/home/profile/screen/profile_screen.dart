@@ -45,15 +45,13 @@ class ProfileScreen extends StatelessWidget {
                     email: GetIt.I.get<FirebaseService>().getCurrentUserEmail(),
                     onSuccessfulResetPassword: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(
-                          content: Text("Reset Link has been sent to the mail"),
+                        const SnackBar(content: Text("Reset Link has been sent to the mail"),
                         ),
                       );
                     },
                   ),
             ),
           ),
-          const Divider(),
           Container(
             margin: const EdgeInsets.only(left: 15),
             child: LeadingIconText(

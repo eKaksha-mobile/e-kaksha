@@ -1,11 +1,9 @@
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
-import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
+import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-// import '../../../model/assignment_model.dart';
-import '../../../utils/widget/leading_icon_text2.dart';
 import '../assignment_screen.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
@@ -59,9 +57,7 @@ class _NotesItemCardState extends State<NotesItemCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ExaminerCard(widget.notesModel),
-              const SizedBox(
-                height: 10,
-              ),
+              const VerticalSpacer(10),
               Text(
                 widget.notesModel.description,
                 textAlign: TextAlign.start,
@@ -72,7 +68,15 @@ class _NotesItemCardState extends State<NotesItemCard> {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                itemBuilder: (context, index) => LeadingIconTextSmall(
+                itemBuilder: (context, index) => LeadingIconText(
+                  iconSize: 18.0,
+                  labelSize: 14.0,
+                  iconSpacing: 4.0,
+                  verticalMargin: 0.5,
+                  horizontalMargin: 0.0,
+                  labelHeight: 1.0,
+                  iconColor: Colors.red,
+                  labelColor: Colors.red,
                   icon: Icons.attach_file,
                   label: attachmentsList[index] == ''
                       ? 'No attachments'

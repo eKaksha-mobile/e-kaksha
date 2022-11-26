@@ -1,11 +1,9 @@
-// import 'package:ekaksha/utils/model/ClassModel.dart';
 import 'package:ekaksha/utils/model/subject_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../utils/value/colors.dart';
 import '../../../../utils/widget/leading_icon_text.dart';
 import '../../../class/classroom_screen.dart';
-// import '../../../../model/ClassModel.dart';
 
 class StudentSubjectsSegment extends StatelessWidget {
   final List<SubjectModel> subjects;
@@ -15,7 +13,7 @@ class StudentSubjectsSegment extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 15, top: 15, right: 15),
+      margin: const EdgeInsets.only(left: 15, right: 15),
       child: Column(
         children: [
           ...subjects.map((e) => LeadingIconText(
