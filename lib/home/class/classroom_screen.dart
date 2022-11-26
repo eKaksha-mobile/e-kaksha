@@ -86,7 +86,8 @@ class ClassRoomScreen extends StatefulWidget {
 class _ClassRoomScreenState extends State<ClassRoomScreen> {
   List<AssignmentDataModel> assignmentsData = [];
 
-  final TextEditingController _resetEmailTextController = TextEditingController();
+  final TextEditingController _resetEmailTextController =
+      TextEditingController();
   List<AssignmentDataModel> oldAssignmentsData = [];
   List<AssignmentDataModel> newAssignmentsData = [];
 
@@ -96,6 +97,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
     super.initState();
     () async {
       await loadAssignmentModelsData().whenComplete(() {
+        if (!mounted) return;
         setState(() {});
       });
     }();
@@ -136,6 +138,11 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
   Widget build(BuildContext context) {
     // final SubjectModel model =
     //     ModalRoute.of(context)?.settings.arguments as SubjectModel;
+    List<AssignmentDataModel> totalAssignmentsData = [
+      ...newAssignmentsData,
+      // ...newAssignmentsData.reversed.toList(),
+      ...oldAssignmentsData
+    ];
 
     return Scaffold(
       appBar: AppBar(
@@ -167,13 +174,13 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height -
-                200 -
+                120 -
                 MediaQuery.of(context).padding.top -
                 kToolbarHeight,
             child: ListView.builder(
               itemBuilder: (context, index) =>
-                  NotesItemCard(assignmentsData.elementAt(index)),
-              itemCount: assignmentsData.length,
+                  NotesItemCard(totalAssignmentsData.elementAt(index)),
+              itemCount: totalAssignmentsData.length,
             ),
           ),
         ],

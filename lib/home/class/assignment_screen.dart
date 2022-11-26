@@ -48,16 +48,24 @@ class AssignmentScreen extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                 margin: const EdgeInsets.all(2),
-                child: ExaminerCard(notesModel)),
+                child: Column(
+                  children: [
+                    ExaminerCard(notesModel),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 5),
+                      child: Text(
+                        notesModel.description,
+                        textAlign: TextAlign.justify,
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    ),
+                  ],
+                )),
           ),
-          const SizedBox(
-            height: 10,
-          ),
-          Text(
-            notesModel.description,
-            textAlign: TextAlign.start,
-            style: const TextStyle(color: Colors.black),
-          ),
+
           // const SizedBox(
           //   height: 15,
           // ),

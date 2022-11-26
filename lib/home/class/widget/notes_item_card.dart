@@ -1,9 +1,11 @@
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
+import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
+// import '../../../model/assignment_model.dart';
 import '../assignment_screen.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
@@ -20,6 +22,7 @@ class NotesItemCard extends StatefulWidget {
 class _NotesItemCardState extends State<NotesItemCard> {
   String attachments = '';
   List<String> attachmentsList = [];
+  List itemWidget = [];
 
   @override
   void initState() {
