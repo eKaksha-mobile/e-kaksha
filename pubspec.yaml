@@ -44,6 +44,8 @@ dependencies:
   syncfusion_flutter_pdf: ^20.3.57
   uuid: ^3.0.7
   age_calculator: ^1.0.0
+  shared_preferences: ^2.0.15
+
 
 dev_dependencies:
   flutter_test:

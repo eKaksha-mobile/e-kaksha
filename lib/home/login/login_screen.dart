@@ -113,19 +113,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         title: 'Login',
                         callback: () async {
                           if (isTeacher) {
-                            GlobalData.designation = 'Teacher';
+                            GlobalData.isTeacher = true;
                           } else {
-                            GlobalData.designation = 'Student';
+                            GlobalData.isTeacher = false;
                           }
 
                           bool result = false;
-                          if (GlobalData.designation == 'Student') {
+                          if (!GlobalData.isTeacher) {
                             result = await GetIt.I
                                 .get<FirebaseService>()
                                 .isStudentEmailExists(
                                   requiredEmail: _emailTextController.text,
                                 );
-                          } else if (GlobalData.designation == 'Teacher') {
+                          } else if (GlobalData.isTeacher) {
                             result = await GetIt.I
                                 .get<FirebaseService>()
                                 .isTeacherEmailExists(
@@ -135,11 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                           if (!result) {
                             ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "Email Can't be signed in as ${GlobalData.designation}"),
-                              ),
-                            );
+                                const SnackBar(content: Text("Login Failed")));
                             return;
                           }
 
@@ -149,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 password: _passwordTextController.text,
                                 message: "Signed In Successfully",
                                 onSuccessfulSignIn: () async {
-                                  if (GlobalData.designation == 'Student') {
+                                  if (!GlobalData.isTeacher) {
                                     // Get Student Model
                                     GlobalData.studentModel = await GetIt.I
                                         .get<FirebaseService>()
@@ -161,8 +157,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .get<FirebaseService>()
                                         .getSubjectModelListBySem(
                                             GlobalData.studentModel.semester);
-                                  } else if (GlobalData.designation ==
-                                      'Teacher') {
+                                  } else if (GlobalData.isTeacher) {
                                     // Get Student Model
                                     GlobalData.teacherModel = await GetIt.I
                                         .get<FirebaseService>()

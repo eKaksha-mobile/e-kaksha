@@ -111,13 +111,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         title: 'Sign Up',
                         callback: () async {
                           if (isTeacher) {
-                            GlobalData.designation = 'Teacher';
+                            GlobalData.isTeacher = true;
                           } else {
-                            GlobalData.designation = 'Student';
+                            GlobalData.isTeacher = false;
                           }
 
                           bool result = false;
-                          if (GlobalData.designation == 'Student') {
+                          if (!GlobalData.isTeacher) {
                             // Get Student Model
                             GlobalData.studentModel = await GetIt.I
                                 .get<FirebaseService>()
@@ -128,7 +128,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 .get<FirebaseService>()
                                 .getSubjectModelListBySem(
                                     GlobalData.studentModel.semester);
-                          } else if (GlobalData.designation == 'Teacher') {
+                          } else if (GlobalData.isTeacher) {
                             // Get Student Model
                             GlobalData.teacherModel = await GetIt.I
                                 .get<FirebaseService>()
@@ -146,12 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // print(result);
 
                           if (!result) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                    "Email Can't be registered as ${GlobalData.designation}"),
-                              ),
-                            );
+                            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Registration failed")));
                             return;
                           }
 

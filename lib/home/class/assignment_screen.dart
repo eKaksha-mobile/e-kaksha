@@ -19,7 +19,7 @@ class AssignmentScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(),
-      floatingActionButton: GlobalData.designation == 'Student'
+      floatingActionButton: !GlobalData.isTeacher
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
               onPressed: (() {
