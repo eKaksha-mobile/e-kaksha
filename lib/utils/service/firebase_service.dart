@@ -461,72 +461,52 @@ class FirebaseService {
         print("Added Data with ID: ${documentSnapshot.id}"));
   }
 
-  // Future<List<AssignmentSubmittedDataModel>>
-  //     getAssignmentSubmittedDataModelListByAssignmentId(
-  //         String assignmentId) async {
-  //   bool result = false;
-  //   late List<Map<String, dynamic>> mapList = [];
-  //
-  //   final docRef = firestore.collection("assignments_submitted_data");
-  //
-  //   await docRef.where('assignmentId', isEqualTo: assignmentId).get().then(
-  //     (res) async {
-  //       if (res.docs.isNotEmpty) {
-  //         // print(res.docs.length);
-  //         result = true;
-  //         for (var doc in res.docs) {
-  //           mapList.add(doc.data());
-  //         }
-  //         // map = res.docs.first.data();
-  //         // print(map);
-  //       }
-  //     },
-  //     onError: (e) => print("Error getting document: $e"),
-  //   );
-  //   if (result) {
-  //     // print("dob :");
-  //     // print(map['dob']);
-  //
-  //     List<AssignmentSubmittedDataModel> assignmentSubmittedDataModels = [];
-  //
-  //     for (var map in mapList) {
-  //       assignmentSubmittedDataModels.add(AssignmentSubmittedDataModel(
-  //         assignmentId: map['assignmentId'],
-  //         assignmentName: map['assignmentName'],
-  //         lateSubmission: map['lateSubmission'],
-  //         marks: map['marks'],
-  //         maxMarks: map['maxMarks'],
-  //         plagiarizedAmount:
-  //         plagiarizedAmount
-  //         10
-  //         sem
-  //         7
-  //         studentEmail
-  //         "s1@gmail.com"
-  //         studentFirstName
-  //         "sname1"
-  //         studentLastName
-  //         "lname1"
-  //         submittedOn
-  //         19 November 2022 at 02:56:00 UTC+5:30
-  //
-  //
-  //         teacherFirstName: map['teacherFirstName'],
-  //         teacherLastName: map['teacherLastName'],
-  //         teacherEmail: map['teacherEmail'],
-  //         semester: map['sem'],
-  //         assignmentId: map['assignmentId'],
-  //         assignmentName: map['assignmentName'],
-  //         description: map['description'],
-  //         dueDate: map['dueDate'],
-  //         maxMarks: map['maxMarks'],
-  //         subjectId: map['subjectId'],
-  //         subjectName: map['subjectName'],
-  //       ));
-  //     }
-  //     return assignmentDataModels;
-  //   } else {
-  //     return <AssignmentDataModel>[];
-  //   }
-  // }
+  Future<List<AssignmentSubmittedDataModel>>
+      getAssignmentSubmittedDataModelListByAssignmentId(
+          String assignmentId) async {
+    bool result = false;
+    late List<Map<String, dynamic>> mapList = [];
+
+    final docRef = firestore.collection("assignments_submitted_data");
+
+    await docRef.where('assignmentId', isEqualTo: assignmentId).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<AssignmentSubmittedDataModel> assignmentSubmittedDataModels = [];
+
+      for (var map in mapList) {
+        assignmentSubmittedDataModels.add(AssignmentSubmittedDataModel(
+          assignmentId: map['assignmentId'],
+          assignmentName: map['assignmentName'],
+          lateSubmission: map['lateSubmission'],
+          marks: map['marks'],
+          maxMarks: map['maxMarks'],
+          plagiarizedAmount: map['plagiarizedAmount'],
+          semester: map['sem'],
+          studentEmail: map['studentEmail'],
+          studentFirstName: map['studentFirstName'],
+          studentLastName: map['studentLastName'],
+          submittedOn: map['submittedOn'],
+        ));
+      }
+      return assignmentSubmittedDataModels;
+    } else {
+      return <AssignmentSubmittedDataModel>[];
+    }
+  }
 }
