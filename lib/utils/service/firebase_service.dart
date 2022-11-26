@@ -415,6 +415,15 @@ class FirebaseService {
     return result;
   }
 
+  Future<List<String>> getFileNamesFromPath(String path) async {
+    List<String> names = [];
+    ListResult refList = await database.ref().child(path).listAll();
+    for (var item in refList.items) {
+      names.add(item.name);
+    }
+    return names;
+  }
+
   Future<List<AssignmentDataModel>> getAssignmentDataModelListBySubjectId(
       String subjectId) async {
     bool result = false;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'horizontal_spacer.dart';
 
-class LeadingIconText extends StatelessWidget {
+class LeadingIconTextSmall extends StatelessWidget {
   final IconData _icon;
 
   final String _label;
@@ -21,18 +21,18 @@ class LeadingIconText extends StatelessWidget {
 
   static void _doNothing() {}
 
-  const LeadingIconText(
+  const LeadingIconTextSmall(
       {required icon,
       required label,
       callback = _doNothing,
-      iconSize = 20.0,
-      labelSize = 18.0,
-      iconSpacing = 15.0,
-      verticalMargin = 10.0,
-      horizontalMargin = 15.0,
+      iconSize = 18.0,
+      labelSize = 14.0,
+      iconSpacing = 0.0,
+      verticalMargin = 0.5,
+      horizontalMargin = 0.5,
       labelHeight = 1.0,
-      iconColor = Colors.black,
-      labelColor = Colors.black,
+      iconColor = Colors.red,
+      labelColor = Colors.red,
       Key? key})
       : _icon = icon,
         _label = label,

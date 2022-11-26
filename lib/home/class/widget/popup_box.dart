@@ -201,7 +201,7 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
 
                   if (fileName != '') {
                     await GetIt.I.get<FirebaseService>().uploadFile(pickedFile,
-                        'assignments_data_pdf/${tempModel.assignmentId}/${tempModel.assignmentId}.${pickedFile.extension}');
+                        'assignments_data_pdf/${tempModel.assignmentId}/${pickedFile.name}');
                   }
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
