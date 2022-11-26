@@ -358,6 +358,7 @@ class FirebaseService {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
+      allowMultiple: false,
     );
 
     if (result != null) {
@@ -367,7 +368,7 @@ class FirebaseService {
     return pickedFile;
   }
 
-  void uploadFile(PlatformFile pickedFile, String path) async {
+  Future uploadFile(PlatformFile pickedFile, String path) async {
     try {
       // final path = 'assignments_pdf/${pickedFile.name}';
       final file = File(pickedFile.path!);
@@ -399,6 +400,28 @@ class FirebaseService {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<bool> isPathHavingFiles(String path) async {
+    bool result = false;
+    ListResult ref = await database.ref().child(path).listAll();
+
+    // print(ref.items);
+
+    if (ref.items.isNotEmpty) {
+      result = true;
+    }
+    // print(ref);
+    return result;
+  }
+
+  Future<List<String>> getFileNamesFromPath(String path) async {
+    List<String> names = [];
+    ListResult refList = await database.ref().child(path).listAll();
+    for (var item in refList.items) {
+      names.add(item.name);
+    }
+    return names;
   }
 
   Future<List<AssignmentDataModel>> getAssignmentDataModelListBySubjectId(
@@ -449,7 +472,7 @@ class FirebaseService {
     }
   }
 
-  void saveAssignmentDataModelInFireStore(
+  Future saveAssignmentDataModelInFireStore(
       AssignmentDataModel assignmentDataModel) async {
     bool result = false;
 
