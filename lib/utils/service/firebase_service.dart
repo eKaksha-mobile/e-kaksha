@@ -358,6 +358,7 @@ class FirebaseService {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
       allowedExtensions: ['pdf'],
+      allowMultiple: false,
     );
 
     if (result != null) {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/class/widget/intro_card.dart';
 import 'package:ekaksha/home/class/widget/popup_box.dart';
@@ -85,6 +86,9 @@ class ClassRoomScreen extends StatefulWidget {
 class _ClassRoomScreenState extends State<ClassRoomScreen> {
   List<AssignmentDataModel> assignmentsData = [];
 
+  List<AssignmentDataModel> oldAssignmentsData = [];
+  List<AssignmentDataModel> newAssignmentsData = [];
+
   final TextEditingController _resetEmailTextController =
       TextEditingController();
 
@@ -110,14 +114,24 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
         .getAssignmentDataModelListBySubjectId(
             ClassRoomScreen.currentSubjectModel.id);
 
-    // assignmentsData.sort((b, a) {
-    //   var comparisonResult = a.semester.compareTo(b.semester);
-    //   if (comparisonResult != 0) {
-    //     return comparisonResult;
-    //   }
-    //   // Surnames are the same, so subsort by given name.
-    //   return a.totalScore.compareTo(b.totalScore);
-    // });
+    assignmentsData.sort((a, b) {
+      var comparisonResult = a.dueDate.compareTo(b.dueDate);
+      return comparisonResult;
+    });
+
+    Timestamp ts = Timestamp.now();
+    List<AssignmentDataModel> tempAssignmentsData = [];
+
+    for (int i = 0; i < assignmentsData.length; i++) {
+      if (assignmentsData[i].dueDate.compareTo(ts) > 0) {
+        newAssignmentsData.add(assignmentsData[i]);
+      }
+    }
+    for (int i = assignmentsData.length - 1; i >= 0; i--) {
+      if (assignmentsData[i].dueDate.compareTo(ts) <= 0) {
+        oldAssignmentsData.add(assignmentsData[i]);
+      }
+    }
   }
 
   @override
@@ -132,9 +146,14 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
       floatingActionButton: GlobalData.isTeacher
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
-              onPressed: (() {
-                showDialog(
-                    context: context, builder: (context) => TeacherPopupBox());
+              onPressed: (() async {
+                await showDialog(
+                  context: context,
+                  builder: (context) => TeacherPopupBox(),
+                );
+                await loadAssignmentModelsData().whenComplete(() {
+                  setState(() {});
+                });
               }),
               child: const Icon(
                 Icons.add,
