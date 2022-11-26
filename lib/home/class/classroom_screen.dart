@@ -134,14 +134,7 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
               backgroundColor: oceanBlue,
               onPressed: (() {
                 showDialog(
-                    context: context,
-                    builder: (context) => PopupBox(
-                          title: "Add Assignment",
-                          labelInput1: "Title",
-                          labelInput2: "Doc Link",
-                          hintInput1: 'Assignment Name',
-                          hintInput2: 'Assignment Link',
-                        ));
+                    context: context, builder: (context) => TeacherPopupBox());
               }),
               child: const Icon(
                 Icons.add,

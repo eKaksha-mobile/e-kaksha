@@ -1,5 +1,68 @@
 import 'package:ekaksha/home/widget/input_text.dart';
+import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
+class TeacherPopupBox extends StatelessWidget {
+  TeacherPopupBox({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    DateTime? value;
+
+    return AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
+      actionsPadding: const EdgeInsets.only(bottom: 10, right: 15),
+      title: const Text(
+        "Add New Assignment",
+        textAlign: TextAlign.center,
+      ),
+      scrollable: false,
+      content: SizedBox(
+        child: Column(
+          children: [
+            InputText(
+              label: 'Assignment Name',
+              hint: 'Title',
+            ),
+            InputText(
+              label: 'Description',
+              hint: "Brief Description",
+            ),
+            InputText(
+              label: 'Due Date',
+              hint: 'DD/MM/YYYY',
+            ),
+            InputText(
+              label: 'Maximum Marks',
+              hint: "Max Marks",
+            ),
+          ],
+        ),
+      ),
+      backgroundColor: Colors.white,
+      actions: [
+        ElevatedButton(
+            onPressed: () {},
+            child: const Text(
+              'Upload File',
+              textAlign: TextAlign.center,
+            )),
+        ElevatedButton(
+            onPressed: () {
+              Navigator.pop(context, true);
+            },
+            child: const Text(
+              'ADD',
+              textAlign: TextAlign.center,
+            )),
+      ],
+    );
+  }
+}
+//
+// SizedBox(
+// height: MediaQuery.of(context).size.height * 0.3,
 
 class PopupBox extends StatelessWidget {
   PopupBox(
