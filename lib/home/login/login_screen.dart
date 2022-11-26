@@ -106,7 +106,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           isTeacher = value;
                         });
                       },
-                      label: 'I will be signing as teacher?',
+                      label: 'Login as teacher',
                     ),
                     VerticalSpacer(smallScreen ? 30 : 40),
                     CardButton(

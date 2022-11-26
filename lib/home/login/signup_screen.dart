@@ -100,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     const VerticalSpacer(5),
                     CheckBoxTextCard(
-                        label: 'I will be signing as teacher?',
+                        label: 'Sign up as teacher',
                         callback: (value) {
                           setState(() {
                             isTeacher = value;
