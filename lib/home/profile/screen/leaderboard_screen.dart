@@ -81,12 +81,12 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
     studentList = GlobalData.allStudentModelList;
 
     studentList.sort((b, a) {
-      var comparisonResult = a.semester.compareTo(b.semester);
+      var comparisonResult = a.totalScore.compareTo(b.totalScore);
       if (comparisonResult != 0) {
         return comparisonResult;
       }
       // Surnames are the same, so subsort by given name.
-      return a.totalScore.compareTo(b.totalScore);
+      return a.semester.compareTo(b.semester);
     });
   }
 

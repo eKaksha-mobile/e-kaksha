@@ -13,8 +13,8 @@ class SubjectModel {
     teacherFirstName = '',
     teacherLastName = '',
     semester = 0,
-    assetName = '',
     teacherEmail = '',
+    assetName = '',
   })  : _id = id,
         _title = title,
         _teacherFirstName = teacherFirstName,
@@ -36,4 +36,20 @@ class SubjectModel {
   String get id => _id;
 
   String get teacherEmail => _teacherEmail;
+
+  static String getAssetName(String value) {
+    String assetName = 'assets/images/';
+    int sum = 0;
+    if (value.trim().isNotEmpty) {
+      for (int i = 0; i < value.length; i++) {
+        (value[i].toUpperCase() == value[i])
+            ? sum += (64 - value.codeUnitAt(i))
+            : sum += (96 - value.codeUnitAt(i));
+      }
+    }
+    print(sum);
+    assetName = assetName + (((sum) % 3) + 1).toString() + '.png';
+
+    return assetName;
+  }
 }

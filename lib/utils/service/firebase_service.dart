@@ -236,7 +236,7 @@ class FirebaseService {
             teacherEmail: map['teacherEmail'],
             teacherFirstName: map['firstName'],
             teacherLastName: map['lastName'],
-            assetName: 'assets/images/1.png'));
+            assetName: SubjectModel.getAssetName(map['subjectId'])));
       }
       return subjectModels;
     } else {
@@ -278,7 +278,7 @@ class FirebaseService {
             teacherEmail: map['teacherEmail'],
             teacherFirstName: map['firstName'],
             teacherLastName: map['lastName'],
-            assetName: 'assets/images/1.png'));
+            assetName: SubjectModel.getAssetName(map['subjectId'])));
       }
       return subjectModels;
     } else {
@@ -442,5 +442,57 @@ class FirebaseService {
     } else {
       return <AssignmentDataModel>[];
     }
+  }
+
+  void saveAssignmentDataModelInFireStore(
+      AssignmentDataModel assignmentDataModel) async {
+    bool result = false;
+
+    final docRef = firestore.collection("assignments_data");
+
+    Map<String, dynamic> dataMap = assignmentDataModel.getMap();
+
+    docRef.add(dataMap).then((documentSnapshot) =>
+        print("Added Data with ID: ${documentSnapshot.id}"));
+
+    // await docRef.where('subjectId', isEqualTo: subjectId).get().then(
+    //   (res) async {
+    //     if (res.docs.isNotEmpty) {
+    //       // print(res.docs.length);
+    //       result = true;
+    //       for (var doc in res.docs) {
+    //         mapList.add(doc.data());
+    //       }
+    //       // map = res.docs.first.data();
+    //       // print(map);
+    //     }
+    //   },
+    //   onError: (e) => print("Error getting document: $e"),
+    // );
+    // if (result) {
+    //   // print("dob :");
+    //   // print(map['dob']);
+    //
+    //   List<AssignmentDataModel> assignmentDataModels = [];
+    //
+    //   for (var map in mapList) {
+    //     assignmentDataModels.add(AssignmentDataModel(
+    //       teacherFirstName: map['teacherFirstName'],
+    //       teacherLastName: map['teacherLastName'],
+    //       teacherEmail: map['teacherEmail'],
+    //       semester: map['sem'],
+    //       assignmentId: map['assignmentId'],
+    //       assignmentName: map['assignmentName'],
+    //       description: map['description'],
+    //       dueDate: map['dueDate'],
+    //       maxMarks: map['maxMarks'],
+    //       subjectId: map['subjectId'],
+    //       subjectName: map['subjectName'],
+    //     ));
+    //   }
+    //   return assignmentDataModels;
+    // } else {
+    //   return <AssignmentDataModel>[];
+    // }
   }
 }
