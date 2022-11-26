@@ -4,7 +4,13 @@ import 'package:flutter/material.dart';
 class InputText extends StatefulWidget {
   final String label;
   final String hint;
-  InputText({required this.label, required this.hint});
+  final bool isMultiLineKeyboard;
+  // keyboardType: TextInputType.multiline,
+  // maxLines: null
+  InputText(
+      {required this.label,
+      required this.hint,
+      this.isMultiLineKeyboard = false});
 
   @override
   State<InputText> createState() => _InputTextState();
@@ -40,6 +46,10 @@ class _InputTextState extends State<InputText> {
                 fontFamily: 'Poppins',
                 fontSize: 18,
               ),
+              keyboardType: widget.isMultiLineKeyboard
+                  ? TextInputType.multiline
+                  : TextInputType.text,
+              maxLines: widget.isMultiLineKeyboard ? null : 1,
               decoration: InputDecoration(
                 hintText: widget.hint,
                 hintStyle: const TextStyle(color: extraLightGrey),

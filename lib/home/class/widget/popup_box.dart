@@ -15,9 +15,9 @@ class TeacherPopupBox extends StatelessWidget {
         "Add New Assignment",
         textAlign: TextAlign.center,
       ),
-      scrollable: false,
+      scrollable: true,
       content: SizedBox(
-        child: ListView(
+        child: Column(
           children: [
             InputText(
               label: 'Assignment Name',
@@ -26,6 +26,7 @@ class TeacherPopupBox extends StatelessWidget {
             InputText(
               label: 'Description',
               hint: "Brief Description",
+              isMultiLineKeyboard: true,
             ),
             InputText(
               label: 'Due Date',
