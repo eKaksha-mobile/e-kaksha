@@ -8,8 +8,6 @@ class TeacherPopupBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateTime? value;
-
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       actionsPadding: const EdgeInsets.only(bottom: 10, right: 15),
@@ -19,7 +17,7 @@ class TeacherPopupBox extends StatelessWidget {
       ),
       scrollable: false,
       content: SizedBox(
-        child: Column(
+        child: ListView(
           children: [
             InputText(
               label: 'Assignment Name',
