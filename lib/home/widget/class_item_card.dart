@@ -28,7 +28,7 @@ class ClassItemCard extends StatelessWidget {
         margin: const EdgeInsets.only(bottom: 3),
         child: Stack(children: [
           Card(
-            elevation: 5,
+            elevation: 3,
             child: SizedBox(
               width: mediaQuery.size.width,
               height: mediaQuery.size.height * 0.24,

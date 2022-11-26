@@ -41,7 +41,7 @@ class AssignmentScreen extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            elevation: 5,
+            elevation: 1,
             child: Container(
                 // decoration: BoxDecoration(
                 //     border: Border.all(width: 2, color: Colors.grey)),

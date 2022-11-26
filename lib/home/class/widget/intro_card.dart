@@ -9,26 +9,15 @@ class IntroCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mediaQuery = MediaQuery.of(context);
     return Card(
-      elevation: 0,
+      elevation: 3,
       child: Container(
-        // margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        height: 180,
+        height: mediaQuery.size.height * 0.15,
         width: double.infinity,
         padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
         decoration: BoxDecoration(
-          // color: Colors.purple[200],
-          image:
-              DecorationImage(image: AssetImage(_assetName), fit: BoxFit.cover),
-          // boxShadow: const [
-          //   BoxShadow(
-          //     color: Colors.black87,
-          //     blurRadius: 3.0,
-          //     spreadRadius: 1.0,
-          //     offset: Offset(1.0, 1.0), // shadow direction: bottom right
-          //   )
-          // ],
-          // borderRadius: BorderRadius.circular(10.0),
+          image: DecorationImage(image: AssetImage(_assetName), fit: BoxFit.cover),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -36,7 +25,9 @@ class IntroCard extends StatelessWidget {
             Text(
               _title,
               style: const TextStyle(
-                  color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 4,

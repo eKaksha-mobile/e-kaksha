@@ -1,11 +1,9 @@
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
-import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
+import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
-// import '../../../model/assignment_model.dart';
-import '../../../utils/widget/leading_icon_text2.dart';
 import '../assignment_screen.dart';
 import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
@@ -59,18 +57,22 @@ class _NotesItemCardState extends State<NotesItemCard> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ExaminerCard(widget.notesModel),
-              const SizedBox(
-                height: 10,
-              ),
+              const VerticalSpacer(10),
               Text(
                 widget.notesModel.description,
                 textAlign: TextAlign.start,
                 style: const TextStyle(color: Colors.black),
               ),
-              const SizedBox(
-                height: 10,
-              ),
-              LeadingIconTextSmall(
+              const VerticalSpacer(10),
+              LeadingIconText(
+                iconSize: 18.0,
+                labelSize: 14.0,
+                iconSpacing: 4.0,
+                verticalMargin: 0.5,
+                horizontalMargin: 0.0,
+                labelHeight: 1.0,
+                iconColor: Colors.black54,
+                labelColor: Colors.black54,
                 icon: Icons.attach_file,
                 label: attachments == '' ? 'No attachments' : attachments,
               ),
