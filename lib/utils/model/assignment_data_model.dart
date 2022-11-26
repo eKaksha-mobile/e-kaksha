@@ -69,7 +69,7 @@ class AssignmentDataModel {
       'maxMarks': _maxMarks,
       'sem': _semester,
       'subjectId': _subjectId,
-      'subjectName': _assignmentName,
+      'subjectName': _subjectName,
       'teacherEmail': _teacherEmail,
       'teacherFirstName': _teacherFirstName,
       'teacherLastName': _teacherLastName,

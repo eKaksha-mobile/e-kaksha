@@ -402,6 +402,19 @@ class FirebaseService {
     }
   }
 
+  Future<bool> isPathHavingFiles(String path) async {
+    bool result = false;
+    ListResult ref = await database.ref().child(path).listAll();
+
+    // print(ref.items);
+
+    if (ref.items.isNotEmpty) {
+      result = true;
+    }
+    // print(ref);
+    return result;
+  }
+
   Future<List<AssignmentDataModel>> getAssignmentDataModelListBySubjectId(
       String subjectId) async {
     bool result = false;

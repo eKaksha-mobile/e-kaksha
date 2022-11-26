@@ -1,6 +1,8 @@
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
+import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 // import '../../../model/assignment_model.dart';
 import '../assignment_screen.dart';
@@ -35,13 +37,19 @@ class NotesItemCard extends StatelessWidget {
                 textAlign: TextAlign.start,
                 style: const TextStyle(color: Colors.black),
               ),
-              // const SizedBox(
-              //   height: 10,
-              // ),
-              // LeadingIconText(
-              //   icon: Icons.attach_file,
-              //   label: '${notesModel.tAttachments} attachments',
-              // ),
+              const SizedBox(
+                height: 10,
+              ),
+              LeadingIconText(
+                icon: Icons.attach_file,
+                label: 'attachments',
+              ),
+              ElevatedButton(
+                  onPressed: () async {
+                    print(await GetIt.I.get<FirebaseService>().isPathHavingFiles(
+                        'assignments_data_pdf/5637d44c-58ea-47c1-a158-941622b9972f/'));
+                  },
+                  child: Text('click')),
             ],
           ),
         ),
