@@ -158,7 +158,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .getSubjectModelListBySem(
                                             GlobalData.studentModel.semester);
                                   } else if (GlobalData.isTeacher) {
-                                    // Get Student Model
+                                    // Get Teacher Model
                                     GlobalData.teacherModel = await GetIt.I
                                         .get<FirebaseService>()
                                         .getTeacherModel(

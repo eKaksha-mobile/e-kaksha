@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 class IntroCard extends StatelessWidget {
   final String _title;
   final String _subtitle;
+  final String _assetName;
 
-  const IntroCard(this._title, this._subtitle, {super.key});
+  const IntroCard(this._title, this._subtitle, this._assetName, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +16,8 @@ class IntroCard extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
       decoration: BoxDecoration(
         color: Colors.purple[200],
-        image: const DecorationImage(
-            image: AssetImage('assets/images/1.png'), fit: BoxFit.cover),
+        image:
+            DecorationImage(image: AssetImage(_assetName), fit: BoxFit.cover),
         boxShadow: const [
           BoxShadow(
             color: Colors.black87,

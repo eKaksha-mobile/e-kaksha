@@ -143,8 +143,10 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
           : null,
       body: ListView(
         children: [
-          IntroCard(ClassRoomScreen.currentSubjectModel.title,
-              ClassRoomScreen.currentSubjectModel.teacherFirstName),
+          IntroCard(
+              ClassRoomScreen.currentSubjectModel.title,
+              ClassRoomScreen.currentSubjectModel.teacherFirstName,
+              ClassRoomScreen.currentSubjectModel.assetName),
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height -
