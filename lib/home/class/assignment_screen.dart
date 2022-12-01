@@ -1,6 +1,9 @@
+import 'package:ekaksha/home/class/widget/notes_item_card.dart';
 import 'package:ekaksha/home/class/widget/popup_box.dart';
+import 'package:ekaksha/home/profile/screen/widget/leaderboard_item.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
+import 'package:ekaksha/utils/model/assignment_submitted_data_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
 import 'package:ekaksha/utils/widget/leading_icon_text.dart';
 import 'package:flutter/material.dart';
@@ -22,6 +25,16 @@ class AssignmentScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     AssignmentDataModel notesModel = data['notesModel'];
     List<String> attachmentsList = data['attachmentsList'];
+    List studentSubmittedList = [
+      'Student 1',
+      'Student 2',
+      'Student 3',
+      'Student 4',
+      'Student 5',
+      'Student 6',
+      'Student 7',
+      'Student 8'
+    ];
 
     return Scaffold(
       appBar: AppBar(),
@@ -102,17 +115,92 @@ class AssignmentScreen extends StatelessWidget {
                   ],
                 )),
           ),
-
-          // const SizedBox(
-          //   height: 15,
-          // ),
-          // const Text(
-          //   'Attachments',
-          //   textAlign: TextAlign.start,
-          //   style: TextStyle(color: Colors.black),
-          // ),
+          Container(
+            height: MediaQuery.of(context).size.height * 0.70,
+            margin: const EdgeInsets.only(top: 5),
+            child: ListView.builder(
+              itemBuilder: (context, index) => submittedStudent(
+                studentSubmittedList.elementAt(index), //Sharing Student details
+                index: index + 1,
+              ),
+              itemCount: studentSubmittedList.length,
+            ),
+          )
         ],
       ),
+    );
+  }
+}
+
+class submittedStudent extends StatelessWidget {
+  final int index;
+  String data;
+
+  submittedStudent(
+    this.data, {
+    required this.index,
+  });
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
+      child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.grey,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.blueGrey,
+                      backgroundImage: NetworkImage(
+                          'https://cdn-icons-png.flaticon.com/512/3011/3011270.png'),
+                      radius: 22.5,
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                    child: Row(
+                      children: [
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${data}".toUpperCase(),
+                              style: const TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w500,
+                                  fontFamily: 'Poppins'),
+                            ),
+                            const SizedBox(
+                              height: 1.5,
+                            ),
+                            Text(
+                              "Score : ${'10/10'}",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w500,
+                                  color: Colors.blueGrey[200]),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+              Icon(
+                Icons.highlight_off,
+                size: 30,
+                color: Colors.red,
+              )
+            ],
+          )),
     );
   }
 }

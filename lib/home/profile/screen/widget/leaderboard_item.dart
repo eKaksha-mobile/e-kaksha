@@ -6,7 +6,6 @@ class LeaderboardItem extends StatelessWidget {
   final int index;
 
   const LeaderboardItem(this._studentModel, {required this.index, super.key});
-
   EdgeInsetsGeometry getMargin(index) {
     if (index == 1) {
       return const EdgeInsets.symmetric(horizontal: 5, vertical: 5);
