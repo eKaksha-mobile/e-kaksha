@@ -63,9 +63,25 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
               isDateTimeField: true,
             ),
             VerticalSpacer(5),
-            Text(
-              fileName == '' ? "*No File Uploaded" : fileName, //apply condition
-              style: TextStyle(fontSize: 12, color: Colors.red),
+            TextButton(
+              child: Text(
+                fileName == '' ? "*No File Uploaded" : fileName,
+                style: TextStyle(fontSize: 12), //apply condition
+              ),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.red,
+              ),
+              onPressed: () async {
+                var documentBytes = await GetIt.I
+                    .get<FirebaseService>()
+                    .getPdfBytesFromPlatformFile(pickedFile);
+                    () {
+                  Navigator.of(context).pushNamed(PdfViewer.route, arguments: {
+                    'documentBytes': documentBytes,
+                    'title': fileName,
+                  });
+                }();
+              },
             ),
           ],
         ),
@@ -119,6 +135,8 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
                     await GetIt.I.get<FirebaseService>().uploadFile(pickedFile,
                         'assignments_data_pdf/${tempModel.assignmentId}/${pickedFile.name}');
                   }
+
+                  // AssignmentScreen.currentAssignmentDataModel = tempModel;
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Assignment Added Successfully")));

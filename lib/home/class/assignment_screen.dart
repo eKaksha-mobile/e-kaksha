@@ -17,6 +17,7 @@ import 'widget/examiner_card.dart';
 
 class AssignmentScreen extends StatelessWidget {
   static const route = '/assignment_screen';
+  static AssignmentDataModel currentAssignmentDataModel = AssignmentDataModel();
 
   const AssignmentScreen({Key? key}) : super(key: key);
 

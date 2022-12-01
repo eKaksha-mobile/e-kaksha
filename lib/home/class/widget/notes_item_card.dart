@@ -51,7 +51,11 @@ class _NotesItemCardState extends State<NotesItemCard> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () {
+      onTap: () async {
+        AssignmentScreen.currentAssignmentDataModel = await GetIt.I
+            .get<FirebaseService>()
+            .getAssignmentDataModelByAssignmentId(
+                widget.notesModel.assignmentId);
         Navigator.of(context).pushNamed(AssignmentScreen.route, arguments: {
           'notesModel': widget.notesModel,
           'attachmentsList': attachmentsList
