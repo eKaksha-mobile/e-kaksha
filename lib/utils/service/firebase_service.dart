@@ -12,6 +12,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
 class FirebaseService {
@@ -400,6 +401,17 @@ class FirebaseService {
     } catch (e) {
       print(e);
     }
+  }
+
+  Future<Uint8List?> getPdfBytes(String path) async {
+    final ref = database.ref().child(path);
+
+    Uint8List? documentBytes;
+
+    await ref.getData(104857600).then((value) {
+      documentBytes = value;
+    });
+    return documentBytes;
   }
 
   Future<bool> isPathHavingFiles(String path) async {

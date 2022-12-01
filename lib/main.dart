@@ -1,3 +1,4 @@
+import 'package:ekaksha/test/test_screen.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/service/session_manager.dart';
 
@@ -49,6 +50,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
+        // '/': (context) => const TestScreen(),
         '/': (context) => GlobalData.sessionActive
             ? const ClassesScreen()
             : const LoginScreen(),
