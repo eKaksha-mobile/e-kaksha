@@ -1,5 +1,6 @@
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
+import 'package:ekaksha/utils/screens/pdf_viewer.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:flutter/material.dart';
@@ -77,17 +78,26 @@ class _NotesItemCardState extends State<NotesItemCard> {
               ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) => LeadingIconText(
-                  iconSize: 18.0,
-                  labelSize: 14.0,
-                  iconSpacing: 4.0,
-                  verticalMargin: 0.5,
-                  horizontalMargin: 0.0,
-                  labelHeight: 1.0,
-                  iconColor: Colors.red,
-                  labelColor: Colors.red,
-                  icon: Icons.attach_file,
-                  label: attachmentsList[index],
-                ),
+                    iconSize: 18.0,
+                    labelSize: 14.0,
+                    iconSpacing: 4.0,
+                    verticalMargin: 0.5,
+                    horizontalMargin: 0.0,
+                    labelHeight: 1.0,
+                    iconColor: Colors.red,
+                    labelColor: Colors.red,
+                    icon: Icons.attach_file,
+                    label: attachmentsList[index],
+                    callback: () async {
+                      var documentBytes = await GetIt.I
+                          .get<FirebaseService>()
+                          .getPdfBytes(
+                              'assignments_data_pdf/${widget.notesModel.assignmentId}/${attachmentsList[index]}');
+                      Navigator.of(context)
+                          .pushNamed(PdfViewer.route, arguments: {
+                        'documentBytes': documentBytes,
+                      });
+                    }),
                 itemCount: attachmentsList.length,
               ),
               // LeadingIconTextSmall(
