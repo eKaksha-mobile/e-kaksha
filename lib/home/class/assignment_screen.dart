@@ -144,6 +144,7 @@ class AssignmentScreen extends StatefulWidget {
 
 class _AssignmentScreenState extends State<AssignmentScreen> {
   List<AssignmentSubmittedDataModel> assignmentSubmittedDataModelList = [];
+  bool isAssignmentUploaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -175,6 +176,11 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
               .getAssignmentSubmittedDataModelListByAssignmentIdAndStudentEmail(
                   notesModel.assignmentId, GlobalData.studentModel.email)
         ];
+
+        isAssignmentUploaded = await GetIt.I
+            .get<FirebaseService>()
+            .isStudentUploadedAssignment(
+                notesModel.assignmentId, GlobalData.studentModel.email);
       }
 
       setState(() {});
@@ -182,7 +188,7 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
 
     return Scaffold(
       appBar: AppBar(),
-      floatingActionButton: !GlobalData.isTeacher
+      floatingActionButton: !GlobalData.isTeacher && !isAssignmentUploaded
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
               onPressed: (() {

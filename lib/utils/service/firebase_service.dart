@@ -673,4 +673,27 @@ class FirebaseService {
       return AssignmentSubmittedDataModel();
     }
   }
+
+  Future<bool> isStudentUploadedAssignment(
+      String assignmentId, String email) async {
+    bool isAssignmentExists = false;
+
+    final docRef = firestore.collection("assignments_submitted_data");
+
+    await docRef
+        .where('assignmentId', isEqualTo: assignmentId)
+        .where('studentEmail', isEqualTo: email)
+        .get()
+        .then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          isAssignmentExists = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+    return isAssignmentExists;
+  }
 }
