@@ -1,5 +1,6 @@
 import 'package:ekaksha/home/class/widget/notes_item_card.dart';
 import 'package:ekaksha/home/class/widget/popup_box.dart';
+import 'package:ekaksha/home/class/widget/submitted_student.dart';
 import 'package:ekaksha/home/class/widget/upload_assignment.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
@@ -114,10 +115,10 @@ class AssignmentScreen extends StatelessWidget {
                 )),
           ),
           Container(
-            height: MediaQuery.of(context).size.height * 0.70,
+            height: MediaQuery.of(context).size.height * 0.65,
             margin: const EdgeInsets.only(top: 5),
             child: ListView.builder(
-              itemBuilder: (context, index) => submittedStudent(
+              itemBuilder: (context, index) => SubmittedStudent(
                 studentSubmittedList.elementAt(index), //Sharing Student details
                 index: index + 1,
               ),
@@ -126,79 +127,6 @@ class AssignmentScreen extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-}
-
-class submittedStudent extends StatelessWidget {
-  final int index;
-  String data;
-
-  submittedStudent(
-    this.data, {
-    required this.index,
-  });
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-      child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  const CircleAvatar(
-                    radius: 25,
-                    backgroundColor: Colors.grey,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.blueGrey,
-                      backgroundImage: NetworkImage(
-                          'https://cdn-icons-png.flaticon.com/512/3011/3011270.png'),
-                      radius: 22.5,
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: Row(
-                      children: [
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "${data}".toUpperCase(),
-                              style: const TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: 'Poppins'),
-                            ),
-                            const SizedBox(
-                              height: 1.5,
-                            ),
-                            Text(
-                              "Score : ${'10/10'}",
-                              style: TextStyle(
-                                  fontSize: 15,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.blueGrey[200]),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              Icon(
-                Icons.highlight_off,
-                size: 30,
-                color: Colors.red,
-              )
-            ],
-          )),
     );
   }
 }

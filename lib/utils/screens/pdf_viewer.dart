@@ -16,7 +16,7 @@ class PdfViewer extends StatelessWidget {
     Widget child = const Center(child: CircularProgressIndicator());
     if (documentBytes != null) {
       child = SfPdfViewer.memory(
-        documentBytes!,
+        documentBytes,
       );
     }
     return Scaffold(
