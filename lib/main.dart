@@ -1,6 +1,7 @@
 import 'package:ekaksha/test/test_screen.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/screens/pdf_viewer.dart';
+import 'package:ekaksha/utils/service/plagiarism.dart';
 import 'package:ekaksha/utils/service/session_manager.dart';
 
 import 'package:flutter/material.dart';
@@ -37,8 +38,13 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
+  // Plagiarism plagiarism = Plagiarism();
+
   @override
   Widget build(BuildContext context) {
+    // () async {
+    //   await plagiarism.getData();
+    // }();
     return MaterialApp(
       title: 'eKaksha',
       theme: ThemeData(
