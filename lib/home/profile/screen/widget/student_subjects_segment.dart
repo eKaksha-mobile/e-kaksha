@@ -22,6 +22,7 @@ class StudentSubjectsSegment extends StatelessWidget {
               iconColor: oceanBlue,
               label: e.title,
               callback: () {
+                ClassRoomScreen.currentSubjectModel = e;
                 Navigator.of(context)
                     .pushNamed(ClassRoomScreen.route, arguments: e);
               }))
