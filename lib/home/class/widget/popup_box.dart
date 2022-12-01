@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/widget/input_text.dart';
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
+import 'package:ekaksha/utils/screens/pdf_viewer.dart';
 import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -147,9 +148,25 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
               isDateTimeField: true,
             ),
             VerticalSpacer(5),
-            Text(
-              fileName == '' ? "*No File Uploaded" : fileName, //apply condition
-              style: TextStyle(fontSize: 12, color: Colors.red),
+            TextButton(
+              child: Text(
+                fileName == '' ? "*No File Uploaded" : fileName,
+                style: TextStyle(fontSize: 12), //apply condition
+              ),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.red,
+              ),
+              onPressed: () async {
+                var documentBytes = await GetIt.I
+                    .get<FirebaseService>()
+                    .getPdfBytesFromPlatformFile(pickedFile);
+                () {
+                  Navigator.of(context).pushNamed(PdfViewer.route, arguments: {
+                    'documentBytes': documentBytes,
+                    'title': fileName,
+                  });
+                }();
+              },
             ),
           ],
         ),

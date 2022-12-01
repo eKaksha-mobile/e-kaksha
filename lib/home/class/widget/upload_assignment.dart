@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/utils/screens/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -34,9 +35,25 @@ class _UploadAssignmentPopUpState extends State<UploadAssignmentPopUp> {
       content: SizedBox(
         child: Column(
           children: [
-            Text(
-              fileName == '' ? "*No File Uploaded" : fileName, //apply condition
-              style: const TextStyle(fontSize: 12, color: Colors.red),
+            TextButton(
+              child: Text(
+                fileName == '' ? "*No File Uploaded" : fileName,
+                style: TextStyle(fontSize: 12), //apply condition
+              ),
+              style: TextButton.styleFrom(
+                foregroundColor: Colors.red,
+              ),
+              onPressed: () async {
+                var documentBytes = await GetIt.I
+                    .get<FirebaseService>()
+                    .getPdfBytesFromPlatformFile(pickedFile);
+                () {
+                  Navigator.of(context).pushNamed(PdfViewer.route, arguments: {
+                    'documentBytes': documentBytes,
+                    'title': fileName,
+                  });
+                }();
+              },
             ),
           ],
         ),

@@ -416,6 +416,13 @@ class FirebaseService {
     return documentBytes;
   }
 
+  Future<Uint8List?> getPdfBytesFromPlatformFile(
+      PlatformFile platformFile) async {
+    Uint8List? documentBytes;
+    documentBytes = File(platformFile.path!).readAsBytesSync();
+    return documentBytes;
+  }
+
   Future<String> getFileUrl(String path) async {
     final refURL = await database.ref().child(path).getDownloadURL();
     return refURL;
