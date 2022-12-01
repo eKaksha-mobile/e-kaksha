@@ -94,6 +94,10 @@ class _NotesItemCardState extends State<NotesItemCard> {
                           .getPdfBytes(
                               'assignments_data_pdf/${widget.notesModel.assignmentId}/${attachmentsList[index]}');
                       () {
+                        // String text = GetIt.I
+                        //     .get<FirebaseService>()
+                        //     .extractText(documentBytes!);
+                        // print(text.replaceAll('\n ', ' '));
                         Navigator.of(context)
                             .pushNamed(PdfViewer.route, arguments: {
                           'documentBytes': documentBytes,

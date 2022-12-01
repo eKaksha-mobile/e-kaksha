@@ -337,12 +337,14 @@ class FirebaseService {
     }
   }
 
-  String extractText(PlatformFile pickedFile) {
+  String extractText(Uint8List documentBytes) {
     String fileText = '';
     try {
       //Load an existing PDF document.
-      final PdfDocument document =
-          PdfDocument(inputBytes: File(pickedFile.path!).readAsBytesSync());
+      final PdfDocument document = PdfDocument(
+        inputBytes: documentBytes,
+      );
+
       //Extract the text from all the pages.
       String text = PdfTextExtractor(document).extractText();
       //Dispose the document.
