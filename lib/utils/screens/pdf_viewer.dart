@@ -11,6 +11,7 @@ class PdfViewer extends StatelessWidget {
     var data =
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     Uint8List documentBytes = data['documentBytes'];
+    String title = data['title'];
 
     Widget child = const Center(child: CircularProgressIndicator());
     if (documentBytes != null) {
@@ -19,7 +20,7 @@ class PdfViewer extends StatelessWidget {
       );
     }
     return Scaffold(
-      appBar: AppBar(title: const Text('Syncfusion Flutter PDF Viewer')),
+      appBar: AppBar(title: Text(title)),
       body: child,
     );
   }
