@@ -4,8 +4,11 @@ import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
 import 'package:ekaksha/utils/widget/leading_icon_text.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 
 import '../../utils/model/assignment_data_model.dart';
+import '../../utils/screens/pdf_viewer.dart';
+import '../../utils/service/firebase_service.dart';
 import 'widget/examiner_card.dart';
 
 class AssignmentScreen extends StatelessWidget {
@@ -71,17 +74,29 @@ class AssignmentScreen extends StatelessWidget {
                     ListView.builder(
                       shrinkWrap: true,
                       itemBuilder: (context, index) => LeadingIconText(
-                        iconSize: 18.0,
-                        labelSize: 14.0,
-                        iconSpacing: 4.0,
-                        verticalMargin: 0.5,
-                        horizontalMargin: 0.0,
-                        labelHeight: 1.0,
-                        iconColor: Colors.red,
-                        labelColor: Colors.red,
-                        icon: Icons.attach_file,
-                        label: attachmentsList[index],
-                      ),
+                          iconSize: 18.0,
+                          labelSize: 14.0,
+                          iconSpacing: 4.0,
+                          verticalMargin: 0.5,
+                          horizontalMargin: 0.0,
+                          labelHeight: 1.0,
+                          iconColor: Colors.red,
+                          labelColor: Colors.red,
+                          icon: Icons.attach_file,
+                          label: attachmentsList[index],
+                          callback: () async {
+                            var documentBytes = await GetIt.I
+                                .get<FirebaseService>()
+                                .getPdfBytes(
+                                    'assignments_data_pdf/${notesModel.assignmentId}/${attachmentsList[index]}');
+                            () {
+                              Navigator.of(context)
+                                  .pushNamed(PdfViewer.route, arguments: {
+                                'documentBytes': documentBytes,
+                                'title': attachmentsList[index],
+                              });
+                            }();
+                          }),
                       itemCount: attachmentsList.length,
                     ),
                   ],
