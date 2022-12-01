@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/home/class/assignment_screen.dart';
+import 'package:ekaksha/utils/data/global_data.dart';
+import 'package:ekaksha/utils/model/assignment_submitted_data_model.dart';
 import 'package:ekaksha/utils/screens/pdf_viewer.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -91,6 +94,49 @@ class _UploadAssignmentPopUpState extends State<UploadAssignmentPopUp> {
               //   ScaffoldMessenger.of(context)
               //       .showSnackBar(SnackBar(content: Text(e.toString())));
               // }
+
+              try {
+                AssignmentSubmittedDataModel tempModel =
+                    AssignmentSubmittedDataModel(
+                  assignmentId:
+                      AssignmentScreen.currentAssignmentDataModel.assignmentId,
+                  assignmentName: AssignmentScreen
+                      .currentAssignmentDataModel.assignmentName,
+                  submittedOn: Timestamp.now(),
+                  semester: ClassRoomScreen.currentSubjectModel.semester,
+                  marks: 0,
+                  maxMarks:
+                      AssignmentScreen.currentAssignmentDataModel.maxMarks,
+                  lateSubmission: AssignmentScreen
+                              .currentAssignmentDataModel.dueDate
+                              .compareTo(Timestamp.now()) >
+                          0
+                      ? true
+                      : false,
+                  studentEmail: GlobalData.studentModel.email,
+                  studentFirstName: GlobalData.studentModel.firstName,
+                  studentLastName: GlobalData.studentModel.lastName,
+                  plagiarizedAmount: 0,
+                  isChecked: false,
+                );
+
+                await GetIt.I
+                    .get<FirebaseService>()
+                    .saveAssignmentSubmittedDataModelInFireStore(tempModel);
+
+                if (fileName != '') {
+                  await GetIt.I.get<FirebaseService>().uploadFile(pickedFile,
+                      'assignments_submitted_data_pdf/${tempModel.assignmentId}/${GlobalData.studentModel.email}/${pickedFile.name}');
+                }
+
+                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text("Assignment Added Successfully")));
+
+                Navigator.pop(context, true);
+              } catch (e) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(content: Text(e.toString())));
+              }
             },
             child: const Text(
               'ADD',

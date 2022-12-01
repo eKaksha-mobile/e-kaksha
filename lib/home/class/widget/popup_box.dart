@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ekaksha/home/class/assignment_screen.dart';
 import 'package:ekaksha/home/class/classroom_screen.dart';
 import 'package:ekaksha/home/widget/input_text.dart';
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
@@ -220,6 +221,8 @@ class _TeacherPopupBoxState extends State<TeacherPopupBox> {
                     await GetIt.I.get<FirebaseService>().uploadFile(pickedFile,
                         'assignments_data_pdf/${tempModel.assignmentId}/${pickedFile.name}');
                   }
+
+                  // AssignmentScreen.currentAssignmentDataModel = tempModel;
 
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                       content: Text("Assignment Added Successfully")));

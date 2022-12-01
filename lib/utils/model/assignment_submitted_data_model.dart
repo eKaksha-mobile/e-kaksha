@@ -64,4 +64,22 @@ class AssignmentSubmittedDataModel {
   String get assignmentId => _assignmentId;
 
   bool get isChecked => _isChecked;
+
+  Map<String, dynamic> getMap() {
+    Map<String, dynamic> map = {
+      'assignmentId': _assignmentId,
+      'assignmentName': _assignmentName,
+      'submittedOn': _submittedOn,
+      'sem': _semester,
+      'maxMarks': _maxMarks,
+      'marks': _marks,
+      'lateSubmission': _lateSubmission,
+      'studentEmail': _studentEmail,
+      'studentFirstName': _studentFirstName,
+      'studentLastName': _studentLastName,
+      'plagiarizedAmount': _plagiarizedAmount,
+      'isChecked': _isChecked,
+    };
+    return map;
+  }
 }
