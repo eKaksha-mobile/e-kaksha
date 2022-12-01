@@ -14,11 +14,137 @@ import '../../utils/screens/pdf_viewer.dart';
 import '../../utils/service/firebase_service.dart';
 import 'widget/examiner_card.dart';
 
-class AssignmentScreen extends StatelessWidget {
+// class AssignmentScreen1 extends StatelessWidget {
+//   static const route = '/assignment_screen';
+//   static AssignmentDataModel currentAssignmentDataModel = AssignmentDataModel();
+//
+//   const AssignmentScreen1({Key? key}) : super(key: key);
+//
+//
+//   @override
+//   Widget build(BuildContext context) {
+//     var data =
+//         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
+//     AssignmentDataModel notesModel = data['notesModel'];
+//     List<String> attachmentsList = data['attachmentsList'];
+//     List studentSubmittedList = [
+//       'Student 1',
+//       'Student 2',
+//       'Student 3',
+//       'Student 4',
+//       'Student 5',
+//       'Student 6',
+//       'Student 7',
+//       'Student 8'
+//     ];
+//
+//     return Scaffold(
+//       appBar: AppBar(),
+//       floatingActionButton: !GlobalData.isTeacher
+//           ? FloatingActionButton(
+//               backgroundColor: oceanBlue,
+//               onPressed: (() {
+//                 showDialog(
+//                     context: context,
+//                     builder: (context) => const UploadAssignmentPopUp());
+//               }),
+//               child: const Icon(
+//                 Icons.add,
+//               ),
+//             )
+//           : null,
+//       body: ListView(
+//         children: [
+//           Card(
+//             elevation: 0.5,
+//             child: Container(
+//                 // decoration: BoxDecoration(
+//                 //     border: Border.all(width: 2, color: Colors.grey)),
+//                 padding:
+//                     const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+//                 margin: const EdgeInsets.all(2),
+//                 child: Column(
+//                   children: [
+//                     ExaminerCard(notesModel),
+//                     const SizedBox(
+//                       height: 15,
+//                     ),
+//                     Container(
+//                       margin: const EdgeInsets.symmetric(horizontal: 5),
+//                       child: Text(
+//                         notesModel.description,
+//                         textAlign: TextAlign.justify,
+//                         style: const TextStyle(
+//                           color: Colors.black,
+//                           fontFamily: 'Poppins',
+//                           fontSize: 16,
+//                         ),
+//                       ),
+//                     ),
+//                     const SizedBox(
+//                       height: 15,
+//                     ),
+//                     ListView.builder(
+//                       shrinkWrap: true,
+//                       itemBuilder: (context, index) => LeadingIconText(
+//                           iconSize: 18.0,
+//                           labelSize: 14.0,
+//                           iconSpacing: 4.0,
+//                           verticalMargin: 0.5,
+//                           horizontalMargin: 0.0,
+//                           labelHeight: 1.0,
+//                           iconColor: Colors.red,
+//                           labelColor: Colors.red,
+//                           icon: Icons.attach_file,
+//                           label: attachmentsList[index],
+//                           callback: () async {
+//                             var documentBytes = await GetIt.I
+//                                 .get<FirebaseService>()
+//                                 .getPdfBytes(
+//                                     'assignments_data_pdf/${notesModel.assignmentId}/${attachmentsList[index]}');
+//                             () {
+//                               Navigator.of(context)
+//                                   .pushNamed(PdfViewer.route, arguments: {
+//                                 'documentBytes': documentBytes,
+//                                 'title': attachmentsList[index],
+//                               });
+//                             }();
+//                           }),
+//                       itemCount: attachmentsList.length,
+//                     ),
+//                   ],
+//                 )),
+//           ),
+//           Container(
+//             height: MediaQuery.of(context).size.height * 0.70,
+//             margin: const EdgeInsets.only(top: 5),
+//             child: ListView.builder(
+//               itemBuilder: (context, index) => submittedStudent(
+//                 studentSubmittedList.elementAt(index), //Sharing Student details
+//                 index: index + 1,
+//               ),
+//               itemCount: studentSubmittedList.length,
+//             ),
+//           )
+//         ],
+//       ),
+//     );
+//   }
+// }
+
+class AssignmentScreen extends StatefulWidget {
+  const AssignmentScreen({Key? key}) : super(key: key);
+
   static const route = '/assignment_screen';
   static AssignmentDataModel currentAssignmentDataModel = AssignmentDataModel();
 
-  const AssignmentScreen({Key? key}) : super(key: key);
+  @override
+  State<AssignmentScreen> createState() => _AssignmentScreenState();
+}
+
+class _AssignmentScreenState extends State<AssignmentScreen> {
+  List<AssignmentSubmittedDataModel> assignmentSubmittedDataModelList = [];
+  bool isAssignmentUploaded = false;
 
   @override
   Widget build(BuildContext context) {
@@ -26,20 +152,43 @@ class AssignmentScreen extends StatelessWidget {
         ModalRoute.of(context)?.settings.arguments as Map<String, dynamic>;
     AssignmentDataModel notesModel = data['notesModel'];
     List<String> attachmentsList = data['attachmentsList'];
-    List studentSubmittedList = [
-      'Student 1',
-      'Student 2',
-      'Student 3',
-      'Student 4',
-      'Student 5',
-      'Student 6',
-      'Student 7',
-      'Student 8'
-    ];
+    // List studentSubmittedList = [
+    //   'Student 1',
+    //   'Student 2',
+    //   'Student 3',
+    //   'Student 4',
+    //   'Student 5',
+    //   'Student 6',
+    //   'Student 7',
+    //   'Student 8'
+    // ];
+
+    () async {
+      if (GlobalData.isTeacher) {
+        assignmentSubmittedDataModelList = await GetIt.I
+            .get<FirebaseService>()
+            .getAssignmentSubmittedDataModelListByAssignmentId(
+                notesModel.assignmentId);
+      } else {
+        assignmentSubmittedDataModelList = [
+          await GetIt.I
+              .get<FirebaseService>()
+              .getAssignmentSubmittedDataModelListByAssignmentIdAndStudentEmail(
+                  notesModel.assignmentId, GlobalData.studentModel.email)
+        ];
+
+        isAssignmentUploaded = await GetIt.I
+            .get<FirebaseService>()
+            .isStudentUploadedAssignment(
+                notesModel.assignmentId, GlobalData.studentModel.email);
+      }
+
+      setState(() {});
+    }();
 
     return Scaffold(
       appBar: AppBar(),
-      floatingActionButton: !GlobalData.isTeacher
+      floatingActionButton: !GlobalData.isTeacher && !isAssignmentUploaded
           ? FloatingActionButton(
               backgroundColor: oceanBlue,
               onPressed: (() {
@@ -119,10 +268,21 @@ class AssignmentScreen extends StatelessWidget {
             margin: const EdgeInsets.only(top: 5),
             child: ListView.builder(
               itemBuilder: (context, index) => submittedStudent(
-                studentSubmittedList.elementAt(index), //Sharing Student details
+                assignmentSubmittedDataModelList
+                        .elementAt(index)
+                        .studentFirstName +
+                    " " +
+                    assignmentSubmittedDataModelList
+                        .elementAt(index)
+                        .studentLastName, //Sharing Student details
                 index: index + 1,
+                marks: assignmentSubmittedDataModelList.elementAt(index).marks,
+                maxMarks:
+                    assignmentSubmittedDataModelList.elementAt(index).maxMarks,
+                isChecked:
+                    assignmentSubmittedDataModelList.elementAt(index).isChecked,
               ),
-              itemCount: studentSubmittedList.length,
+              itemCount: assignmentSubmittedDataModelList.length,
             ),
           )
         ],
@@ -134,10 +294,16 @@ class AssignmentScreen extends StatelessWidget {
 class submittedStudent extends StatelessWidget {
   final int index;
   String data;
+  int marks;
+  int maxMarks;
+  bool isChecked;
 
   submittedStudent(
     this.data, {
     required this.index,
+    required this.marks,
+    required this.maxMarks,
+    required this.isChecked,
   });
   @override
   Widget build(BuildContext context) {
@@ -179,7 +345,7 @@ class submittedStudent extends StatelessWidget {
                               height: 1.5,
                             ),
                             Text(
-                              "Score : ${'10/10'}",
+                              "Score : ${marks} / ${maxMarks}",
                               style: TextStyle(
                                   fontSize: 15,
                                   fontFamily: 'Poppins',
@@ -194,9 +360,9 @@ class submittedStudent extends StatelessWidget {
                 ],
               ),
               Icon(
-                Icons.highlight_off,
+                isChecked ? Icons.check_circle_outline : Icons.highlight_off,
                 size: 30,
-                color: Colors.red,
+                color: isChecked ? Colors.green : Colors.red,
               )
             ],
           )),

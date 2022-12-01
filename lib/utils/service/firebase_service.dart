@@ -619,4 +619,81 @@ class FirebaseService {
       return <AssignmentSubmittedDataModel>[];
     }
   }
+
+  Future<AssignmentSubmittedDataModel>
+      getAssignmentSubmittedDataModelListByAssignmentIdAndStudentEmail(
+          String assignmentId, String email) async {
+    bool result = false;
+    late List<Map<String, dynamic>> mapList = [];
+
+    final docRef = firestore.collection("assignments_submitted_data");
+
+    await docRef
+        .where('assignmentId', isEqualTo: assignmentId)
+        .where('studentEmail', isEqualTo: email)
+        .get()
+        .then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<AssignmentSubmittedDataModel> assignmentSubmittedDataModels = [];
+
+      for (var map in mapList) {
+        assignmentSubmittedDataModels.add(AssignmentSubmittedDataModel(
+          assignmentId: map['assignmentId'],
+          assignmentName: map['assignmentName'],
+          lateSubmission: map['lateSubmission'],
+          marks: map['marks'],
+          maxMarks: map['maxMarks'],
+          plagiarizedAmount: map['plagiarizedAmount'],
+          semester: map['sem'],
+          studentEmail: map['studentEmail'],
+          studentFirstName: map['studentFirstName'],
+          studentLastName: map['studentLastName'],
+          submittedOn: map['submittedOn'],
+          isChecked: map['isChecked'],
+        ));
+      }
+      return assignmentSubmittedDataModels[0];
+    } else {
+      return AssignmentSubmittedDataModel();
+    }
+  }
+
+  Future<bool> isStudentUploadedAssignment(
+      String assignmentId, String email) async {
+    bool isAssignmentExists = false;
+
+    final docRef = firestore.collection("assignments_submitted_data");
+
+    await docRef
+        .where('assignmentId', isEqualTo: assignmentId)
+        .where('studentEmail', isEqualTo: email)
+        .get()
+        .then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          isAssignmentExists = true;
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+    return isAssignmentExists;
+  }
 }
