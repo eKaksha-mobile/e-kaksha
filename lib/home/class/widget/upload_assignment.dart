@@ -111,8 +111,8 @@ class _UploadAssignmentPopUpState extends State<UploadAssignmentPopUp> {
                               .currentAssignmentDataModel.dueDate
                               .compareTo(Timestamp.now()) >
                           0
-                      ? true
-                      : false,
+                      ? false
+                      : true,
                   studentEmail: GlobalData.studentModel.email,
                   studentFirstName: GlobalData.studentModel.firstName,
                   studentLastName: GlobalData.studentModel.lastName,
