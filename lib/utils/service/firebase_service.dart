@@ -544,6 +544,7 @@ class FirebaseService {
           studentFirstName: map['studentFirstName'],
           studentLastName: map['studentLastName'],
           submittedOn: map['submittedOn'],
+          isChecked: map['isChecked'],
         ));
       }
       return assignmentSubmittedDataModels;

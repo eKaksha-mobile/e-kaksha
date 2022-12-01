@@ -13,6 +13,7 @@ class AssignmentSubmittedDataModel {
   final String _studentFirstName;
   final String _studentLastName;
   final int _plagiarizedAmount;
+  final bool _isChecked;
 
   AssignmentSubmittedDataModel({
     assignmentId = 0,
@@ -26,6 +27,7 @@ class AssignmentSubmittedDataModel {
     studentFirstName = '',
     studentLastName = '',
     plagiarizedAmount = 0,
+    isChecked = false,
   })  : _assignmentId = assignmentId,
         _assignmentName = assignmentName,
         _submittedOn = submittedOn,
@@ -36,7 +38,8 @@ class AssignmentSubmittedDataModel {
         _studentEmail = studentEmail,
         _studentFirstName = studentFirstName,
         _studentLastName = studentLastName,
-        _plagiarizedAmount = plagiarizedAmount;
+        _plagiarizedAmount = plagiarizedAmount,
+        _isChecked = isChecked;
 
   int get plagiarizedAmount => _plagiarizedAmount;
 
@@ -59,4 +62,6 @@ class AssignmentSubmittedDataModel {
   String get assignmentName => _assignmentName;
 
   String get assignmentId => _assignmentId;
+
+  bool get isChecked => _isChecked;
 }
