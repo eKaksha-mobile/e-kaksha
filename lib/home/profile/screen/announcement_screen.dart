@@ -24,9 +24,9 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
       TextEditingController();
 
   List<AssignmentDataModel> newAssignmentsData = [];
-  String dropdownvalue = 'All Classes';
 
-  var subList = ['All Classes'];
+  // var subList = ['All Classes'];
+  String dropdownValue = 'Latest Updates';
 
   @override
   void initState() {
@@ -38,7 +38,7 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
         setState(() {});
       });
     }();
-    GlobalData.subjectModels.forEach((element) => subList.add(element.title));
+    // GlobalData.subjectModels.forEach((element) => subList.add(element.title)); //Adding Subjects to subList
   }
 
   Future loadAssignmentModelsData() async {
@@ -70,14 +70,45 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
   }
 
   Widget build(BuildContext context) {
-    String dropdownValue = 'All Classes';
-
     return Scaffold(
       appBar: AppBar(
-        title: Text('Announcement'),
+        title: const Text('Announcement'),
       ),
       body: ListView(
         children: [
+          Container(
+            alignment: Alignment.center,
+            margin: EdgeInsets.only(top: 5, bottom: 3, left: 5, right: 5),
+            decoration: BoxDecoration(
+                border: Border.all(width: 2, color: Colors.grey.shade400)),
+            child: DropdownButton<String>(
+              value: dropdownValue,
+              icon: const Icon(Icons.keyboard_arrow_down_outlined),
+              iconSize: 20,
+              elevation: 16,
+              style: const TextStyle(
+                  color: Colors.black,
+                  overflow: TextOverflow.ellipsis,
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                  fontFamily: 'Poppins'),
+              onChanged: (String? newValue) {
+                setState(() {
+                  dropdownValue = newValue!;
+                });
+              },
+              items: ["Latest Updates", "Pending Assignment"]
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                  ),
+                );
+              }).toList(),
+            ),
+          ),
+
           // IntroCard(
           //     ClassRoomScreen.currentSubjectModel.title,
           //     '${ClassRoomScreen.currentSubjectModel.teacherFirstName} ${ClassRoomScreen.currentSubjectModel.teacherLastName}',
@@ -85,12 +116,14 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
           SizedBox(
             width: double.infinity,
             height: MediaQuery.of(context).size.height -
-                120 -
+                65 -
                 MediaQuery.of(context).padding.top -
                 kToolbarHeight,
             child: ListView.builder(
-              itemBuilder: (context, index) =>
-                  NotesItemCard(newAssignmentsData.elementAt(index)),
+              itemBuilder: (context, index) => NotesItemCard(
+                newAssignmentsData.elementAt(index),
+                showAttachments: false,
+              ),
               itemCount: newAssignmentsData.length,
             ),
           ),
