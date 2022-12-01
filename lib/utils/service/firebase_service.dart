@@ -414,6 +414,11 @@ class FirebaseService {
     return documentBytes;
   }
 
+  Future<String> getFileUrl(String path) async {
+    final refURL = await database.ref().child(path).getDownloadURL();
+    return refURL;
+  }
+
   Future<bool> isPathHavingFiles(String path) async {
     bool result = false;
     ListResult ref = await database.ref().child(path).listAll();
