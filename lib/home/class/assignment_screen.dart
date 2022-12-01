@@ -1,4 +1,5 @@
 import 'package:ekaksha/home/class/widget/popup_box.dart';
+import 'package:ekaksha/home/class/widget/upload_assignment.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_model.dart';
 import 'package:ekaksha/utils/value/colors.dart';
@@ -31,13 +32,14 @@ class AssignmentScreen extends StatelessWidget {
               onPressed: (() {
                 showDialog(
                     context: context,
-                    builder: (context) => PopupBox(
-                          title: "Upload Assignment",
-                          labelInput1: "Doc Link",
-                          labelInput2: "",
-                          hintInput1: 'Assignment Link',
-                          hintInput2: '',
-                        ));
+                    builder: (context) => const UploadAssignmentPopUp());
+                    // builder: (context) => PopupBox(
+                    //       title: "Upload Assignment",
+                    //       labelInput1: "Doc Link",
+                    //       labelInput2: "",
+                    //       hintInput1: 'Assignment Link',
+                    //       hintInput2: '',
+                    //     ));
               }),
               child: const Icon(
                 Icons.add,
@@ -47,7 +49,7 @@ class AssignmentScreen extends StatelessWidget {
       body: Column(
         children: [
           Card(
-            elevation: 1,
+            elevation: 0.5,
             child: Container(
                 // decoration: BoxDecoration(
                 //     border: Border.all(width: 2, color: Colors.grey)),
@@ -58,18 +60,22 @@ class AssignmentScreen extends StatelessWidget {
                   children: [
                     ExaminerCard(notesModel),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     Container(
                       margin: const EdgeInsets.symmetric(horizontal: 5),
                       child: Text(
                         notesModel.description,
                         textAlign: TextAlign.justify,
-                        style: const TextStyle(color: Colors.black),
+                        style: const TextStyle(
+                          color: Colors.black,
+                          fontFamily: 'Poppins',
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                     const SizedBox(
-                      height: 10,
+                      height: 15,
                     ),
                     ListView.builder(
                       shrinkWrap: true,
