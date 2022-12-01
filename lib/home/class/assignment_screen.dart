@@ -163,10 +163,20 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
     // ];
 
     () async {
-      assignmentSubmittedDataModelList = await GetIt.I
-          .get<FirebaseService>()
-          .getAssignmentSubmittedDataModelListByAssignmentId(
-              notesModel.assignmentId);
+      if (GlobalData.isTeacher) {
+        assignmentSubmittedDataModelList = await GetIt.I
+            .get<FirebaseService>()
+            .getAssignmentSubmittedDataModelListByAssignmentId(
+                notesModel.assignmentId);
+      } else {
+        assignmentSubmittedDataModelList = [
+          await GetIt.I
+              .get<FirebaseService>()
+              .getAssignmentSubmittedDataModelListByAssignmentIdAndStudentEmail(
+                  notesModel.assignmentId, GlobalData.studentModel.email)
+        ];
+      }
+
       setState(() {});
     }();
 
