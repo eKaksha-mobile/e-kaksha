@@ -97,6 +97,7 @@ class _NotesItemCardState extends State<NotesItemCard> {
                         Navigator.of(context)
                             .pushNamed(PdfViewer.route, arguments: {
                           'documentBytes': documentBytes,
+                          'title': attachmentsList[index],
                         });
                       }();
                     }),
