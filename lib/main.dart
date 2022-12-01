@@ -1,3 +1,4 @@
+import 'package:ekaksha/home/profile/screen/announcement_screen.dart';
 import 'package:ekaksha/test/test_screen.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/screens/pdf_viewer.dart';
@@ -57,7 +58,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        // '/': (context) => const TestScreen(),
+        // '/': (context) => const AnnouncementScreen(),
         '/': (context) => GlobalData.sessionActive
             ? const ClassesScreen()
             : const LoginScreen(),
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         ClassRoomScreen.route: (context) => const ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
         PdfViewer.route: (context) => const PdfViewer(),
+        AnnouncementScreen.route: ((context) => AnnouncementScreen()),
       },
       // onGenerateRoute: (settings) {
       //   if (settings.name == '/') {}

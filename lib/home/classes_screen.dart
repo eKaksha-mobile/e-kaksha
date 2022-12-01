@@ -11,6 +11,7 @@ class ClassesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // print(GlobalData.subjectModels.runtimeType);
     return Scaffold(
       drawer: const DrawerMenu(),
       appBar: AppBar(
