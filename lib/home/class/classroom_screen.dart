@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ekaksha/dummy_data.dart';
 import 'package:ekaksha/home/class/widget/intro_card.dart';
 import 'package:ekaksha/home/class/widget/popup_box.dart';
+import 'package:ekaksha/home/class/widget/teacher_popup_box.dart';
 import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/assignment_data_model.dart';
 // import 'package:ekaksha/model/ClassModel.dart';

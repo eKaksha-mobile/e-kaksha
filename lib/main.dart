@@ -12,6 +12,7 @@ import 'package:ekaksha/home/classes_screen.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
 import 'package:firebase_core/firebase_core.dart';
 
+import 'home/class/scoring_screen.dart';
 import 'home/login/signup_screen.dart';
 import 'home/profile/tab_screen.dart';
 import 'home/login/login_screen.dart';
@@ -68,6 +69,7 @@ class MyApp extends StatelessWidget {
         ClassesScreen.route: (context) => const ClassesScreen(),
         ClassRoomScreen.route: (context) => const ClassRoomScreen(),
         AssignmentScreen.route: (context) => const AssignmentScreen(),
+        ScoringScreen.route: (context) => const ScoringScreen(),
         PdfViewer.route: (context) => const PdfViewer(),
         AnnouncementScreen.route: ((context) => AnnouncementScreen()),
       },
