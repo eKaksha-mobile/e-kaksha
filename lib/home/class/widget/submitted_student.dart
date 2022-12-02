@@ -23,6 +23,7 @@ class SubmittedStudent extends StatelessWidget {
     return InkWell(
       onTap: () => Navigator.of(context).pushNamed(ScoringScreen.route),
       child: Card(
+        elevation: .4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
         child: Container(
             padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -38,7 +39,7 @@ class SubmittedStudent extends StatelessWidget {
                       child: CircleAvatar(
                         backgroundColor: Colors.blueGrey,
                         backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/3011/3011270.png'),
+                            'https://cdn3d.iconscout.com/3d/premium/thumb/graduate-student-6368706-5250853.png'),
                         radius: 22.5,
                       ),
                     ),
@@ -75,9 +76,9 @@ class SubmittedStudent extends StatelessWidget {
                   ],
                 ),
                 Icon(
-                  isChecked ? Icons.check_circle_outline : Icons.highlight_off,
-                  size: 30,
-                  color: isChecked ? Colors.green : Colors.red,
+                  isChecked ? Icons.check_circle_outline : Icons.circle_notifications_rounded,
+                  size: 25,
+                  color: isChecked ? Colors.green : Colors.redAccent,
                 )
               ],
             )),

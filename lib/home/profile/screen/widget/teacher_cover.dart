@@ -22,7 +22,7 @@ class TeacherCover extends StatelessWidget {
             radius: 60,
             backgroundColor: Colors.blue,
             backgroundImage: NetworkImage(
-                'https://static.wikia.nocookie.net/callofduty/images/1/18/SimonRiley_Mobile.jpg/revision/latest?cb=20191005151053'),
+                'https://cdn3d.iconscout.com/3d/premium/thumb/teacher-5796556-4841555.png'),
           ),
           const HorizontalSpacer(25),
           Column(

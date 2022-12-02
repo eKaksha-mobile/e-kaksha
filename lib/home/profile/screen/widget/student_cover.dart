@@ -21,8 +21,7 @@ class StudentCover extends StatelessWidget {
           const CircleAvatar(
             radius: 60,
             backgroundColor: Colors.blue,
-            backgroundImage: NetworkImage(
-                'https://static.wikia.nocookie.net/callofduty/images/1/18/SimonRiley_Mobile.jpg/revision/latest?cb=20191005151053'),
+            backgroundImage: NetworkImage('https://cdn3d.iconscout.com/3d/premium/thumb/graduate-student-6368706-5250853.png'),
           ),
           const HorizontalSpacer(25),
           Column(
