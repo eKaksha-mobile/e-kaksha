@@ -9,6 +9,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../../utils/model/subject_model.dart';
+
 class AnnouncementScreen extends StatefulWidget {
   const AnnouncementScreen({super.key});
   static const route = '/announcement_screen';
@@ -47,12 +49,18 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
     //   await GetIt.I.get<FirebaseService>().getAllStudentModelList();
     // }
 
-    newAssignmentsData = [];
-
-    assignmentsData = await GetIt.I
+    List<SubjectModel> subjectList = await GetIt.I
         .get<FirebaseService>()
-        .getAssignmentDataModelListBySubjectId(
-            ClassRoomScreen.currentSubjectModel.id);
+        .getSubjectModelListBySem(GlobalData.studentModel.semester);
+
+    // newAssignmentsData = [];
+
+    for (var subject in subjectList) {
+      final tempList = await GetIt.I
+          .get<FirebaseService>()
+          .getAssignmentDataModelListBySubjectId(subject.id);
+      assignmentsData.addAll(tempList);
+    }
 
     assignmentsData.sort((a, b) {
       var comparisonResult = a.dueDate.compareTo(b.dueDate);
@@ -67,6 +75,9 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
         newAssignmentsData.add(assignmentsData[i]);
       }
     }
+
+    // print(assignmentsData.length);
+    // print('hi');
   }
 
   Widget build(BuildContext context) {
@@ -76,38 +87,38 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
       ),
       body: ListView(
         children: [
-          Container(
-            alignment: Alignment.center,
-            margin: EdgeInsets.only(top: 5, bottom: 3, left: 5, right: 5),
-            decoration: BoxDecoration(
-                border: Border.all(width: 2, color: Colors.grey.shade400)),
-            child: DropdownButton<String>(
-              value: dropdownValue,
-              icon: const Icon(Icons.keyboard_arrow_down_outlined),
-              iconSize: 20,
-              elevation: 16,
-              style: const TextStyle(
-                  color: Colors.black,
-                  overflow: TextOverflow.ellipsis,
-                  fontSize: 18,
-                  fontWeight: FontWeight.w500,
-                  fontFamily: 'Poppins'),
-              onChanged: (String? newValue) {
-                setState(() {
-                  dropdownValue = newValue!;
-                });
-              },
-              items: ["Latest Updates", "Pending Assignment"]
-                  .map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(
-                    value,
-                  ),
-                );
-              }).toList(),
-            ),
-          ),
+          // Container(
+          //   alignment: Alignment.center,
+          //   margin: EdgeInsets.only(top: 5, bottom: 3, left: 5, right: 5),
+          //   decoration: BoxDecoration(
+          //       border: Border.all(width: 2, color: Colors.grey.shade400)),
+          //   child: DropdownButton<String>(
+          //     value: dropdownValue,
+          //     icon: const Icon(Icons.keyboard_arrow_down_outlined),
+          //     iconSize: 20,
+          //     elevation: 16,
+          //     style: const TextStyle(
+          //         color: Colors.black,
+          //         overflow: TextOverflow.ellipsis,
+          //         fontSize: 18,
+          //         fontWeight: FontWeight.w500,
+          //         fontFamily: 'Poppins'),
+          //     onChanged: (String? newValue) {
+          //       setState(() {
+          //         dropdownValue = newValue!;
+          //       });
+          //     },
+          //     items: ["Latest Updates", "Pending Assignment"]
+          //         .map<DropdownMenuItem<String>>((String value) {
+          //       return DropdownMenuItem<String>(
+          //         value: value,
+          //         child: Text(
+          //           value,
+          //         ),
+          //       );
+          //     }).toList(),
+          //   ),
+          // ),
 
           // IntroCard(
           //     ClassRoomScreen.currentSubjectModel.title,
