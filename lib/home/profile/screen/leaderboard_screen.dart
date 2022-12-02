@@ -94,7 +94,9 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
       });
     }
 
-    studentList = await GetIt.I.get<FirebaseService>().getAllStudentModelList();
+    GlobalData.allStudentModelList =
+        await GetIt.I.get<FirebaseService>().getAllStudentModelList();
+    studentList = GlobalData.allStudentModelList;
 
     studentList.sort((b, a) {
       var comparisonResult = a.totalScore.compareTo(b.totalScore);
