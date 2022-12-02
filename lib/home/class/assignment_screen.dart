@@ -153,17 +153,15 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
             margin: const EdgeInsets.only(top: 5),
             child: ListView.builder(
               itemBuilder: (context, index) => SubmittedStudent(
-                "${assignmentSubmittedDataModelList
-                        .elementAt(index)
-                        .studentFirstName} ${assignmentSubmittedDataModelList
-                        .elementAt(index)
-                        .studentLastName}", //Sharing Student details
+                "${assignmentSubmittedDataModelList.elementAt(index).studentFirstName} ${assignmentSubmittedDataModelList.elementAt(index).studentLastName}", //Sharing Student details
                 index: index + 1,
                 marks: assignmentSubmittedDataModelList.elementAt(index).marks,
                 maxMarks:
                     assignmentSubmittedDataModelList.elementAt(index).maxMarks,
                 isChecked:
                     assignmentSubmittedDataModelList.elementAt(index).isChecked,
+                assignmentSubmittedDataModel:
+                    assignmentSubmittedDataModelList.elementAt(index),
               ),
               itemCount: assignmentSubmittedDataModelList.length,
             ),

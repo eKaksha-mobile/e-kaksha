@@ -7,12 +7,12 @@ class AssignmentSubmittedDataModel {
   final Timestamp _submittedOn;
   final int _semester;
   final int _maxMarks;
-  final int _marks;
+  final double _marks;
   final bool _lateSubmission;
   final String _studentEmail;
   final String _studentFirstName;
   final String _studentLastName;
-  final int _plagiarizedAmount;
+  final double _plagiarizedAmount;
   final bool _isChecked;
 
   AssignmentSubmittedDataModel({
@@ -21,27 +21,27 @@ class AssignmentSubmittedDataModel {
     submittedOn = 0,
     semester = 0,
     maxMarks = 0,
-    marks = 0,
+    marks = 0.0,
     lateSubmission = false,
     studentEmail = '',
     studentFirstName = '',
     studentLastName = '',
-    plagiarizedAmount = 0,
+    plagiarizedAmount = 0.0,
     isChecked = false,
   })  : _assignmentId = assignmentId,
         _assignmentName = assignmentName,
         _submittedOn = submittedOn == 0 ? Timestamp.now() : submittedOn,
         _semester = semester,
         _maxMarks = maxMarks,
-        _marks = marks,
+        _marks = double.parse(marks.toString()),
         _lateSubmission = lateSubmission,
         _studentEmail = studentEmail,
         _studentFirstName = studentFirstName,
         _studentLastName = studentLastName,
-        _plagiarizedAmount = plagiarizedAmount,
+        _plagiarizedAmount = double.parse(plagiarizedAmount.toString()),
         _isChecked = isChecked;
 
-  int get plagiarizedAmount => _plagiarizedAmount;
+  double get plagiarizedAmount => _plagiarizedAmount;
 
   String get studentLastName => _studentLastName;
 
@@ -51,7 +51,7 @@ class AssignmentSubmittedDataModel {
 
   bool get lateSubmission => _lateSubmission;
 
-  int get marks => _marks;
+  double get marks => _marks;
 
   int get maxMarks => _maxMarks;
 

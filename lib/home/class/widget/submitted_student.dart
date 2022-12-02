@@ -1,3 +1,4 @@
+import 'package:ekaksha/utils/model/assignment_submitted_data_model.dart';
 import 'package:flutter/material.dart';
 
 import '../scoring_screen.dart';
@@ -5,9 +6,10 @@ import '../scoring_screen.dart';
 class SubmittedStudent extends StatelessWidget {
   final int index;
   final String data;
-  final int marks;
+  final double marks;
   final int maxMarks;
   final bool isChecked;
+  final AssignmentSubmittedDataModel assignmentSubmittedDataModel;
 
   const SubmittedStudent(
     this.data, {
@@ -16,12 +18,17 @@ class SubmittedStudent extends StatelessWidget {
     required this.marks,
     required this.maxMarks,
     required this.isChecked,
+    required this.assignmentSubmittedDataModel,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.of(context).pushNamed(ScoringScreen.route),
+      onTap: () {
+        ScoringScreen.assignmentSubmittedDataModel =
+            assignmentSubmittedDataModel;
+        Navigator.of(context).pushNamed(ScoringScreen.route);
+      },
       child: Card(
         elevation: .4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
