@@ -13,10 +13,10 @@ class ScoringScreen extends StatelessWidget {
         title: const Text(''),
       ),
       body: Container(),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => showDialog(context: context, builder: (context) => const ScorePopup()),
-        child: const Icon(Icons.send),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => showDialog(context: context, builder: (context) => const ScorePopup()),
+      //   child: const Icon(Icons.send),
+      // ),
     );
   }
 }

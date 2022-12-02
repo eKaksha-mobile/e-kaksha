@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:uuid/uuid.dart';
 
 import '../../../utils/model/assignment_data_model.dart';
+import '../../../utils/screens/pdf_viewer.dart';
 import '../../../utils/service/firebase_service.dart';
 import '../../../utils/widget/vertical_spacer.dart';
 import '../../widget/input_text.dart';

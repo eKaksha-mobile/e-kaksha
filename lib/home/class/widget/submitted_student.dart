@@ -5,11 +5,19 @@ import '../scoring_screen.dart';
 class SubmittedStudent extends StatelessWidget {
   final int index;
   final String data;
+  final int marks;
+  final int maxMarks;
+  final bool isChecked;
 
   const SubmittedStudent(
-      this.data, {super.key,
-        required this.index,
-      });
+    this.data, {
+    super.key,
+    required this.index,
+    required this.marks,
+    required this.maxMarks,
+    required this.isChecked,
+  });
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -52,7 +60,7 @@ class SubmittedStudent extends StatelessWidget {
                                 height: 1.5,
                               ),
                               Text(
-                                "Score : ${'10/10'}",
+                                "Score : ${marks} / ${maxMarks}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: 'Poppins',
@@ -67,9 +75,9 @@ class SubmittedStudent extends StatelessWidget {
                   ],
                 ),
                 Icon(
-                  Icons.highlight_off,
+                  isChecked ? Icons.check_circle_outline : Icons.highlight_off,
                   size: 30,
-                  color: Colors.red,
+                  color: isChecked ? Colors.green : Colors.red,
                 )
               ],
             )),
