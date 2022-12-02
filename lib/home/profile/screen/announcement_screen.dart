@@ -49,9 +49,17 @@ class _AnnouncementScreenState extends State<AnnouncementScreen> {
     //   await GetIt.I.get<FirebaseService>().getAllStudentModelList();
     // }
 
-    List<SubjectModel> subjectList = await GetIt.I
-        .get<FirebaseService>()
-        .getSubjectModelListBySem(GlobalData.studentModel.semester);
+    List<SubjectModel> subjectList = [];
+
+    if (GlobalData.isTeacher) {
+      subjectList = await GetIt.I
+          .get<FirebaseService>()
+          .getSubjectModelListByEmail(GlobalData.teacherModel.email);
+    } else {
+      subjectList = await GetIt.I
+          .get<FirebaseService>()
+          .getSubjectModelListBySem(GlobalData.studentModel.semester);
+    }
 
     // newAssignmentsData = [];
 
