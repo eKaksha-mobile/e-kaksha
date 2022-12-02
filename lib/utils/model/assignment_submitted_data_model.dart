@@ -16,7 +16,7 @@ class AssignmentSubmittedDataModel {
   final bool _isChecked;
 
   AssignmentSubmittedDataModel({
-    assignmentId = 0,
+    assignmentId = '',
     assignmentName = '',
     submittedOn = 0,
     semester = 0,
@@ -30,7 +30,7 @@ class AssignmentSubmittedDataModel {
     isChecked = false,
   })  : _assignmentId = assignmentId,
         _assignmentName = assignmentName,
-        _submittedOn = submittedOn,
+        _submittedOn = submittedOn == 0 ? Timestamp.now() : submittedOn,
         _semester = semester,
         _maxMarks = maxMarks,
         _marks = marks,

@@ -1,4 +1,5 @@
 import 'package:ekaksha/home/login/login_screen.dart';
+import 'package:ekaksha/home/profile/screen/announcement_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -35,7 +36,9 @@ class DrawerMenu extends StatelessWidget {
           LeadingIconText(
             icon: Icons.notifications_rounded,
             label: 'announcement',
-            callback: () {},
+            callback: () {
+              Navigator.pushNamed(context, AnnouncementScreen.route);
+            },
           ),
           const Divider(),
           LeadingIconText(

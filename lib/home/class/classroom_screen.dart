@@ -188,8 +188,10 @@ class _ClassRoomScreenState extends State<ClassRoomScreen> {
                 MediaQuery.of(context).padding.top -
                 kToolbarHeight,
             child: ListView.builder(
-              itemBuilder: (context, index) =>
-                  NotesItemCard(totalAssignmentsData.elementAt(index)),
+              itemBuilder: (context, index) => NotesItemCard(
+                totalAssignmentsData.elementAt(index),
+                showAttachments: true,
+              ),
               itemCount: totalAssignmentsData.length,
             ),
           ),

@@ -12,7 +12,9 @@ import '../../../utils/widget/leading_icon_text.dart';
 import 'examiner_card.dart';
 
 class NotesItemCard extends StatefulWidget {
-  const NotesItemCard(this.notesModel, {Key? key}) : super(key: key);
+  late bool showAttachments = true;
+  NotesItemCard(this.notesModel, {required this.showAttachments, Key? key})
+      : super(key: key);
 
   final AssignmentDataModel notesModel;
 
@@ -71,6 +73,7 @@ class _NotesItemCardState extends State<NotesItemCard> {
             children: [
               ExaminerCard(widget.notesModel),
               const VerticalSpacer(10),
+
               Text(
                 widget.notesModel.description,
                 textAlign: TextAlign.start,
@@ -79,38 +82,40 @@ class _NotesItemCardState extends State<NotesItemCard> {
               const SizedBox(
                 height: 10,
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                itemBuilder: (context, index) => LeadingIconText(
-                    iconSize: 18.0,
-                    labelSize: 14.0,
-                    iconSpacing: 4.0,
-                    verticalMargin: 0.5,
-                    horizontalMargin: 0.0,
-                    labelHeight: 1.0,
-                    iconColor: Colors.red,
-                    labelColor: Colors.red,
-                    icon: Icons.attach_file,
-                    label: attachmentsList[index],
-                    callback: () async {
-                      var documentBytes = await GetIt.I
-                          .get<FirebaseService>()
-                          .getPdfBytes(
-                              'assignments_data_pdf/${widget.notesModel.assignmentId}/${attachmentsList[index]}');
-                      () {
-                        // String text = GetIt.I
-                        //     .get<FirebaseService>()
-                        //     .extractText(documentBytes!);
-                        // print(text.replaceAll('\n ', ' '));
-                        Navigator.of(context)
-                            .pushNamed(PdfViewer.route, arguments: {
-                          'documentBytes': documentBytes,
-                          'title': attachmentsList[index],
-                        });
-                      }();
-                    }),
-                itemCount: attachmentsList.length,
-              ),
+              widget.showAttachments == 'true'
+                  ? ListView.builder(
+                      shrinkWrap: true,
+                      itemBuilder: (context, index) => LeadingIconText(
+                          iconSize: 18.0,
+                          labelSize: 14.0,
+                          iconSpacing: 4.0,
+                          verticalMargin: 0.5,
+                          horizontalMargin: 0.0,
+                          labelHeight: 1.0,
+                          iconColor: Colors.red,
+                          labelColor: Colors.red,
+                          icon: Icons.attach_file,
+                          label: attachmentsList[index],
+                          callback: () async {
+                            var documentBytes = await GetIt.I
+                                .get<FirebaseService>()
+                                .getPdfBytes(
+                                    'assignments_data_pdf/${widget.notesModel.assignmentId}/${attachmentsList[index]}');
+                            () {
+                              // String text = GetIt.I
+                              //     .get<FirebaseService>()
+                              //     .extractText(documentBytes!);
+                              // print(text.replaceAll('\n ', ' '));
+                              Navigator.of(context)
+                                  .pushNamed(PdfViewer.route, arguments: {
+                                'documentBytes': documentBytes,
+                                'title': attachmentsList[index],
+                              });
+                            }();
+                          }),
+                      itemCount: attachmentsList.length,
+                    )
+                  : Container(),
               // LeadingIconTextSmall(
               //   icon: Icons.attach_file,
               //   label: attachments == '' ? 'No attachments' : attachments,
