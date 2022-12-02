@@ -51,15 +51,31 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Container(
                 width: mediaQuery.size.width,
                 alignment: Alignment.topCenter,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    fit: BoxFit.cover,
-                    height: 160,
-                    width: 160,
+                child: Stack(children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: Image.asset(
+                      'assets/images/logo_nw.png',
+                      fit: BoxFit.contain,
+                      height: 160,
+                      width: 160,
+                    ),
                   ),
-                ),
+                  const Positioned(
+                    left: 37,
+                    top: 108,
+                    child: Text(
+                      'EKaksha',
+                      style: TextStyle(
+                        fontFamily: 'Poppins',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 20,
+                        color: Colors.black87,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                  )
+                ]),
               ),
             ),
             Positioned(
