@@ -59,7 +59,7 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: '/',
       routes: {
-        // '/': (context) => const AnnouncementScreen(),
+        // '/': (context) => const TestScreen(),
         '/': (context) => GlobalData.sessionActive
             ? const ClassesScreen()
             : const LoginScreen(),

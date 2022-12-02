@@ -28,7 +28,7 @@ class Plagiarism {
     if (response.statusCode == 200) {
       String data = response.body;
 
-      // print(jsonDecode(data));
+      print('Plagiarism : ' + jsonDecode(data)['percentPlagiarism'].toString());
       return jsonDecode(data);
     } else {
       print(response.statusCode);
