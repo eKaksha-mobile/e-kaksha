@@ -80,6 +80,22 @@ class _LeaderboardScreenState extends State<LeaderboardScreen> {
 
     studentList = GlobalData.allStudentModelList;
 
+    for (var student in studentList) {
+      var totalScore = await GetIt.I
+          .get<FirebaseService>()
+          .getTotalScore(student.email, student.semester);
+      var pending = await GetIt.I
+          .get<FirebaseService>()
+          .getPendingAssignments(student.semester);
+
+      await GetIt.I.get<FirebaseService>().updateStudentModel(student.email, {
+        'totalScore': totalScore,
+        'pending': pending,
+      });
+    }
+
+    studentList = await GetIt.I.get<FirebaseService>().getAllStudentModelList();
+
     studentList.sort((b, a) {
       var comparisonResult = a.totalScore.compareTo(b.totalScore);
       if (comparisonResult != 0) {

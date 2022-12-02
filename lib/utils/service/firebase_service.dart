@@ -177,6 +177,26 @@ class FirebaseService {
     }
   }
 
+  Future updateStudentModel(
+      String requiredEmail, Map<String, dynamic> map) async {
+    bool result = false;
+    final docRef = firestore.collection("students");
+
+    await docRef.where('email', isEqualTo: requiredEmail).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // result = true;
+
+          DocumentReference ds = docRef.doc(res.docs.first.id);
+          ds.update(map).then((value) => print('Updated'));
+
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
   Future<TeacherModel> getTeacherModel(String requiredEmail) async {
     bool result = false;
     late Map<String, dynamic> map;
@@ -695,5 +715,136 @@ class FirebaseService {
     );
 
     return isAssignmentExists;
+  }
+
+  Future<double> getTotalScore(String email, int sem) async {
+    bool result = false;
+
+    double totalScore = 0.0;
+
+    final docRef1 = firestore.collection("assignments_submitted_data");
+
+    late List<Map<String, dynamic>> mapList1 = [];
+
+    await docRef1.where('studentEmail', isEqualTo: email).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          for (var doc in res.docs) {
+            mapList1.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+
+    final docRef2 = firestore.collection("assignments_data");
+    late int count = 0;
+    await docRef2.where('sem', isEqualTo: sem).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          result = true;
+          count = res.docs.length;
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<AssignmentSubmittedDataModel> assignmentSubmittedDataModels = [];
+
+      for (var map in mapList1) {
+        assignmentSubmittedDataModels.add(AssignmentSubmittedDataModel(
+          assignmentId: map['assignmentId'],
+          assignmentName: map['assignmentName'],
+          lateSubmission: map['lateSubmission'],
+          marks: map['marks'],
+          maxMarks: map['maxMarks'],
+          plagiarizedAmount: map['plagiarizedAmount'],
+          semester: map['sem'],
+          studentEmail: map['studentEmail'],
+          studentFirstName: map['studentFirstName'],
+          studentLastName: map['studentLastName'],
+          submittedOn: map['submittedOn'],
+          isChecked: map['isChecked'],
+        ));
+      }
+
+      for (var model in assignmentSubmittedDataModels) {
+        totalScore += (model.marks / model.maxMarks) * 100;
+      }
+
+      totalScore = totalScore / count;
+
+      return totalScore;
+    } else {
+      return totalScore;
+    }
+  }
+
+  Future<int> getPendingAssignments(int sem) async {
+    bool result = false;
+
+    int pending = 0;
+
+    final docRef = firestore.collection("assignments_data");
+
+    late List<Map<String, dynamic>> mapList = [];
+
+    await docRef.where('sem', isEqualTo: sem).get().then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // print(res.docs.length);
+          result = true;
+          for (var doc in res.docs) {
+            mapList.add(doc.data());
+          }
+          // map = res.docs.first.data();
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+    if (result) {
+      // print("dob :");
+      // print(map['dob']);
+
+      List<AssignmentDataModel> assignmentDataModels = [];
+
+      for (var map in mapList) {
+        assignmentDataModels.add(AssignmentDataModel(
+          teacherFirstName: map['teacherFirstName'],
+          teacherLastName: map['teacherLastName'],
+          teacherEmail: map['teacherEmail'],
+          semester: map['sem'],
+          assignmentId: map['assignmentId'],
+          assignmentName: map['assignmentName'],
+          description: map['description'],
+          dueDate: map['dueDate'],
+          maxMarks: map['maxMarks'],
+          subjectId: map['subjectId'],
+          subjectName: map['subjectName'],
+        ));
+      }
+
+      Timestamp ts = Timestamp.now();
+
+      for (var model in assignmentDataModels) {
+        if (model.dueDate.compareTo(ts) > 0) {
+          pending += 1;
+        }
+      }
+
+      return pending;
+    } else {
+      return pending;
+    }
   }
 }

@@ -82,7 +82,7 @@ class _NotesItemCardState extends State<NotesItemCard> {
               const SizedBox(
                 height: 10,
               ),
-              widget.showAttachments == 'true'
+              widget.showAttachments
                   ? ListView.builder(
                       shrinkWrap: true,
                       itemBuilder: (context, index) => LeadingIconText(

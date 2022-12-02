@@ -10,8 +10,8 @@ class StudentModel {
   final int _semester;
   final String _gender;
   final Timestamp _dob;
-  final double _totalScore;
-  final int _pendingAssignments;
+  double _totalScore;
+  int _pendingAssignments;
 
   late final int? _age;
   // late final List<String>? _subject;
@@ -63,7 +63,15 @@ class StudentModel {
 
   double get totalScore => _totalScore;
 
+  set totalScore(double value) {
+    _totalScore = value;
+  }
+
   int get pendingAssignments => _pendingAssignments;
+
+  set pendingAssignments(int value) {
+    _pendingAssignments = value;
+  }
 
   int? get age => _age;
 
