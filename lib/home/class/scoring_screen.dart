@@ -79,9 +79,9 @@ class _ScoringScreenState extends State<ScoringScreen> {
     if (double.parse(marksController.text) < 0 ||
         double.parse(marksController.text) > maxMarks ||
         double.parse(plagiarismController.text) < 0 ||
-        double.parse(plagiarismController.text) > 100) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text("Please Enter value between 0 and 100")));
+        double.parse(plagiarismController.text) > maxMarks) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Please Enter value between 0 and $maxMarks")));
       return false;
     }
     return true;
