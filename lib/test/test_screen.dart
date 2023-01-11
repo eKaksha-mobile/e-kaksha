@@ -47,6 +47,7 @@ class _TestScreenState extends State<TestScreen> {
     var text = GetIt.I.get<FirebaseService>().extractText(documentBytes);
 
     await Plagiarism().getData(text);
+    print(text);
 
     print('-------');
 
