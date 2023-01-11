@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
+import '../../utils/data/global_data.dart';
 import '../../utils/widget/horizontal_spacer.dart';
 
 class ScoringScreen extends StatefulWidget {
@@ -205,17 +206,17 @@ class _ScoringScreenState extends State<ScoringScreen> {
                 ),
               ),
             ),
-            // const HorizontalSpacer(10),
-            // TextButton(
-            //   onPressed: () {},
-            //   child: const Text(
-            //     'Analyze',
-            //     style: TextStyle(
-            //       fontSize: 18,
-            //       fontFamily: 'Poppins',
-            //     ),
-            //   ),
-            // ),
+            const HorizontalSpacer(10),
+            if (GlobalData.isTeacher) TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Re-Analyze',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+            ),
           ]),
         ),
         Container(
@@ -260,7 +261,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
             ],
           ),
         ),
-        Expanded(
+        if (GlobalData.isTeacher) Expanded(
             child: Align(
           alignment: FractionalOffset.bottomCenter,
           child: Container(
