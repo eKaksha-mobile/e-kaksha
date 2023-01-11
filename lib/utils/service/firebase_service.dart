@@ -590,6 +590,33 @@ class FirebaseService {
         print("Added Data with ID: ${documentSnapshot.id}"));
   }
 
+  Future
+      updateAssignmentSubmittedDataModelInFireStorewithAssignmentIdandStudentEmail(
+          String requiredAssignmentId,
+          String requiredEmail,
+          Map<String, dynamic> map) async {
+    bool result = false;
+    final docRef = firestore.collection("assignments_submitted_data");
+
+    await docRef
+        .where('assignmentId', isEqualTo: requiredAssignmentId)
+        .where('studentEmail', isEqualTo: requiredEmail)
+        .get()
+        .then(
+      (res) async {
+        if (res.docs.isNotEmpty) {
+          // result = true;
+
+          DocumentReference ds = docRef.doc(res.docs.first.id);
+          ds.update(map).then((value) => print('Updated'));
+
+          // print(map);
+        }
+      },
+      onError: (e) => print("Error getting document: $e"),
+    );
+  }
+
   Future<List<AssignmentSubmittedDataModel>>
       getAssignmentSubmittedDataModelListByAssignmentId(
           String assignmentId) async {

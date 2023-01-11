@@ -68,7 +68,7 @@ class SubmittedStudent extends StatelessWidget {
                                 height: 1.5,
                               ),
                               Text(
-                                "Score : ${marks} / ${maxMarks}",
+                                "Marks : ${marks} / ${maxMarks}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: 'Poppins',
@@ -83,7 +83,9 @@ class SubmittedStudent extends StatelessWidget {
                   ],
                 ),
                 Icon(
-                  isChecked ? Icons.check_circle_outline : Icons.circle_notifications_rounded,
+                  isChecked
+                      ? Icons.check_circle_outline
+                      : Icons.circle_notifications_rounded,
                   size: 25,
                   color: isChecked ? Colors.green : Colors.redAccent,
                 )

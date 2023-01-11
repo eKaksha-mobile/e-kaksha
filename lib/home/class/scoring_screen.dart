@@ -27,6 +27,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
   int maxMarks = 0;
   double hintPlagiarism = 0.0;
   double score = 0.0;
+  double marks = 0.0;
 
   String extractedText = '';
 
@@ -43,6 +44,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
     super.initState();
     () async {
       await initializeFields();
+      calculateScore();
       setState(() {});
     }();
   }
@@ -51,7 +53,8 @@ class _ScoringScreenState extends State<ScoringScreen> {
     isLateSubmission =
         ScoringScreen.assignmentSubmittedDataModel.lateSubmission;
     // isLateSubmission = true;
-    score = ScoringScreen.assignmentSubmittedDataModel.marks.toDouble();
+    marksController.text =
+        ScoringScreen.assignmentSubmittedDataModel.marks.toString();
     maxMarks = ScoringScreen.assignmentSubmittedDataModel.maxMarks;
     plagiarismController.text =
         ScoringScreen.assignmentSubmittedDataModel.plagiarizedAmount.toString();
@@ -352,6 +355,20 @@ class _ScoringScreenState extends State<ScoringScreen> {
                 child: ElevatedButton(
                   onPressed: () {
                     setState(() => calculateScore());
+                    Map<String, dynamic> map =
+                        ScoringScreen.assignmentSubmittedDataModel.getMap();
+                    map['marks'] = double.parse(marksController.text);
+                    map['plagiarizedAmount'] =
+                        double.parse(plagiarismController.text);
+                    map['isChecked'] = true;
+                    GetIt.I
+                        .get<FirebaseService>()
+                        .updateAssignmentSubmittedDataModelInFireStorewithAssignmentIdandStudentEmail(
+                            ScoringScreen
+                                .assignmentSubmittedDataModel.assignmentId,
+                            studentModel.email,
+                            map);
+                    Navigator.pop(context);
                   },
                   child: const Text('Mask as checked'),
                 ),
