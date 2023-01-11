@@ -10,6 +10,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../../utils/model/assignment_data_model.dart';
 import '../../../utils/service/firebase_service.dart';
+import '../../../utils/service/plagiarism.dart';
 import '../../../utils/widget/vertical_spacer.dart';
 import '../../widget/input_text.dart';
 import '../classroom_screen.dart';
@@ -96,6 +97,15 @@ class _UploadAssignmentPopUpState extends State<UploadAssignmentPopUp> {
               // }
 
               try {
+                var documentBytes = await GetIt.I
+                    .get<FirebaseService>()
+                    .getPdfBytesFromPlatformFile(pickedFile);
+                var text =
+                    GetIt.I.get<FirebaseService>().extractText(documentBytes!);
+
+                var plagarismData = await Plagiarism().getData(text);
+                // print(text);
+
                 AssignmentSubmittedDataModel tempModel =
                     AssignmentSubmittedDataModel(
                   assignmentId:
@@ -116,7 +126,7 @@ class _UploadAssignmentPopUpState extends State<UploadAssignmentPopUp> {
                   studentEmail: GlobalData.studentModel.email,
                   studentFirstName: GlobalData.studentModel.firstName,
                   studentLastName: GlobalData.studentModel.lastName,
-                  plagiarizedAmount: 0,
+                  plagiarizedAmount: plagarismData['percentPlagiarism'],
                   isChecked: false,
                 );
 
