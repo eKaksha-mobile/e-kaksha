@@ -6,6 +6,8 @@ import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
 import '../../utils/data/global_data.dart';
+import '../../utils/screens/pdf_viewer.dart';
+import '../../utils/service/plagiarism.dart';
 import '../../utils/widget/horizontal_spacer.dart';
 
 class ScoringScreen extends StatefulWidget {
@@ -31,6 +33,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
   StudentModel studentModel = StudentModel();
 
   DateTime submittedOn = DateTime.now();
+  List<String> attachmentsList = [];
 
   final TextEditingController marksController = TextEditingController();
   final TextEditingController plagiarismController = TextEditingController();
@@ -58,6 +61,13 @@ class _ScoringScreenState extends State<ScoringScreen> {
 
     studentModel = await GetIt.I.get<FirebaseService>().getStudentModel(
         ScoringScreen.assignmentSubmittedDataModel.studentEmail);
+
+    bool result = await GetIt.I.get<FirebaseService>().isPathHavingFiles(
+        'assignments_submitted_data_pdf/${ScoringScreen.assignmentSubmittedDataModel.assignmentId}/${studentModel.email}/');
+    if (result) {
+      attachmentsList = await GetIt.I.get<FirebaseService>().getFileNamesFromPath(
+          'assignments_submitted_data_pdf/${ScoringScreen.assignmentSubmittedDataModel.assignmentId}/${studentModel.email}/');
+    }
   }
 
   void calculateScore() {
@@ -79,7 +89,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
     if (double.parse(marksController.text) < 0 ||
         double.parse(marksController.text) > maxMarks ||
         double.parse(plagiarismController.text) < 0 ||
-        double.parse(plagiarismController.text) > maxMarks) {
+        double.parse(plagiarismController.text) > 100) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
           content: Text("Please Enter value between 0 and $maxMarks")));
       return false;
@@ -207,9 +217,50 @@ class _ScoringScreenState extends State<ScoringScreen> {
               ),
             ),
             const HorizontalSpacer(10),
+            ElevatedButton(
+              onPressed: () async {
+                var documentBytes = await GetIt.I
+                    .get<FirebaseService>()
+                    .getPdfBytes(
+                        'assignments_submitted_data_pdf/${ScoringScreen.assignmentSubmittedDataModel.assignmentId}/${studentModel.email}/${attachmentsList[0]}');
+                () {
+                  // String text = GetIt.I
+                  //     .get<FirebaseService>()
+                  //     .extractText(documentBytes!);
+                  // print(text.replaceAll('\n ', ' '));
+                  Navigator.of(context).pushNamed(PdfViewer.route, arguments: {
+                    'documentBytes': documentBytes,
+                    'title': attachmentsList[0],
+                  });
+                }();
+              },
+              child: const Text(
+                'View Pdf',
+                style: TextStyle(
+                  fontSize: 18,
+                  fontFamily: 'Poppins',
+                ),
+              ),
+            ),
+            const HorizontalSpacer(10),
             if (GlobalData.isTeacher)
               TextButton(
-                onPressed: () {},
+                onPressed: () async {
+                  var documentBytes = await GetIt.I
+                      .get<FirebaseService>()
+                      .getPdfBytes(
+                          'assignments_submitted_data_pdf/${ScoringScreen.assignmentSubmittedDataModel.assignmentId}/${studentModel.email}/${attachmentsList[0]}');
+                  var text = GetIt.I
+                      .get<FirebaseService>()
+                      .extractText(documentBytes!);
+
+                  var plagarismData = await Plagiarism().getData(text);
+
+                  setState(() {
+                    plagiarismController.text =
+                        plagarismData['percentPlagiarism'].toString();
+                  });
+                },
                 child: const Text(
                   'Re-Analyze',
                   style: TextStyle(
@@ -262,36 +313,24 @@ class _ScoringScreenState extends State<ScoringScreen> {
             ],
           ),
         ),
-        Expanded(
-          child: Align(
-            alignment: FractionalOffset.bottomCenter,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
 
-                },
-                child: const Text('Update Score'),
+        if (GlobalData.isTeacher)
+          Expanded(
+            child: Align(
+              alignment: FractionalOffset.bottomCenter,
+              child: Container(
+                margin: const EdgeInsets.all(10),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() => calculateScore());
+                  },
+                  child: const Text('Check New Score'),
+                ),
               ),
             ),
           ),
-        ),
-        Expanded(
-          child: Align(
-            alignment: FractionalOffset.bottomCenter,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
 
-                },
-                child: const Text('View PDF'),
-              ),
-            ),
-          ),
-        ),
         if (GlobalData.isTeacher)
           Expanded(
               child: Align(
