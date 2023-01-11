@@ -8,7 +8,10 @@ class SubmittedStudent extends StatelessWidget {
   final String data;
   final double marks;
   final int maxMarks;
+  final double plagiarismAmount;
+  final bool lateSubmission;
   final bool isChecked;
+  final double score;
   final AssignmentSubmittedDataModel assignmentSubmittedDataModel;
 
   const SubmittedStudent(
@@ -19,6 +22,9 @@ class SubmittedStudent extends StatelessWidget {
     required this.maxMarks,
     required this.isChecked,
     required this.assignmentSubmittedDataModel,
+    required this.plagiarismAmount,
+    required this.lateSubmission,
+    required this.score,
   });
 
   @override
@@ -68,7 +74,8 @@ class SubmittedStudent extends StatelessWidget {
                                 height: 1.5,
                               ),
                               Text(
-                                "Marks : ${marks} / ${maxMarks}",
+                                // "Marks : ${marks} / ${maxMarks}",
+                                "Score : ${score}",
                                 style: TextStyle(
                                     fontSize: 15,
                                     fontFamily: 'Poppins',

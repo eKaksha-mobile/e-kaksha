@@ -29,6 +29,21 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
   List<AssignmentSubmittedDataModel> assignmentSubmittedDataModelList = [];
   bool isAssignmentUploaded = false;
 
+  double calculateScore(double marks, int maxMarks, double plagiarismAmount,
+      bool isLateSubmission) {
+    double score = (marks / maxMarks) * 100;
+
+    // print(score);
+    // print((double.parse(plagiarismController.text) / 200));
+
+    score = (score * (1 - (plagiarismAmount / 200)));
+    if (isLateSubmission) {
+      score = (score * (0.7));
+    }
+    // print(score);
+    return score;
+  }
+
   @override
   Widget build(BuildContext context) {
     var data =
@@ -160,6 +175,21 @@ class _AssignmentScreenState extends State<AssignmentScreen> {
                     assignmentSubmittedDataModelList.elementAt(index).maxMarks,
                 isChecked:
                     assignmentSubmittedDataModelList.elementAt(index).isChecked,
+                plagiarismAmount: assignmentSubmittedDataModelList
+                    .elementAt(index)
+                    .plagiarizedAmount,
+                lateSubmission: assignmentSubmittedDataModelList
+                    .elementAt(index)
+                    .lateSubmission,
+                score: calculateScore(
+                    assignmentSubmittedDataModelList.elementAt(index).marks,
+                    assignmentSubmittedDataModelList.elementAt(index).maxMarks,
+                    assignmentSubmittedDataModelList
+                        .elementAt(index)
+                        .plagiarizedAmount,
+                    assignmentSubmittedDataModelList
+                        .elementAt(index)
+                        .lateSubmission),
                 assignmentSubmittedDataModel:
                     assignmentSubmittedDataModelList.elementAt(index),
               ),
