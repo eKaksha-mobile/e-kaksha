@@ -36,7 +36,6 @@ class _ScoringScreenState extends State<ScoringScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     () async {
       await initializeFields();
@@ -206,17 +205,17 @@ class _ScoringScreenState extends State<ScoringScreen> {
                 ),
               ),
             ),
-            const HorizontalSpacer(10),
-            TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Analyze',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
-                ),
-              ),
-            ),
+            // const HorizontalSpacer(10),
+            // TextButton(
+            //   onPressed: () {},
+            //   child: const Text(
+            //     'Analyze',
+            //     style: TextStyle(
+            //       fontSize: 18,
+            //       fontFamily: 'Poppins',
+            //     ),
+            //   ),
+            // ),
           ]),
         ),
         Container(
