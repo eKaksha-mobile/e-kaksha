@@ -139,6 +139,12 @@ class _ScoringScreenState extends State<ScoringScreen> {
         //     ),
         //   ),
         // ),
+        ElevatedButton(
+          onPressed: () {
+
+          },
+          child: const Text('View PDF'),
+        ),
         Container(
           margin: const EdgeInsets.all(10),
           child: Row(
@@ -149,12 +155,6 @@ class _ScoringScreenState extends State<ScoringScreen> {
                   fontSize: 18,
                   fontFamily: 'Poppins',
                 ),
-              ),
-              ElevatedButton(
-                onPressed: () {
-
-                },
-                child: const Text('View PDF'),
               ),
               const HorizontalSpacer(10),
               Text(
