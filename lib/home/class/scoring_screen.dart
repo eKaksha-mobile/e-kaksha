@@ -269,8 +269,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
             width: double.infinity,
             child: ElevatedButton(
               onPressed: () {
-                calculateScore();
-                setState(() {});
+                setState(() => calculateScore());
               },
               child: const Text('Mask as checked'),
             ),
