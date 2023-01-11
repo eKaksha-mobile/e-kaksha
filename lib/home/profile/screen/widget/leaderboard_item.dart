@@ -70,7 +70,7 @@ class LeaderboardItem extends StatelessWidget {
                           height: 1.5,
                         ),
                         Text(
-                          "Score : ${_studentModel.totalScore}",
+                          "Score : ${_studentModel.totalScore.toStringAsFixed(2)}",
                           style: TextStyle(
                               fontSize: 15,
                               fontFamily: 'Poppins',
