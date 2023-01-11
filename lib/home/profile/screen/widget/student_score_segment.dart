@@ -72,7 +72,8 @@ class _StudentScoreSegmentState extends State<StudentScoreSegment> {
                 style: textStyle1,
               ),
               const Text(
-                'Pending',
+                //was pending earlier
+                'Upcoming',
                 style: textStyle2,
               ),
             ],
