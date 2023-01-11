@@ -150,6 +150,12 @@ class _ScoringScreenState extends State<ScoringScreen> {
                   fontFamily: 'Poppins',
                 ),
               ),
+              ElevatedButton(
+                onPressed: () {
+
+                },
+                child: const Text('View PDF'),
+              ),
               const HorizontalSpacer(10),
               Text(
                 DateFormat("yyyy-MM-dd").format(submittedOn),
@@ -207,16 +213,17 @@ class _ScoringScreenState extends State<ScoringScreen> {
               ),
             ),
             const HorizontalSpacer(10),
-            if (GlobalData.isTeacher) TextButton(
-              onPressed: () {},
-              child: const Text(
-                'Re-Analyze',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontFamily: 'Poppins',
+            if (GlobalData.isTeacher)
+              TextButton(
+                onPressed: () {},
+                child: const Text(
+                  'Re-Analyze',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'Poppins',
+                  ),
                 ),
               ),
-            ),
           ]),
         ),
         Container(
@@ -261,20 +268,21 @@ class _ScoringScreenState extends State<ScoringScreen> {
             ],
           ),
         ),
-        if (GlobalData.isTeacher) Expanded(
-            child: Align(
-          alignment: FractionalOffset.bottomCenter,
-          child: Container(
-            margin: const EdgeInsets.all(10),
-            width: double.infinity,
-            child: ElevatedButton(
-              onPressed: () {
-                setState(() => calculateScore());
-              },
-              child: const Text('Mask as checked'),
+        if (GlobalData.isTeacher)
+          Expanded(
+              child: Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  setState(() => calculateScore());
+                },
+                child: const Text('Mask as checked'),
+              ),
             ),
-          ),
-        )),
+          )),
       ]),
     );
   }
