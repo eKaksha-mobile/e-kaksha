@@ -265,11 +265,15 @@ class _ScoringScreenState extends State<ScoringScreen> {
         Expanded(
           child: Align(
             alignment: FractionalOffset.bottomCenter,
-            child: ElevatedButton(
-              onPressed: () {
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
 
-              },
-              child: const Text('View PDF'),
+                },
+                child: const Text('View PDF'),
+              ),
             ),
           ),
         ),
