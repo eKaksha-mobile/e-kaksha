@@ -4,55 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../../../utils/value/style.dart';
-import '../../../../utils/widget/vertical_spacer.dart';
-
-// class StudentScoreSegment1 extends StatelessWidget {
-//   // final double score;
-//   // final int pending;
-//
-//   const StudentScoreSegment1({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return IntrinsicHeight(
-//       child: Row(
-//         mainAxisAlignment: MainAxisAlignment.spaceAround,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         children: [
-//           Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               Text(
-//                 GlobalData.studentModel.totalScore.toString(),
-//                 style: textStyle1,
-//               ),
-//               const Text(
-//                 'Total Score',
-//                 style: textStyle2,
-//               ),
-//             ],
-//           ),
-//           const VerticalDivider(),
-//           Column(
-//             mainAxisAlignment: MainAxisAlignment.spaceAround,
-//             crossAxisAlignment: CrossAxisAlignment.center,
-//             children: [
-//               Text(
-//                 GlobalData.studentModel.pendingAssignments.toString(),
-//                 style: textStyle1,
-//               ),
-//               const Text(
-//                 'Pending',
-//                 style: textStyle2,
-//               ),
-//             ],
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
 
 class StudentScoreSegment extends StatefulWidget {
   const StudentScoreSegment({Key? key}) : super(key: key);
@@ -67,7 +18,6 @@ class _StudentScoreSegmentState extends State<StudentScoreSegment> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     () async {
@@ -103,7 +53,7 @@ class _StudentScoreSegmentState extends State<StudentScoreSegment> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                GlobalData.studentModel.totalScore.toString(),
+                GlobalData.studentModel.totalScore.toStringAsFixed(2),
                 style: textStyle1,
               ),
               const Text(
