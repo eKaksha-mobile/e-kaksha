@@ -314,11 +314,29 @@ class _ScoringScreenState extends State<ScoringScreen> {
           ),
         ),
 
+        // if (GlobalData.isTeacher)
+        //   Expanded(
+        //     child: Align(
+        //       alignment: FractionalOffset.bottomCenter,
+        //       child: Container(
+        //         margin: const EdgeInsets.all(10),
+        //         width: double.infinity,
+        //         child: ElevatedButton(
+        //           onPressed: () {
+        //             setState(() => calculateScore());
+        //           },
+        //           child: const Text('Check New Score'),
+        //         ),
+        //       ),
+        //     ),
+        //   ),
+
         if (GlobalData.isTeacher)
           Expanded(
-            child: Align(
-              alignment: FractionalOffset.bottomCenter,
-              child: Container(
+              child: Column(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Container(
                 margin: const EdgeInsets.all(10),
                 width: double.infinity,
                 child: ElevatedButton(
@@ -328,23 +346,17 @@ class _ScoringScreenState extends State<ScoringScreen> {
                   child: const Text('Check New Score'),
                 ),
               ),
-            ),
-          ),
-
-        if (GlobalData.isTeacher)
-          Expanded(
-              child: Align(
-            alignment: FractionalOffset.bottomCenter,
-            child: Container(
-              margin: const EdgeInsets.all(10),
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () {
-                  setState(() => calculateScore());
-                },
-                child: const Text('Mask as checked'),
+              Container(
+                margin: const EdgeInsets.all(10),
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () {
+                    setState(() => calculateScore());
+                  },
+                  child: const Text('Mask as checked'),
+                ),
               ),
-            ),
+            ],
           )),
       ]),
     );
