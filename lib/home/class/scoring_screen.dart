@@ -1,17 +1,11 @@
-import 'package:ekaksha/home/class/widget/examiner_card.dart';
-import 'package:ekaksha/home/class/widget/score_popup.dart';
-import 'package:ekaksha/home/class/widget/submitted_student.dart';
-import 'package:ekaksha/utils/data/global_data.dart';
 import 'package:ekaksha/utils/model/student_model.dart';
 import 'package:ekaksha/utils/service/firebase_service.dart';
-import 'package:ekaksha/utils/widget/vertical_spacer.dart';
 import 'package:ekaksha/utils/model/assignment_submitted_data_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
 import '../../utils/widget/horizontal_spacer.dart';
-import '../login/widget/checkbox_text_card.dart';
 
 class ScoringScreen extends StatefulWidget {
   static const route = '/scoring_screen';
@@ -159,7 +153,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
               const HorizontalSpacer(10),
               Text(
                 DateFormat("yyyy-MM-dd").format(submittedOn),
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Poppins',
                   fontWeight: FontWeight.w500,
@@ -177,18 +171,18 @@ class _ScoringScreenState extends State<ScoringScreen> {
                 child: TextField(
                   controller: marksController,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                     hintText: hintMarks.toString(),
                     // suffixText: '/100',
-                    border: OutlineInputBorder(
+                    border: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.teal)),
                   ),
                 ),
               ),
               const HorizontalSpacer(10),
               Text(
-                '/ ${maxMarks}',
-                style: TextStyle(
+                '/ $maxMarks',
+                style: const TextStyle(
                   fontSize: 18,
                   fontFamily: 'Poppins',
                 ),
@@ -204,9 +198,9 @@ class _ScoringScreenState extends State<ScoringScreen> {
               child: TextField(
                 controller: plagiarismController,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 10),
                   hintText: hintPlagiarism.toString(),
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.teal),
                   ),
                 ),
@@ -239,7 +233,7 @@ class _ScoringScreenState extends State<ScoringScreen> {
               const HorizontalSpacer(10),
               Text(
                 isLateSubmission ? 'True' : 'False',
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.w500,
                   fontFamily: 'Poppins',
@@ -252,14 +246,14 @@ class _ScoringScreenState extends State<ScoringScreen> {
           margin: const EdgeInsets.all(10),
           child: Row(
             children: [
-              Text('Score:',
+              const Text('Score:',
                   style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'Poppins',
                   )),
-              HorizontalSpacer(10),
+              const HorizontalSpacer(10),
               Text(score.toString(),
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 18,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w500,
