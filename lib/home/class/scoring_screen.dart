@@ -139,12 +139,6 @@ class _ScoringScreenState extends State<ScoringScreen> {
         //     ),
         //   ),
         // ),
-        ElevatedButton(
-          onPressed: () {
-
-          },
-          child: const Text('View PDF'),
-        ),
         Container(
           margin: const EdgeInsets.all(10),
           child: Row(
@@ -266,6 +260,17 @@ class _ScoringScreenState extends State<ScoringScreen> {
                     fontWeight: FontWeight.w500,
                   )),
             ],
+          ),
+        ),
+        Expanded(
+          child: Align(
+            alignment: FractionalOffset.bottomCenter,
+            child: ElevatedButton(
+              onPressed: () {
+
+              },
+              child: const Text('View PDF'),
+            ),
           ),
         ),
         if (GlobalData.isTeacher)
